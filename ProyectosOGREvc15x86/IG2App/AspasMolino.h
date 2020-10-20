@@ -12,7 +12,7 @@ public:
 	AspasMolino(Ogre::SceneNode* node, int numAspas) {
 		aspasNode = node;
 		//aspasNode->createChildSceneNode("aspas");
-		for (int i = 0; i < numAspas; i++) {
+		/*for (int i = 0; i < numAspas; i++) {
 			aspasNode->createChildSceneNode("aspa_" + std::to_string(i));
 			
 			aspasNode->getChild("aspa_" + std::to_string(i))->createChild("tablero_" + std::to_string(i));
@@ -31,7 +31,7 @@ public:
 
 			aspasNode->getSceneNode("aspa_" + std::to_string(i))->roll(Degree((360 / 12) * i));
 			aspasNode->getSceneNode("adorno_" + std::to_string(i))->roll(Degree(-(360 / 12) * i));
-		}
+		}*/
 	}
 	~AspasMolino();
 protected:

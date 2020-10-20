@@ -24,7 +24,6 @@
 *.lai
 *.la
 *.a
-*.lib
 
 # Executables
 *.exe
@@ -32,4 +31,3 @@
 *.app
 
 #carpetas a ignorar
-ProyectosOGREvc15x86/OGREsdk/
