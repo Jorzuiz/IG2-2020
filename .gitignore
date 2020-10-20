@@ -14,7 +14,6 @@
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
 
 # Fortran module files
 *.mod
@@ -30,4 +29,14 @@
 *.out
 *.app
 
-#carpetas a ignorar
+# Registros
+*.log
+*.tlog
+ProyectosOGREvc15x86/bin/ogre.log
+ProyectosOGREvc15x86/IG2App/Release/IG2AppRelease.Build.CppClean.log
+ProyectosOGREvc15x86/IG2App/Release/IG2AppRelease.exe.recipe
+ProyectosOGREvc15x86/IG2App/x64/Debug/vc142.idb
+ProyectosOGREvc15x86/IG2App/x86/Debug/vc142.pdb
+ProyectosOGREvc15x86/IG2App/Release/IG2AppRelease.Build.CppClean.log
+ProyectosOGREvc15x86/IG2App/Release/IG2AppRelease.exe.recipe
+ProyectosOGREvc15x86/bin/ogre.log
