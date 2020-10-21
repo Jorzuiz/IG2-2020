@@ -33,8 +33,8 @@ public:
 	~Aspa() {};
 
 	void giro(int i) {
-		mSM->getSceneNode("aspa" + std::to_string(i))->roll(Degree(1));
-		mSM->getSceneNode("adorno" + std::to_string(i))->roll(Degree(-1));
+		mNode->roll(Degree(1));
+		cilindroNode->roll(Degree(-1));
 	};
 
 	/*virtual void frameRendered(const Ogre::FrameEvent& evt);

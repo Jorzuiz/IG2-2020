@@ -10,7 +10,7 @@ using namespace Ogre;
 class AspasMolino: public OgreBites::InputListener
 {
 public:
-	AspasMolino(Ogre::SceneNode* node, int numAspa) {
+	AspasMolino(Ogre::SceneNode* node, const int numAspa) {
 		
 		aspasNode = node;
 		Ogre::SceneManager* mSM = aspasNode->getCreator();
