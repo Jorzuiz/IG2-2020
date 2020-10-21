@@ -15,10 +15,11 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
   }
   //else if (evt.keysym.sym == SDLK_???)
   if (evt.keysym.sym == SDLK_g) {
-	  mSM->getSceneNode("AspasMolino")->roll(Ogre::Degree(1));
+	  AspasMolino_->giro();
+	  /*mSM->getSceneNode("AspasMolino")->roll(Ogre::Degree(1));
 	  for (int i = 0; i < num; i++) {
-		  mSM->getSceneNode("adorno_" + std::to_string(i))->roll(Degree(-1));
-	  }
+		  mSM->getSceneNode("adorno" + std::to_string(i))->roll(Degree(-1));
+	  }*/
 	 /* mSM->getSceneNode("aspas")->roll(Ogre::Degree(1));
 	  for (int i = 0; i < num; i++) {
 		  mSM->getSceneNode("adorno_" + std::to_string(i))->roll(Degree(-1));
@@ -108,7 +109,7 @@ void IG2App::setupScene(void)
 
   //ESCENA ASPAS
   mSM->getRootSceneNode()->createChildSceneNode("AspasMolino");
-  AspasMolino_ = new AspasMolino(mSM->getSceneNode("AspasMolino"),12);
+  AspasMolino_ = new AspasMolino(mSM->getSceneNode("AspasMolino"),num);
   addInputListener(AspasMolino_);
 
 

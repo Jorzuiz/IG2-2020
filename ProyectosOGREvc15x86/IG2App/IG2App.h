@@ -29,7 +29,7 @@ protected:
   OgreBites::CameraMan* mCamMgr = nullptr;
 
   //ESCENA ASPAS
-  const int num = 12;
+  const int num = 5;
   //Ogre::SceneNode* AspasNode_ = nullptr;
   //Ogre::SceneNode* AspaNode_ = nullptr;
   //ESCENA ROMANO SINBAD
