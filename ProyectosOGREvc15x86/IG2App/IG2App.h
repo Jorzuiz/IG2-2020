@@ -7,6 +7,7 @@
 #include <OgreTrays.h>
 #include <OgreCameraMan.h>
 #include "Aspa.h"
+#include "AspasMolino.h"
 
 class IG2App : public  OgreBites::IG2ApplicationContext, OgreBites::InputListener 
 {
@@ -43,7 +44,9 @@ protected:
   //Ogre::SceneNode* ArrowNode_ = nullptr; //nodo que agrupa las agujas
   //Ogre::SceneNode* CircleNode_ = nullptr; //nodo que agrupa las esferas
   //Ogre::SceneNode* HourNode_[12]; //nodos de las esferas*/
-  Aspa* Aspa_;
+  //MEDIA ESCENA
+  //Aspa* Aspa_;
+  AspasMolino* AspasMolino_;
 };
 
 #endif

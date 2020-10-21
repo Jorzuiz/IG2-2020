@@ -35,7 +35,8 @@ void IG2App::shutdown()
 
   delete mTrayMgr;  mTrayMgr = nullptr;
   delete mCamMgr; mCamMgr = nullptr;
-  delete Aspa_;
+  //delete Aspa_;
+  delete AspasMolino_;
   // do not forget to call the base 
   IG2ApplicationContext::shutdown();
 }
@@ -102,9 +103,14 @@ void IG2App::setupScene(void)
   // finally something to render
 
   //ESCENA ASPAS
-  mSM->getRootSceneNode()->createChildSceneNode("aspa");
-  Aspa_ = new Aspa(mSM->getSceneNode("aspa"));
-  addInputListener(Aspa_);
+  mSM->getRootSceneNode()->createChildSceneNode("AspasMolino");
+  AspasMolino_ = new AspasMolino(mSM->getSceneNode("AspasMolino"),12);
+  addInputListener(AspasMolino_);
+
+
+  //mSM->getRootSceneNode()->createChildSceneNode("aspa");
+  //Aspa_ = new Aspa(mSM->getSceneNode("aspa"));
+  //addInputListener(Aspa_);
   
   /*AspasNode_ = mSM->getRootSceneNode()->createChildSceneNode("aspas");
   for (int i = 0; i < num; i++) {
