@@ -15,10 +15,14 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
   }
   //else if (evt.keysym.sym == SDLK_???)
   if (evt.keysym.sym == SDLK_g) {
-	  mSM->getSceneNode("aspas")->roll(Ogre::Degree(1));
+	  mSM->getSceneNode("AspasMolino")->roll(Ogre::Degree(1));
 	  for (int i = 0; i < num; i++) {
 		  mSM->getSceneNode("adorno_" + std::to_string(i))->roll(Degree(-1));
 	  }
+	 /* mSM->getSceneNode("aspas")->roll(Ogre::Degree(1));
+	  for (int i = 0; i < num; i++) {
+		  mSM->getSceneNode("adorno_" + std::to_string(i))->roll(Degree(-1));
+	  }*/
   }
   /*if (evt.keysym.sym == SDLK_h) {
 	  ClockNode_->getChild("Arrows")->roll(Ogre::Degree(-1));
