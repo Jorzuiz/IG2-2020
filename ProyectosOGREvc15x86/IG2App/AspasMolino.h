@@ -16,11 +16,11 @@ public:
 		Ogre::SceneManager* mSM = aspasNode->getCreator();
 		numAspas = numAspa;
 		arrayAspas = new Aspa*[numAspas];	//Damos el tamaño al array de aspas dinamico
-
+		//introduce en el array punteros de aspa, reservando espacio de tamaño aspa
 		for (int i = 0; i < numAspas; i++) {
 
-			aspasNode->createChildSceneNode("aspa" + std::to_string(i));
-			arrayAspas[i] = new Aspa(mSM->getSceneNode("aspa" + std::to_string(i)), i);
+			aspasNode->createChildSceneNode("aspa" + std::to_string(i)); //crea X nodos para las aspas
+			arrayAspas[i] = new Aspa(mSM->getSceneNode("aspa" + std::to_string(i)), i); //asigna los punteros y crea las instancias
 
 			mSM->getSceneNode("aspa" + std::to_string(i))->roll(Degree((360 / numAspas) * i));
 			mSM->getSceneNode("adorno" + std::to_string(i))->roll(Degree(-(360 / numAspas) * i));
