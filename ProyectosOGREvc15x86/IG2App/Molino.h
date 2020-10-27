@@ -17,7 +17,8 @@ public:
 		aspasMolino->giro();
 	}
 	void retraEje() {
-		molinoNode->getChild("eje")->setPosition(0, 0, -10);//corregir posicion
+		molinoNode->getChild("eje")->translate(0, 0, -1); //corregir posicion
+
 	}
 	void giroTop() {
 		// 2 tipos
