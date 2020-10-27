@@ -48,7 +48,7 @@ protected:
   //MEDIA ESCENA
   //Aspa* Aspa_;
   //AspasMolino* AspasMolino_;
-  Molino* Molino_;
+  Molino* Molino_; //
 };
 
 #endif
