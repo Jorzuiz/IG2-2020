@@ -15,7 +15,8 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
   }
   //else if (evt.keysym.sym == SDLK_???)
   if (evt.keysym.sym == SDLK_g) {
-	  AspasMolino_->giro();
+	  Molino_->giro();
+	  //AspasMolino_->giro();
 	  /*mSM->getSceneNode("AspasMolino")->roll(Ogre::Degree(1));
 	  for (int i = 0; i < num; i++) {
 		  mSM->getSceneNode("adorno" + std::to_string(i))->roll(Degree(-1));
@@ -24,6 +25,12 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
 	  for (int i = 0; i < num; i++) {
 		  mSM->getSceneNode("adorno_" + std::to_string(i))->roll(Degree(-1));
 	  }*/
+  }
+  if (evt.keysym.sym == SDLK_c) {
+	  Molino_->retraEje();
+  }
+  if (evt.keysym.sym == SDLK_h) {
+	  Molino_->giroTop();
   }
   /*if (evt.keysym.sym == SDLK_h) {
 	  ClockNode_->getChild("Arrows")->roll(Ogre::Degree(-1));
@@ -41,7 +48,8 @@ void IG2App::shutdown()
   delete mTrayMgr;  mTrayMgr = nullptr;
   delete mCamMgr; mCamMgr = nullptr;
   //delete Aspa_;
-  delete AspasMolino_;
+  //delete AspasMolino_;
+  delete Molino_;
   // do not forget to call the base 
   IG2ApplicationContext::shutdown();
 }
@@ -106,11 +114,14 @@ void IG2App::setupScene(void)
   //------------------------------------------------------------------------
 
   // finally something to render
-
+  //ESCENA MOLINO
+  mSM->getRootSceneNode()->createChildSceneNode("Molino");
+  Molino_ = new Molino(mSM->getSceneNode("Molino"),num);
+  addInputListener(Molino_);
   //ESCENA ASPAS
-  mSM->getRootSceneNode()->createChildSceneNode("AspasMolino");
+  /*mSM->getRootSceneNode()->createChildSceneNode("AspasMolino");
   AspasMolino_ = new AspasMolino(mSM->getSceneNode("AspasMolino"),num);
-  addInputListener(AspasMolino_);
+  addInputListener(AspasMolino_);*/
 
 
   //mSM->getRootSceneNode()->createChildSceneNode("aspa");
