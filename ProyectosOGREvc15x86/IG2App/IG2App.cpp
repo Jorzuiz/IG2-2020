@@ -26,6 +26,16 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
 		  mSM->getSceneNode("adorno_" + std::to_string(i))->roll(Degree(-1));
 	  }*/
   }
+  if (evt.keysym.sym == SDLK_j) {
+	  /*mSM->getSceneNode("Tierra")->translate(-200, 0, 0, Ogre::Node::TS_LOCAL);
+	  mSM->getSceneNode("Tierra")->yaw(Degree(1));
+	  mSM->getSceneNode("Tierra")->translate(200, 0, 0, Ogre::Node::TS_LOCAL);
+
+	  mSM->getSceneNode("Luna")->translate(-200, 0, 0, Ogre::Node::TS_LOCAL);
+	  mSM->getSceneNode("Luna")->yaw(Degree(-2));
+	  mSM->getSceneNode("Luna")->translate(200, 0, 0, Ogre::Node::TS_LOCAL);*/
+	 
+  }
   if (evt.keysym.sym == SDLK_c) {
 	  //Molino_->retraEje();
 	  //mSM->getSceneNode("EjeMolino")->translate(0, 0, -1);
@@ -38,9 +48,9 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
 	  mSM->getSceneNode("AspasMolino")->translate(posicionGiro);*/
 
 	  //GIRO SEGUNDERO
-	  mSM->getSceneNode("AgS")->translate(0,25,0, Ogre::Node::TS_LOCAL);
-	  mSM->getSceneNode("AgS")->roll(Ogre::Degree(-1));
-	  mSM->getSceneNode("AgS")->translate(0, -25, 0, Ogre::Node::TS_LOCAL);
+	  //mSM->getSceneNode("AgS")->translate(0,25,0, Ogre::Node::TS_LOCAL);
+	  //mSM->getSceneNode("AgS")->roll(Ogre::Degree(-1));
+	  //mSM->getSceneNode("AgS")->translate(0, -25, 0, Ogre::Node::TS_LOCAL);
   }
   /*if (evt.keysym.sym == SDLK_h) {
 	  ClockNode_->getChild("Arrows")->roll(Ogre::Degree(-1));
@@ -57,9 +67,10 @@ void IG2App::shutdown()
 
   delete mTrayMgr;  mTrayMgr = nullptr;
   delete mCamMgr; mCamMgr = nullptr;
-  //delete Aspa_;
-  //delete AspasMolino_;
-  //delete Molino_;
+  //delete Aspa_; Aspa_ = nullptr;
+  //delete AspasMolino_; AspasMolino_ = nullptr;
+  //delete Molino_; Molino_ = nullptr;
+  delete Avion_; Avion_ = nullptr;
   // do not forget to call the base 
   IG2ApplicationContext::shutdown();
 }
@@ -124,6 +135,36 @@ void IG2App::setupScene(void)
   //------------------------------------------------------------------------
 
   // finally something to render
+  //ESCENA AVION
+  mSM->getRootSceneNode()->createChildSceneNode("Avion");
+  Avion_ = new Avion(mSM->getSceneNode("Avion"), num);
+  addInputListener(Avion_);
+
+
+  //ESCENA PLANETAS  
+  /*mSM->getRootSceneNode()->createChildSceneNode("Sol");
+  SunNode_ = mSM->getSceneNode("Sol");
+  Ogre::Entity* EsferaS = mSM->createEntity("sphere.mesh");
+  mSM->getSceneNode("Sol")->attachObject(EsferaS);
+  mSM->getSceneNode("Sol")->setScale(0.5, 0.5, 0.5);
+  mSM->getSceneNode("Sol")->setPosition(0, 0, 0);
+
+  mSM->getRootSceneNode()->createChildSceneNode("Tierra");
+  TierraNode_ = mSM->getSceneNode("Tierra");
+  Ogre::Entity* EsferaT = mSM->createEntity("sphere.mesh");
+  mSM->getSceneNode("Tierra")->attachObject(EsferaT);
+  mSM->getSceneNode("Tierra")->setScale(0.2, 0.2, 0.2);
+  mSM->getSceneNode("Tierra")->setPosition(0, 0, 0);
+  mSM->getSceneNode("Tierra")->showBoundingBox(true);
+  mSM->getSceneNode("Tierra")->translate(200, 0, 0, Ogre::Node::TS_LOCAL);
+
+  mSM->getSceneNode("Tierra")->createChildSceneNode("Luna");
+  Ogre::Entity* EsferaL = mSM->createEntity("sphere.mesh");
+  mSM->getSceneNode("Luna")->attachObject(EsferaL);
+  mSM->getSceneNode("Luna")->setScale(0.5, 0.5, 0.5);//hereda la escala de la tierra ojo
+  mSM->getSceneNode("Luna")->showBoundingBox(true);
+  mSM->getSceneNode("Luna")->translate(200, 0, 0, Ogre::Node::TS_LOCAL);//hereda la escala de la tierra ojo*/
+
   //ESCENA MOLINO
   /*mSM->getRootSceneNode()->createChildSceneNode("Molino");
   Molino_ = new Molino(mSM->getSceneNode("Molino"),num);
@@ -132,20 +173,17 @@ void IG2App::setupScene(void)
   /*mSM->getRootSceneNode()->createChildSceneNode("AspasMolino");
   AspasMolino_ = new AspasMolino(mSM->getSceneNode("AspasMolino"), num);
   addInputListener(AspasMolino_);
-  mSM->getSceneNode("AspasMolino")->setPosition(0, 170, 140);
+  mSM->getSceneNode("AspasMolino")->setPosition(0, 170, 140);*/
 
 
   //ESCENA ASPAS
   /*mSM->getRootSceneNode()->createChildSceneNode("AspasMolino");
   AspasMolino_ = new AspasMolino(mSM->getSceneNode("AspasMolino"),num);
-  addInputListener(AspasMolino_);*/
-
-
-  //mSM->getRootSceneNode()->createChildSceneNode("aspa");
-  //Aspa_ = new Aspa(mSM->getSceneNode("aspa"));
-  //addInputListener(Aspa_);
-  
-  /*AspasNode_ = mSM->getRootSceneNode()->createChildSceneNode("aspas");
+  addInputListener(AspasMolino_);
+  mSM->getRootSceneNode()->createChildSceneNode("aspa");
+  Aspa_ = new Aspa(mSM->getSceneNode("aspa"));
+  addInputListener(Aspa_);  
+  AspasNode_ = mSM->getRootSceneNode()->createChildSceneNode("aspas");
   for (int i = 0; i < num; i++) {
 	 mSM->getSceneNode("aspas")->createChildSceneNode("aspa_" + std::to_string(i));
 
@@ -166,9 +204,9 @@ void IG2App::setupScene(void)
 	 mSM->getSceneNode("aspa_" + std::to_string(i))->roll(Degree((360 / 12) * i));
 	 mSM->getSceneNode("adorno_" + std::to_string(i))->roll(Degree(-(360 / 12) * i));
 	 
-  }*/
-
-  /*AspaNode_ = mSM->getRootSceneNode()->createChildSceneNode("aspaNode");
+  }
+  
+  AspaNode_ = mSM->getRootSceneNode()->createChildSceneNode("aspaNode");
   Ogre::SceneNode* tableroNode_ = mSM->getSceneNode("aspaNode")->createChildSceneNode("tablero");
   Ogre::Entity* tabla = mSM->createEntity("cube.mesh");
   mSM->getSceneNode("tablero")->attachObject(tabla);
@@ -183,10 +221,12 @@ void IG2App::setupScene(void)
   mSM->getSceneNode("adorno")->setScale(5, 10, 5);
   mSM->getSceneNode("adorno")->setPosition(0, 0, 0);
   mSM->getSceneNode("adorno")->translate(200, 0, 20);
-  mSM->getSceneNode("adorno")->showBoundingBox(true);*/
+  mSM->getSceneNode("adorno")->showBoundingBox(true);
+  */
 
+  
   //ESCENA RELOJ
-  ClockNode_ = mSM->getRootSceneNode()->createChildSceneNode("Clock");		// crea un nodo general
+  /*ClockNode_ = mSM->getRootSceneNode()->createChildSceneNode("Clock");		// crea un nodo general
   Ogre::SceneNode* CircleNode_ = ClockNode_->createChildSceneNode("Balls");
   Ogre::SceneNode* ArrowNode_ = ClockNode_->createChildSceneNode("Arrows");
   Ogre::SceneNode* HourNode_[12] = { nullptr };
@@ -230,7 +270,7 @@ void IG2App::setupScene(void)
   mSM->getSceneNode("AgS")->setPosition(0, 0, 0);
   mSM->getSceneNode("AgS")->translate(0, -25, 0);
   //AgS_->roll(Ogre::Degree(-45));
-  
+  */
   
   //ESCENA ROMA CON SINBAD 
   /*

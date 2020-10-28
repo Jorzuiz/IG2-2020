@@ -9,6 +9,7 @@
 #include "Aspa.h"
 #include "AspasMolino.h"
 #include "Molino.h"
+#include "Avion.h"
 
 class IG2App : public  OgreBites::IG2ApplicationContext, OgreBites::InputListener 
 {
@@ -41,16 +42,19 @@ protected:
   Ogre::SceneNode* columnas = nullptr;*/
 
   //ESCENA RELOJ
-  Ogre::SceneNode* ClockNode_ = nullptr; //nodo de todo el reloj
+  /*Ogre::SceneNode* ClockNode_ = nullptr; //nodo de todo el reloj
   Ogre::SceneNode* ArrowNode_ = nullptr; //nodo que agrupa las agujas
   Ogre::SceneNode* CircleNode_ = nullptr; //nodo que agrupa las esferas
-  Ogre::SceneNode* HourNode_[12]; //nodos de las esferas
+  Ogre::SceneNode* HourNode_[12]; //nodos de las esferas*/
   //ESCENA MOLINO
-  //Aspa* Aspa_;
-  //AspasMolino* AspasMolino_;
-  //Molino* Molino_;
-  
-
+  /*Aspa* Aspa_;
+  AspasMolino* AspasMolino_;
+  Molino* Molino_;*/
+  //ESCENA PLANETAS
+  /*Ogre::SceneNode* SunNode_ = nullptr;
+  Ogre::SceneNode* TierraNode_ = nullptr;*/
+  //ESCENA AVION
+  Avion* Avion_;
 };
 
 #endif
