@@ -15,7 +15,7 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
   }
   //else if (evt.keysym.sym == SDLK_???)
   if (evt.keysym.sym == SDLK_g) {
-	  Molino_->giro();
+	  //Molino_->giro();
 	  //AspasMolino_->giro();
 	  /*mSM->getSceneNode("AspasMolino")->roll(Ogre::Degree(1));
 	  for (int i = 0; i < num; i++) {
@@ -27,21 +27,21 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
 	  }*/
   }
   if (evt.keysym.sym == SDLK_c) {
-	  Molino_->retraEje();
+	  //Molino_->retraEje();
 	  //mSM->getSceneNode("EjeMolino")->translate(0, 0, -1);
   }
   if (evt.keysym.sym == SDLK_h) {
-	  Molino_->giroTop();		//posicionEje = molinoNode->getChild("eje")->getPosition();	//Brujería
-	  /*Ogre::Vector3 posicionEje = mSM->getSceneNode("EjeMolino")->getPosition();
-	  mSM->getSceneNode("EjeMolino")->setPosition(0, 0, 0);
-	  mSM->getSceneNode("EjeMolino")->yaw(Degree(1), Ogre::Node::TS_PARENT);
-	  mSM->getSceneNode("EjeMolino")->translate(posicionEje);
-	  
-	  Ogre::Vector3 posicionGiro = mSM->getSceneNode("AspasMolino")->getPosition();
+	  //Molino_->giroTop();		//posicionEje = molinoNode->getChild("eje")->getPosition();	//Brujería
+	  /*Ogre::Vector3 posicionGiro = mSM->getSceneNode("AspasMolino")->getPosition();
 	  mSM->getSceneNode("AspasMolino")->setPosition(0, 0, 0);
 	  mSM->getSceneNode("AspasMolino")->yaw(Degree(1));
 	  mSM->getSceneNode("AspasMolino")->translate(posicionGiro);*/
 
+	  //GIRO SEGUNDERO
+
+	  mSM->getSceneNode("AgS")->translate(25,25,0, Ogre::Node::TS_LOCAL);
+	  mSM->getSceneNode("AgS")->roll(Ogre::Degree(-1));
+	  mSM->getSceneNode("AgS")->translate(-25, -25, 0, Ogre::Node::TS_LOCAL);
   }
   /*if (evt.keysym.sym == SDLK_h) {
 	  ClockNode_->getChild("Arrows")->roll(Ogre::Degree(-1));
@@ -60,7 +60,7 @@ void IG2App::shutdown()
   delete mCamMgr; mCamMgr = nullptr;
   //delete Aspa_;
   //delete AspasMolino_;
-  delete Molino_;
+  //delete Molino_;
   // do not forget to call the base 
   IG2ApplicationContext::shutdown();
 }
@@ -126,9 +126,9 @@ void IG2App::setupScene(void)
 
   // finally something to render
   //ESCENA MOLINO
-  mSM->getRootSceneNode()->createChildSceneNode("Molino");
+  /*mSM->getRootSceneNode()->createChildSceneNode("Molino");
   Molino_ = new Molino(mSM->getSceneNode("Molino"),num);
-  addInputListener(Molino_);
+  addInputListener(Molino_);*/
 
   /*mSM->getRootSceneNode()->createChildSceneNode("AspasMolino");
   AspasMolino_ = new AspasMolino(mSM->getSceneNode("AspasMolino"), num);
@@ -187,7 +187,7 @@ void IG2App::setupScene(void)
   mSM->getSceneNode("adorno")->showBoundingBox(true);*/
 
   //ESCENA RELOJ
-  /*ClockNode_ = mSM->getRootSceneNode()->createChildSceneNode("Clock");		// crea un nodo general
+  ClockNode_ = mSM->getRootSceneNode()->createChildSceneNode("Clock");		// crea un nodo general
   Ogre::SceneNode* CircleNode_ = ClockNode_->createChildSceneNode("Balls");
   Ogre::SceneNode* ArrowNode_ = ClockNode_->createChildSceneNode("Arrows");
   Ogre::SceneNode* HourNode_[12] = { nullptr };
@@ -221,21 +221,18 @@ void IG2App::setupScene(void)
   Ogre::SceneNode* AgM_ = mSM->getSceneNode("Arrows")->createChildSceneNode("AgM");
   mSM->getSceneNode("AgM")->attachObject(AgujaM);
   mSM->getSceneNode("AgM")->setScale(0.05, 0.6, 0.05);
-  mSM->getSceneNode("AgM")->setPosition(0, 0, 0);
-  mSM->getSceneNode("AgM")->setPosition(0, 0, 0);
   mSM->getSceneNode("AgM")->setPosition(0, 27, 0);
   AgM_->roll(Ogre::Degree(00));
   Ogre::Entity* AgujaS = mSM->createEntity("cube.mesh");
   Ogre::SceneNode* AgS_ = mSM->getSceneNode("Arrows")->createChildSceneNode("AgS");
   mSM->getSceneNode("AgS")->attachObject(AgujaS);
   mSM->getSceneNode("AgS")->setScale(0.02, 0.9, 0.02);
-  mSM->getSceneNode("AgS")->setPosition(0, 0, 0);
   mSM->getSceneNode("AgS")->setPosition(-25, -25, 0);
   AgS_->roll(Ogre::Degree(-45));
   
   
   //ESCENA ROMA CON SINBAD 
-  
+  /*
   Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
 
   mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");

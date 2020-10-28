@@ -38,17 +38,17 @@ protected:
   /*Ogre::SceneNode* mSinbadNode = nullptr;
   Ogre::SceneNode* suelo = nullptr;
   Ogre::SceneNode* paredes = nullptr;
-  Ogre::SceneNode* columnas = nullptr;
+  Ogre::SceneNode* columnas = nullptr;*/
 
   //ESCENA RELOJ
   Ogre::SceneNode* ClockNode_ = nullptr; //nodo de todo el reloj
-  //Ogre::SceneNode* ArrowNode_ = nullptr; //nodo que agrupa las agujas
-  //Ogre::SceneNode* CircleNode_ = nullptr; //nodo que agrupa las esferas
-  //Ogre::SceneNode* HourNode_[12]; //nodos de las esferas*/
-  //MEDIA ESCENA
+  Ogre::SceneNode* ArrowNode_ = nullptr; //nodo que agrupa las agujas
+  Ogre::SceneNode* CircleNode_ = nullptr; //nodo que agrupa las esferas
+  Ogre::SceneNode* HourNode_[12]; //nodos de las esferas
+  //ESCENA MOLINO
   //Aspa* Aspa_;
   //AspasMolino* AspasMolino_;
-  Molino* Molino_;
+  //Molino* Molino_;
   
 
 };

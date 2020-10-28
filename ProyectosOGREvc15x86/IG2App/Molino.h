@@ -11,7 +11,10 @@ class Molino : public OgreBites::InputListener
 public:
 	Molino(Ogre::SceneNode* node, const int numAspas);
 
-	~Molino() {}
+	~Molino() {
+		delete aspasMolino;
+		aspasMolino = nullptr;
+	}
 
 	void giro() {
 		aspasMolino->giro();
