@@ -38,10 +38,9 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
 	  mSM->getSceneNode("AspasMolino")->translate(posicionGiro);*/
 
 	  //GIRO SEGUNDERO
-
-	  mSM->getSceneNode("AgS")->translate(25,25,0, Ogre::Node::TS_LOCAL);
+	  mSM->getSceneNode("AgS")->translate(0,25,0, Ogre::Node::TS_LOCAL);
 	  mSM->getSceneNode("AgS")->roll(Ogre::Degree(-1));
-	  mSM->getSceneNode("AgS")->translate(-25, -25, 0, Ogre::Node::TS_LOCAL);
+	  mSM->getSceneNode("AgS")->translate(0, -25, 0, Ogre::Node::TS_LOCAL);
   }
   /*if (evt.keysym.sym == SDLK_h) {
 	  ClockNode_->getChild("Arrows")->roll(Ogre::Degree(-1));
@@ -221,14 +220,16 @@ void IG2App::setupScene(void)
   Ogre::SceneNode* AgM_ = mSM->getSceneNode("Arrows")->createChildSceneNode("AgM");
   mSM->getSceneNode("AgM")->attachObject(AgujaM);
   mSM->getSceneNode("AgM")->setScale(0.05, 0.6, 0.05);
-  mSM->getSceneNode("AgM")->setPosition(0, 27, 0);
+  mSM->getSceneNode("AgM")->setPosition(0, 0, 0);
+  mSM->getSceneNode("AgM")->translate(0, 27, 0);
   AgM_->roll(Ogre::Degree(00));
   Ogre::Entity* AgujaS = mSM->createEntity("cube.mesh");
   Ogre::SceneNode* AgS_ = mSM->getSceneNode("Arrows")->createChildSceneNode("AgS");
   mSM->getSceneNode("AgS")->attachObject(AgujaS);
   mSM->getSceneNode("AgS")->setScale(0.02, 0.9, 0.02);
-  mSM->getSceneNode("AgS")->setPosition(-25, -25, 0);
-  AgS_->roll(Ogre::Degree(-45));
+  mSM->getSceneNode("AgS")->setPosition(0, 0, 0);
+  mSM->getSceneNode("AgS")->translate(0, -25, 0);
+  //AgS_->roll(Ogre::Degree(-45));
   
   
   //ESCENA ROMA CON SINBAD 
