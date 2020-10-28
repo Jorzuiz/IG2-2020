@@ -17,16 +17,8 @@ Molino::Molino(Ogre::SceneNode* node, const int numAspas)
 	mSM->getSceneNode("pared")->setScale(50, 60, 50);
 	mSM->getSceneNode("pared")->setPosition(0, 0, 0);
 
-	/*
-	molinoNode->createChildSceneNode("eje");
-	Ogre::Entity* eje = molinoNode->getCreator()->createEntity("Barrel.mesh");
-	mSM->getSceneNode("eje")->attachObject(eje);
-	mSM->getSceneNode("eje")->setScale(15, 30, 15);
-	mSM->getSceneNode("eje")->setPosition(0, 170, 140);
-	mSM->getSceneNode("eje")->pitch(Degree(90));
-
 	molinoNode->createChildSceneNode("aspas");
 	aspasMolino = new AspasMolino(mSM->getSceneNode("aspas"), numAspas_);
 	mSM->getSceneNode("aspas")->setPosition(0, 170, 140);
-	*/
+	
 }

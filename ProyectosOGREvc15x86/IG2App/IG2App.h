@@ -47,9 +47,9 @@ protected:
   //Ogre::SceneNode* HourNode_[12]; //nodos de las esferas*/
   //MEDIA ESCENA
   //Aspa* Aspa_;
-  AspasMolino* AspasMolino_;
+  //AspasMolino* AspasMolino_;
   Molino* Molino_;
-  Ogre::SceneNode* EjeMolino_;
+  
 
 };
 

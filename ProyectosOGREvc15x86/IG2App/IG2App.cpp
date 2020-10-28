@@ -27,12 +27,12 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
 	  }*/
   }
   if (evt.keysym.sym == SDLK_c) {
-	  //Molino_->retraEje();
-	  mSM->getSceneNode("EjeMolino")->translate(0, 0, -1);
+	  Molino_->retraEje();
+	  //mSM->getSceneNode("EjeMolino")->translate(0, 0, -1);
   }
   if (evt.keysym.sym == SDLK_h) {
-	  //Molino_->giroTop();		posicionEje = molinoNode->getChild("eje")->getPosition();	//Brujería
-	  Ogre::Vector3 posicionEje = mSM->getSceneNode("EjeMolino")->getPosition();
+	  Molino_->giroTop();		//posicionEje = molinoNode->getChild("eje")->getPosition();	//Brujería
+	  /*Ogre::Vector3 posicionEje = mSM->getSceneNode("EjeMolino")->getPosition();
 	  mSM->getSceneNode("EjeMolino")->setPosition(0, 0, 0);
 	  mSM->getSceneNode("EjeMolino")->yaw(Degree(1), Ogre::Node::TS_PARENT);
 	  mSM->getSceneNode("EjeMolino")->translate(posicionEje);
@@ -40,7 +40,7 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
 	  Ogre::Vector3 posicionGiro = mSM->getSceneNode("AspasMolino")->getPosition();
 	  mSM->getSceneNode("AspasMolino")->setPosition(0, 0, 0);
 	  mSM->getSceneNode("AspasMolino")->yaw(Degree(1));
-	  mSM->getSceneNode("AspasMolino")->translate(posicionGiro);
+	  mSM->getSceneNode("AspasMolino")->translate(posicionGiro);*/
 
   }
   /*if (evt.keysym.sym == SDLK_h) {
@@ -130,17 +130,11 @@ void IG2App::setupScene(void)
   Molino_ = new Molino(mSM->getSceneNode("Molino"),num);
   addInputListener(Molino_);
 
-  mSM->getRootSceneNode()->createChildSceneNode("AspasMolino");
+  /*mSM->getRootSceneNode()->createChildSceneNode("AspasMolino");
   AspasMolino_ = new AspasMolino(mSM->getSceneNode("AspasMolino"), num);
   addInputListener(AspasMolino_);
   mSM->getSceneNode("AspasMolino")->setPosition(0, 170, 140);
 
-  EjeMolino_ = mSM->getRootSceneNode()->createChildSceneNode("EjeMolino");
-  Ogre::Entity* EjeMolino = mSM->createEntity("Barrel.mesh");
-  EjeMolino_->attachObject(EjeMolino);
-  mSM->getSceneNode("EjeMolino")->setScale(15, 30, 15);
-  mSM->getSceneNode("EjeMolino")->setPosition(0, 170, 140);
-  mSM->getSceneNode("EjeMolino")->pitch(Degree(90));
 
   //ESCENA ASPAS
   /*mSM->getRootSceneNode()->createChildSceneNode("AspasMolino");

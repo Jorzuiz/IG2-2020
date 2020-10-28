@@ -17,6 +17,12 @@ public:
 		numAspas = numAspa;
 		arrayAspas = new Aspa*[numAspas];	//Damos el tamaño al array de aspas dinamico
 		//introduce en el array punteros de aspa, reservando espacio de tamaño aspa
+		aspasNode->createChildSceneNode("eje");		
+		Ogre::Entity* eje_ = aspasNode->getCreator()->createEntity("Barrel.mesh");
+		mSM->getSceneNode("eje")->attachObject(eje_);
+		mSM->getSceneNode("eje")->setScale(15, 30, 15);		
+		mSM->getSceneNode("eje")->pitch(Degree(90));
+
 		for (int i = 0; i < numAspas; i++) {
 
 			aspasNode->createChildSceneNode("aspa" + std::to_string(i)); //crea X nodos para las aspas
