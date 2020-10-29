@@ -17,19 +17,22 @@ public:
 		numAspas = numAspa;
 		arrayAspas = new Aspa*[numAspas];	//Damos el tamaño al array de aspas dinamico
 		//introduce en el array punteros de aspa, reservando espacio de tamaño aspa
-		aspasNode->createChildSceneNode("eje");		
-		Ogre::Entity* eje_ = aspasNode->getCreator()->createEntity("Barrel.mesh");
-		mSM->getSceneNode("eje")->attachObject(eje_);
-		mSM->getSceneNode("eje")->setScale(15, 30, 15);		
-		mSM->getSceneNode("eje")->pitch(Degree(90));
+		
+		ejeNode = aspasNode->createChildSceneNode();		
+		Ogre::Entity* eje_ = mSM->createEntity("Barrel.mesh");
+		ejeNode->attachObject(eje_);
+		ejeNode->setScale(15, 30, 15);		
+		ejeNode->pitch(Degree(90));
 
 		for (int i = 0; i < numAspas; i++) {
 
-			aspasNode->createChildSceneNode("aspa" + std::to_string(i)); //crea X nodos para las aspas
-			arrayAspas[i] = new Aspa(mSM->getSceneNode("aspa" + std::to_string(i)), i); //asigna los punteros y crea las instancias
+			aspasNode->createChildSceneNode(); //crea X nodos para las aspas
+			arrayAspas[i] = new Aspa(aspasNode); //asigna los punteros y crea las instancias
 
-			mSM->getSceneNode("aspa" + std::to_string(i))->roll(Degree((360 / numAspas) * i));
-			mSM->getSceneNode("adorno" + std::to_string(i))->roll(Degree(-(360 / numAspas) * i));
+			//aspasNode->roll(Degree((360 / numAspas) * i));
+			arrayAspas[i]->getAspa()->roll(Degree((360 / numAspas) * i));
+			arrayAspas[i]->getAdorno()->roll(Degree(-(360 / numAspas) * i));
+			//mSM->getSceneNode("adorno" + std::to_string(i))->roll(Degree(-(360 / numAspas) * i));
 
 			/*aspasNode->createChildSceneNode("aspa_" + std::to_string(i));
 			
@@ -56,12 +59,16 @@ public:
 	void giro() {
 		for (int i = 0; i < numAspas; i++)
 		{
-			arrayAspas[i]->giro(i);
+			arrayAspas[i]->giro();
 		}
+	}
+	void retraEje() {
+
+		ejeNode->translate(0, -1, 0, Ogre::Node::TS_LOCAL);
 	}
 
 protected:
-	Ogre::SceneNode* aspasNode;
+	Ogre::SceneNode* aspasNode, *ejeNode;
 	Aspa **arrayAspas;
 	int numAspas;
 };

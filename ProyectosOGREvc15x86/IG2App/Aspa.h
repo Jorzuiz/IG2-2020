@@ -10,19 +10,19 @@ class Aspa : public OgreBites::InputListener
 {
 public:
 	
-	Aspa(Ogre::SceneNode* node, int i) {
+	Aspa(Ogre::SceneNode* node) {
 
 		mNode = node;
 		Ogre::SceneManager* mSM = mNode->getCreator();
 
-		tableroNode = mNode->createChildSceneNode("tablero"+ std::to_string(i));
+		tableroNode = mNode->createChildSceneNode();// "tablero" + std::to_string(i));
 		Ogre::Entity* tabla = mSM->createEntity("cube.mesh");
 		tableroNode->attachObject(tabla);
 		tableroNode->setScale(3.5, 0.7, 0.1);
 		tableroNode->setPosition(0, 0, 0);
 		tableroNode->translate(200, 0, 0);
 
-		cilindroNode = mNode->createChildSceneNode("adorno" + std::to_string(i));
+		cilindroNode = mNode->createChildSceneNode();// "adorno" + std::to_string(i));
 		Ogre::Entity* cilindro = mSM->createEntity("Barrel.mesh");
 		cilindroNode->attachObject(cilindro);
 		cilindroNode->setScale(5, 10, 5);
@@ -32,18 +32,14 @@ public:
 	};
 	~Aspa() {};
 
-	void giro(int i) {
+	void giro() {
 		mNode->roll(Degree(1));
 		cilindroNode->roll(Degree(-1));
 	};
 
-	/*virtual void frameRendered(const Ogre::FrameEvent& evt);
-	virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);
-	virtual bool keyReleased(const OgreBites::KeyboardEvent& evt);
-	virtual bool mousePressed(const OgreBites::MouseButtonEvent& evt);
-	virtual bool mouseRelease(const OgreBites::MouseButtonEvent& evt);
-	virtual bool mouseMoved(const OgreBites::MouseMotionEvent& evt);
-	virtual bool mouseWheelRolled(const OgreBites::MouseWheelEvent& evt);*/
+	Ogre::SceneNode* getAdorno() {	return cilindroNode;	};
+	Ogre::SceneNode* getTablero() {	return tableroNode;	};
+	Ogre::SceneNode* getAspa() {	return mNode;	}; //not necesary
 
 protected:
 	Ogre::SceneNode* mNode, *tableroNode, *cilindroNode;
