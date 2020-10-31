@@ -26,8 +26,8 @@ public:
 
 		for (int i = 0; i < numAspas; i++) {
 
-			aspasNode->createChildSceneNode(); //crea X nodos para las aspas
-			arrayAspas[i] = new Aspa(aspasNode); //asigna los punteros y crea las instancias
+			aspa = aspasNode->createChildSceneNode(); //crea X nodos para las aspas
+			arrayAspas[i] = new Aspa(aspa); //asigna los punteros y crea las instancias
 
 			//aspasNode->roll(Degree((360 / numAspas) * i));
 			arrayAspas[i]->getAspa()->roll(Degree((360 / numAspas) * i));
@@ -68,7 +68,7 @@ public:
 	}
 
 protected:
-	Ogre::SceneNode* aspasNode, *ejeNode;
+	Ogre::SceneNode* aspasNode, *ejeNode, *aspa;
 	Aspa **arrayAspas;
 	int numAspas;
 };

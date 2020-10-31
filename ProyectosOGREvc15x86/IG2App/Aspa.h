@@ -33,13 +33,13 @@ public:
 	~Aspa() {};
 
 	void giro() {
-		mNode->roll(Degree(1));
-		cilindroNode->roll(Degree(-1));
+		mNode->roll(Degree(-1));
+		cilindroNode->roll(Degree(1));
 	};
 
 	Ogre::SceneNode* getAdorno() {	return cilindroNode;	};
 	Ogre::SceneNode* getTablero() {	return tableroNode;	};
-	Ogre::SceneNode* getAspa() {	return mNode;	}; //not necesary
+	Ogre::SceneNode* getAspa() {	return mNode;	}; 
 
 protected:
 	Ogre::SceneNode* mNode, *tableroNode, *cilindroNode;

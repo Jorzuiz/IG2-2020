@@ -15,6 +15,7 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
   }
   //else if (evt.keysym.sym == SDLK_???)
   if (evt.keysym.sym == SDLK_g) {
+	  Avion_->giro();
 	  //Molino_->giro();
 	  //AspasMolino_->giro();
 	  /*mSM->getSceneNode("AspasMolino")->roll(Ogre::Degree(1));
@@ -37,6 +38,7 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
 	 
   }
   if (evt.keysym.sym == SDLK_c) {
+	  Avion_->retraEje();
 	  //Molino_->retraEje();
 	  //mSM->getSceneNode("EjeMolino")->translate(0, 0, -1);
   }

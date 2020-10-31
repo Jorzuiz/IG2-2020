@@ -12,50 +12,63 @@ public:
 	Avion(Ogre::SceneNode* node, const int numAspas){
 		AvionNode = node;
 		numAspas_ = numAspas;
+
 		Ogre::SceneManager* mSM = AvionNode->getCreator();
 		// Esfera del cuerpo del avion
-		AvionNode->createChildSceneNode("cuerpoNode");
-		Ogre::Entity* cuerpoNode = AvionNode->getCreator()->createEntity("sphere.mesh");
-		mSM->getSceneNode("cuerpoNode")->attachObject(cuerpoNode);
-		mSM->getSceneNode("cuerpoNode")->setScale(1, 1, 1);
+		cuerpoNode = AvionNode->createChildSceneNode();
+		Ogre::Entity* cuerpo= AvionNode->getCreator()->createEntity("sphere.mesh");
+		cuerpoNode->attachObject(cuerpo);
+		cuerpoNode->setScale(1, 1, 1);
 		// Ala izquierda
-		AvionNode->createChildSceneNode("alaINode");
-		Ogre::Entity* alaINode = AvionNode->getCreator()->createEntity("cube.mesh");
-		mSM->getSceneNode("alaINode")->attachObject(alaINode);
-		mSM->getSceneNode("alaINode")->setScale(3, 0.2, 1);
-		mSM->getSceneNode("alaINode")->translate(-150, 0, 0, Ogre::Node::TS_LOCAL);
+		alaINode = AvionNode->createChildSceneNode();
+		Ogre::Entity* alaI = AvionNode->getCreator()->createEntity("cube.mesh");
+		alaINode->attachObject(alaI);
+		alaINode->setScale(3, 0.2, 1);
+		alaINode->translate(-150, 0, 0, Ogre::Node::TS_LOCAL);
 		// Ala derecha
-		AvionNode->createChildSceneNode("alaDNode");
-		Ogre::Entity* alaDNode = AvionNode->getCreator()->createEntity("cube.mesh");
-		mSM->getSceneNode("alaDNode")->attachObject(alaDNode);
-		mSM->getSceneNode("alaDNode")->setScale(3, 0.2, 1);
-		mSM->getSceneNode("alaDNode")->translate(150, 0, 0, Ogre::Node::TS_LOCAL);
+		alaDNode = AvionNode->createChildSceneNode();
+		Ogre::Entity* alaD = AvionNode->getCreator()->createEntity("cube.mesh");
+		alaDNode->attachObject(alaD);
+		alaDNode->setScale(3, 0.2, 1);
+		alaDNode->translate(150, 0, 0, Ogre::Node::TS_LOCAL);
 		// Morro
-		AvionNode->createChildSceneNode("frenteNode");
-		Ogre::Entity* frenteNode = AvionNode->getCreator()->createEntity("Barrel.mesh");
-		mSM->getSceneNode("frenteNode")->attachObject(frenteNode);
-		mSM->getSceneNode("frenteNode")->setScale(10, 10, 10);
-		mSM->getSceneNode("frenteNode")->pitch(Degree(90), Ogre::Node::TS_LOCAL);
-		mSM->getSceneNode("frenteNode")->translate(0, 100, 0, Ogre::Node::TS_LOCAL);
+		frenteNode = AvionNode->createChildSceneNode();
+		Ogre::Entity* frente = AvionNode->getCreator()->createEntity("Barrel.mesh");
+		frenteNode->attachObject(frente);
+		frenteNode->setScale(10, 10, 10);
+		frenteNode->pitch(Degree(90), Ogre::Node::TS_LOCAL);
+		frenteNode->translate(0, 100, 0, Ogre::Node::TS_LOCAL);
 		// Piloto NINJA
-		AvionNode->createChildSceneNode("pilotoNode");
-		Ogre::Entity* pilotoNode = AvionNode->getCreator()->createEntity("ninja.mesh");
-		mSM->getSceneNode("pilotoNode")->attachObject(pilotoNode);
-		mSM->getSceneNode("pilotoNode")->setScale(1, 1, 1);
-		mSM->getSceneNode("pilotoNode")->translate(0, -50, 0, Ogre::Node::TS_LOCAL);
-		mSM->getSceneNode("pilotoNode")->yaw(Degree(180), Ogre::Node::TS_LOCAL);
+		pilotoNode = AvionNode->createChildSceneNode();
+		Ogre::Entity* piloto= AvionNode->getCreator()->createEntity("ninja.mesh");
+		pilotoNode->attachObject(piloto);
+		pilotoNode->setScale(1, 1, 1);
+		pilotoNode->translate(0, -50, 0, Ogre::Node::TS_LOCAL);
+		pilotoNode->yaw(Degree(180), Ogre::Node::TS_LOCAL);
 		// Aspa IZQ
-		AvionNode->createChildSceneNode("aspas1");
-		aspasMolino1 = new AspasMolino(mSM->getSceneNode("aspas1"), numAspas_);
-		mSM->getSceneNode("aspas1")->setPosition(0, -100, 0);
+		aspas1 = AvionNode->createChildSceneNode();
+		aspasMolino1 = new AspasMolino(aspas1, numAspas_);
+		aspas1->setPosition(-250, 0, 55);
+		aspas1->setScale(0.3, 0.3, 0.3);
 		// Aspa DER
-		//AvionNode->createChildSceneNode("aspas2");
-		//aspasMolino2 = new AspasMolino(mSM->getSceneNode("aspas2"), numAspas_);
-		//mSM->getSceneNode("aspas2")->setPosition(0, 100, 0);
+		aspas2 = AvionNode->createChildSceneNode();
+		aspasMolino2 = new AspasMolino(aspas2, numAspas_);
+		aspas2->setPosition(250, 0, 55);
+		aspas2->setScale(0.3, 0.3, 0.3);
 	}
 	~Avion() {}
+
+	void giro() {
+			aspasMolino1->giro();
+			aspasMolino2->giro();
+	}
+	void retraEje() {
+		aspasMolino1->retraEje();
+		aspasMolino2->retraEje();
+	}
 protected:
-	Ogre::SceneNode* AvionNode;
+	Ogre::SceneNode* AvionNode, *cuerpoNode, *alaINode, *alaDNode, 
+	*frenteNode, *pilotoNode, *aspas1, *aspas2;
 	AspasMolino* aspasMolino1;
 	AspasMolino* aspasMolino2;
 	int numAspas_;
