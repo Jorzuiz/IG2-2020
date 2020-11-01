@@ -54,7 +54,9 @@ protected:
   /*Ogre::SceneNode* SunNode_ = nullptr;
   Ogre::SceneNode* TierraNode_ = nullptr;*/
   //ESCENA AVION
-  Avion* Avion_;
+  //Avion* Avion_;
+  //ESCENA PLANO
+  Ogre::SceneNode* PlanoNode_ = nullptr;
 };
 
 #endif

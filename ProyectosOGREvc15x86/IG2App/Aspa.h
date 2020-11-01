@@ -4,13 +4,15 @@
 #include <OgreEntity.h>
 #include <OgreTrays.h>
 #include <OgreInput.h>
+
+#include "EntidadIG.h"
 using namespace Ogre;
 
-class Aspa : public OgreBites::InputListener
+class Aspa : public EntidadIG//OgreBites::InputListener
 {
 public:
 	
-	Aspa(Ogre::SceneNode* node) {
+	Aspa(Ogre::SceneNode* node):EntidadIG(node){
 
 		mNode = node;
 		Ogre::SceneManager* mSM = mNode->getCreator();
@@ -40,6 +42,9 @@ public:
 	Ogre::SceneNode* getAdorno() {	return cilindroNode;	};
 	Ogre::SceneNode* getTablero() {	return tableroNode;	};
 	Ogre::SceneNode* getAspa() {	return mNode;	}; 
+	virtual bool keyPressed(const OgreBites::KeyboardEvent& evento);
+	virtual void frameRendered(const Ogre::FrameEvent& evento);
+	virtual void receiveEvent(EntidadIG* entidad) { };
 
 protected:
 	Ogre::SceneNode* mNode, *tableroNode, *cilindroNode;

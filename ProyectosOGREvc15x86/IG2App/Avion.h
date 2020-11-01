@@ -5,11 +5,12 @@
 #include <OgreTrays.h>
 #include <OgreInput.h>
 #include "AspasMolino.h"
+#include "EntidadIG.h"
 using namespace Ogre;
-class Avion : public OgreBites::InputListener
+class Avion : public EntidadIG
 {
 public:
-	Avion(Ogre::SceneNode* node, const int numAspas){
+	Avion(Ogre::SceneNode* node, const int numAspas) :EntidadIG(node) {
 		AvionNode = node;
 		numAspas_ = numAspas;
 

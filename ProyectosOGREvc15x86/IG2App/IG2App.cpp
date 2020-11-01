@@ -15,7 +15,7 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
   }
   //else if (evt.keysym.sym == SDLK_???)
   if (evt.keysym.sym == SDLK_g) {
-	  Avion_->giro();
+	  //Avion_->giro();
 	  //Molino_->giro();
 	  //AspasMolino_->giro();
 	  /*mSM->getSceneNode("AspasMolino")->roll(Ogre::Degree(1));
@@ -38,7 +38,7 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
 	 
   }
   if (evt.keysym.sym == SDLK_c) {
-	  Avion_->retraEje();
+	  //Avion_->retraEje();
 	  //Molino_->retraEje();
 	  //mSM->getSceneNode("EjeMolino")->translate(0, 0, -1);
   }
@@ -72,7 +72,7 @@ void IG2App::shutdown()
   //delete Aspa_; Aspa_ = nullptr;
   //delete AspasMolino_; AspasMolino_ = nullptr;
   //delete Molino_; Molino_ = nullptr;
-  delete Avion_; Avion_ = nullptr;
+  //delete Avion_; Avion_ = nullptr;
   // do not forget to call the base 
   IG2ApplicationContext::shutdown();
 }
@@ -137,10 +137,18 @@ void IG2App::setupScene(void)
   //------------------------------------------------------------------------
 
   // finally something to render
+  //ESCENA PLANO
+  MeshManager::getSingleton().createPlane("mPlane1080x800.mesh",
+	  ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+	  Plane(Vector3::UNIT_Y, 0),
+	  1080, 800, 100, 80, true, 1, 1.0, 1.0, Vector3::UNIT_Z);
+  PlanoNode_ = mSM->getRootSceneNode()->createChildSceneNode();
+  Ogre::Entity* plane = mSM->createEntity("mPlane1080x800.mesh");
+  PlanoNode_->attachObject(plane);
   //ESCENA AVION
-  mSM->getRootSceneNode()->createChildSceneNode("Avion");
+  /*mSM->getRootSceneNode()->createChildSceneNode("Avion");
   Avion_ = new Avion(mSM->getSceneNode("Avion"), num);
-  addInputListener(Avion_);
+  addInputListener(Avion_);*/
 
 
   //ESCENA PLANETAS  
