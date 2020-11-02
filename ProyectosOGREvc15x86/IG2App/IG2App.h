@@ -10,6 +10,7 @@
 #include "AspasMolino.h"
 #include "Molino.h"
 #include "Avion.h"
+#include "Plano.h"
 
 class IG2App : public  OgreBites::IG2ApplicationContext, OgreBites::InputListener 
 {
@@ -36,8 +37,8 @@ protected:
   //Ogre::SceneNode* AspaNode_ = nullptr;
   //ESCENA ROMANO SINBAD
 
-  /*Ogre::SceneNode* mSinbadNode = nullptr;
-  Ogre::SceneNode* suelo = nullptr;
+  Ogre::SceneNode* mSinbadNode = nullptr;
+  /*Ogre::SceneNode* suelo = nullptr;
   Ogre::SceneNode* paredes = nullptr;
   Ogre::SceneNode* columnas = nullptr;*/
 
@@ -48,15 +49,22 @@ protected:
   Ogre::SceneNode* HourNode_[12]; //nodos de las esferas*/
   //ESCENA MOLINO
   /*Aspa* Aspa_;
-  AspasMolino* AspasMolino_;
-  Molino* Molino_;*/
+  AspasMolino* AspasMolino_;*/
+  Molino* Molino_ = nullptr;
+  Ogre::SceneNode* MolinoNode;
   //ESCENA PLANETAS
   /*Ogre::SceneNode* SunNode_ = nullptr;
   Ogre::SceneNode* TierraNode_ = nullptr;*/
   //ESCENA AVION
-  //Avion* Avion_;
+  Avion* Avion_ = nullptr;
+  Ogre::SceneNode* AvionNode;
   //ESCENA PLANO
-  Ogre::SceneNode* PlanoNode_ = nullptr;
+  Plano* Plano_ = nullptr;
+  Ogre::SceneNode* PlanoNode;
+  Plano* Plano1_ = nullptr;
+  Ogre::SceneNode* PlanoNode1;
+  Plano* Plano2_ = nullptr;
+  Ogre::SceneNode* PlanoNode2;
 };
 
 #endif

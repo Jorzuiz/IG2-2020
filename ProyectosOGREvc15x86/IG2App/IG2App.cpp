@@ -15,8 +15,8 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
   }
   //else if (evt.keysym.sym == SDLK_???)
   if (evt.keysym.sym == SDLK_g) {
-	  //Avion_->giro();
-	  //Molino_->giro();
+	  Avion_->giro();
+	  Molino_->giro();
 	  //AspasMolino_->giro();
 	  /*mSM->getSceneNode("AspasMolino")->roll(Ogre::Degree(1));
 	  for (int i = 0; i < num; i++) {
@@ -71,8 +71,11 @@ void IG2App::shutdown()
   delete mCamMgr; mCamMgr = nullptr;
   //delete Aspa_; Aspa_ = nullptr;
   //delete AspasMolino_; AspasMolino_ = nullptr;
-  //delete Molino_; Molino_ = nullptr;
-  //delete Avion_; Avion_ = nullptr;
+  delete Molino_; Molino_ = nullptr;
+  delete Avion_; Avion_ = nullptr;
+  delete Plano_; Plano_ = nullptr;
+  delete Plano1_; Plano1_ = nullptr;
+  delete Plano2_; Plano2_ = nullptr;
   // do not forget to call the base 
   IG2ApplicationContext::shutdown();
 }
@@ -137,18 +140,30 @@ void IG2App::setupScene(void)
   //------------------------------------------------------------------------
 
   // finally something to render
-  //ESCENA PLANO
+  //ESCENA COMBINADA
   MeshManager::getSingleton().createPlane("mPlane1080x800.mesh",
 	  ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
 	  Plane(Vector3::UNIT_Y, 0),
 	  1080, 800, 100, 80, true, 1, 1.0, 1.0, Vector3::UNIT_Z);
-  PlanoNode_ = mSM->getRootSceneNode()->createChildSceneNode();
-  Ogre::Entity* plane = mSM->createEntity("mPlane1080x800.mesh");
-  PlanoNode_->attachObject(plane);
+
+  PlanoNode = mSM->getRootSceneNode()->createChildSceneNode();
+  Plano_ = new Plano(PlanoNode);
+
+  PlanoNode1 = mSM->getRootSceneNode()->createChildSceneNode();
+  Plano1_ = new Plano(PlanoNode1);	//Molino
+  //PlanoNode1->setScale(0.25, 0.25, 0.25);
+  PlanoNode1->setPosition(0, 65, 0);
+
+  PlanoNode2 = mSM->getRootSceneNode()->createChildSceneNode();
+  Plano2_ = new Plano(PlanoNode2);	//Simbad
+  //PlanoNode2->setScale(0.25, 0.25, 0.25);
+  PlanoNode2->setPosition(0, -105, 0);
   //ESCENA AVION
-  /*mSM->getRootSceneNode()->createChildSceneNode("Avion");
-  Avion_ = new Avion(mSM->getSceneNode("Avion"), num);
-  addInputListener(Avion_);*/
+  AvionNode = mSM->getRootSceneNode()->createChildSceneNode();
+  Avion_ = new Avion(AvionNode, num);
+  AvionNode->setScale(0.25, 0.25, 0.25);
+  AvionNode->setPosition(0, 300, 0);
+  //addInputListener(Avion_);
 
 
   //ESCENA PLANETAS  
@@ -176,9 +191,11 @@ void IG2App::setupScene(void)
   mSM->getSceneNode("Luna")->translate(200, 0, 0, Ogre::Node::TS_LOCAL);//hereda la escala de la tierra ojo*/
 
   //ESCENA MOLINO
-  /*mSM->getRootSceneNode()->createChildSceneNode("Molino");
+  MolinoNode = mSM->getRootSceneNode()->createChildSceneNode("Molino");
   Molino_ = new Molino(mSM->getSceneNode("Molino"),num);
-  addInputListener(Molino_);*/
+  MolinoNode->setScale(0.3, 0.3, 0.3);
+  MolinoNode->setPosition(400, 50, -300);
+  //addInputListener(Molino_);
 
   /*mSM->getRootSceneNode()->createChildSceneNode("AspasMolino");
   AspasMolino_ = new AspasMolino(mSM->getSceneNode("AspasMolino"), num);
@@ -283,20 +300,20 @@ void IG2App::setupScene(void)
   */
   
   //ESCENA ROMA CON SINBAD 
-  /*
+  
   Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
 
   mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
   mSinbadNode->attachObject(ent);
 
-  //mSinbadNode->setPosition(400, 100, -300);
+  mSinbadNode->setPosition(-400, 100, 300);
   mSinbadNode->setScale(20, 20, 20);
   //mSinbadNode->yaw(Ogre::Degree(-45));
   //mSinbadNode->showBoundingBox(true);
   //mSinbadNode->setVisible(false);
 
 
-  Ogre::Entity* ent1 = mSM->createEntity("RomanBathLower.mesh");
+  /*Ogre::Entity* ent1 = mSM->createEntity("RomanBathLower.mesh");
   suelo = mSM->getRootSceneNode()->createChildSceneNode("suelo");
   suelo->attachObject(ent1);
   suelo->setScale(1.5, 1.5, 1.5);

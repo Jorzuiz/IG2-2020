@@ -13,7 +13,7 @@ class Aspa : public EntidadIG//OgreBites::InputListener
 public:
 
 	Aspa(Ogre::SceneNode* node);
-	~Aspa();
+	~Aspa() {};
 
 	void giro();
 

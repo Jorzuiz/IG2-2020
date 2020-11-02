@@ -22,6 +22,7 @@ Aspa::Aspa(Ogre::SceneNode* node) : EntidadIG(node) {
 
 };
 
+
 void Aspa::giro() {
 	mNode->roll(Degree(-1));
 	cilindroNode->roll(Degree(1));
