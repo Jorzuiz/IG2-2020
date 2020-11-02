@@ -11,9 +11,7 @@ public:
 	~EntidadIG();
 
 	static std::vector<EntidadIG*> appListeners;
-	static void addListener(EntidadIG* entidad) {
-		appListeners.push_back(entidad);
-	};
+	static void addListener(EntidadIG* entidad) {	appListeners.push_back(entidad);	};
 	void sendEvent(EntidadIG* entidad);
 
 protected:

@@ -7,7 +7,7 @@
 #include <SDL_keycode.h>
 
 #include "AspasMolino.h"
-#include "EntidadIG.h"	// Permite heredar Molino de EntidadIG
+//#include "EntidadIG.h"	// Permite heredar Molino de EntidadIG
 
 using namespace Ogre;
 
@@ -15,25 +15,11 @@ class Molino: public EntidadIG //: public OgreBites::InputListener
 {
 public:
 	Molino(Ogre::SceneNode* node, const int numAspas);
+	~Molino();
 
-	~Molino() {
-		delete aspasMolino_;
-		aspasMolino_ = nullptr;
-	}
-
-	void giro() {
-		aspasMolino_->giro();
-	}
-
-	void retraEje() {
-		aspasMolino_->retraEje();// getEje()->translate(0, -1, 0, Ogre::Node::TS_LOCAL);
-	}
-
-	void giroTop() {
-		aspasMolino->translate(-posicionGiro, Ogre::Node::TS_LOCAL);
-		aspasMolino->yaw(Degree(1));
-		aspasMolino->translate(posicionGiro, Ogre::Node::TS_LOCAL);
-	}
+	void giro();
+	void retraEje();
+	void giroTop();
 
 protected:
 	Ogre::SceneNode* molinoNode, *paredNode, *techoNode, *aspasMolino;

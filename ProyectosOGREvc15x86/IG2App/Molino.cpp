@@ -1,7 +1,8 @@
 #include "Molino.h"
 
-Molino::Molino(Ogre::SceneNode* node, const int numAspas)
+Molino::Molino(Ogre::SceneNode* node, const int numAspas) : EntidadIG(node)
 {
+	addListener(this);
 	molinoNode = node;
 	numAspas_ = numAspas;
 	Ogre::SceneManager* mSM = molinoNode->getCreator();
@@ -21,5 +22,24 @@ Molino::Molino(Ogre::SceneNode* node, const int numAspas)
 	aspasMolino = molinoNode->createChildSceneNode();		// Esto es nodo
 	aspasMolino_ = new AspasMolino(aspasMolino, numAspas_);	// Esto es creadora de clase
 	aspasMolino->setPosition(0, 170, 140);
-	
+
+};
+
+Molino::~Molino() {
+	delete aspasMolino_;
+	aspasMolino_ = nullptr;
+};
+
+void Molino::giro() {
+	aspasMolino_->giro();
+}
+
+void Molino::retraEje() {
+	aspasMolino_->retraEje();// getEje()->translate(0, -1, 0, Ogre::Node::TS_LOCAL);
+}
+
+void Molino::giroTop() {
+	aspasMolino->translate(-posicionGiro, Ogre::Node::TS_LOCAL);
+	aspasMolino->yaw(Degree(1));
+	aspasMolino->translate(posicionGiro, Ogre::Node::TS_LOCAL);
 }
