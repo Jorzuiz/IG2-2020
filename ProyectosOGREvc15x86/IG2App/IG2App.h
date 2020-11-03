@@ -47,17 +47,21 @@ protected:
   Ogre::SceneNode* ArrowNode_ = nullptr; //nodo que agrupa las agujas
   Ogre::SceneNode* CircleNode_ = nullptr; //nodo que agrupa las esferas
   Ogre::SceneNode* HourNode_[12]; //nodos de las esferas*/
+
   //ESCENA MOLINO
   /*Aspa* Aspa_;
   AspasMolino* AspasMolino_;*/
   Molino* Molino_ = nullptr;
   Ogre::SceneNode* MolinoNode;
+
   //ESCENA PLANETAS
   /*Ogre::SceneNode* SunNode_ = nullptr;
   Ogre::SceneNode* TierraNode_ = nullptr;*/
+
   //ESCENA AVION
   Avion* Avion_ = nullptr;
   Ogre::SceneNode* AvionNode;
+
   //ESCENA PLANO
   Plano* Plano_ = nullptr;
   Ogre::SceneNode* PlanoNode;

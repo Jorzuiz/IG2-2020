@@ -141,23 +141,26 @@ void IG2App::setupScene(void)
 
   // finally something to render
   //ESCENA COMBINADA
-  MeshManager::getSingleton().createPlane("mPlane1080x800.mesh",
-	  ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-	  Plane(Vector3::UNIT_Y, 0),
-	  1080, 800, 100, 80, true, 1, 1.0, 1.0, Vector3::UNIT_Z);
 
-  PlanoNode = mSM->getRootSceneNode()->createChildSceneNode();
-  Plano_ = new Plano(PlanoNode);
+ //MeshManager::getSingleton().createPlane("mPlane1080x800.mesh",
+//  ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+//  Plane(Vector3::UNIT_Y, 0),
+//  1080, 800, 100, 80, true, 1, 1.0, 1.0, Vector3::UNIT_Z);
+
+  //PlanoNode = mSM->getRootSceneNode()->createChildSceneNode();
+  //Plano_ = new Plano(PlanoNode);
 
   PlanoNode1 = mSM->getRootSceneNode()->createChildSceneNode();
-  Plano1_ = new Plano(PlanoNode1);	//Molino
-  //PlanoNode1->setScale(0.25, 0.25, 0.25);
-  PlanoNode1->setPosition(0, 65, 0);
+  Plano1_ = new Plano(PlanoNode1, "Plano1");	//Molino
+  PlanoNode1->setScale(0.25, 0.25, 0.25);
+  PlanoNode1->setPosition(0, 5, 0);
+  
 
   PlanoNode2 = mSM->getRootSceneNode()->createChildSceneNode();
-  Plano2_ = new Plano(PlanoNode2);	//Simbad
+  Plano2_ = new Plano(PlanoNode2, "Plano2");	//Simbad
   //PlanoNode2->setScale(0.25, 0.25, 0.25);
-  PlanoNode2->setPosition(0, -105, 0);
+  PlanoNode2->setPosition(0, 50, 0);
+
   //ESCENA AVION
   AvionNode = mSM->getRootSceneNode()->createChildSceneNode();
   Avion_ = new Avion(AvionNode, num);
@@ -191,8 +194,8 @@ void IG2App::setupScene(void)
   mSM->getSceneNode("Luna")->translate(200, 0, 0, Ogre::Node::TS_LOCAL);//hereda la escala de la tierra ojo*/
 
   //ESCENA MOLINO
-  MolinoNode = mSM->getRootSceneNode()->createChildSceneNode("Molino");
-  Molino_ = new Molino(mSM->getSceneNode("Molino"),num);
+  MolinoNode = mSM->getRootSceneNode()->createChildSceneNode();
+  Molino_ = new Molino(MolinoNode,num);
   MolinoNode->setScale(0.3, 0.3, 0.3);
   MolinoNode->setPosition(400, 50, -300);
   //addInputListener(Molino_);
