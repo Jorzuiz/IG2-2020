@@ -9,7 +9,5 @@ Plano::Plano(SceneNode* node, std::string plano) : EntidadIG(node) {
 		Plane(Vector3::UNIT_Y, 0),
 		1080, 800, 100, 80, true, 1, 1.0, 1.0, Vector3::UNIT_Z);
 
-	PlanoNode_ = mSM->getRootSceneNode()->createChildSceneNode();
-	Ogre::Entity* plane = mSM->createEntity(plano);
-	PlanoNode_->attachObject(plane);
+	PlanoNode_ = mSM->getRootSceneNode()->createChildSceneNode();	//Sacamos el nodo
 };

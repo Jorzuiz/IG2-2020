@@ -147,19 +147,26 @@ void IG2App::setupScene(void)
 //  Plane(Vector3::UNIT_Y, 0),
 //  1080, 800, 100, 80, true, 1, 1.0, 1.0, Vector3::UNIT_Z);
 
-  //PlanoNode = mSM->getRootSceneNode()->createChildSceneNode();
-  //Plano_ = new Plano(PlanoNode);
+  PlanoNode = mSM->getRootSceneNode()->createChildSceneNode();
+  Plano_ = new Plano(PlanoNode, "Plano");
+  Ogre::Entity* plane = mSM->createEntity("Plano");
+  PlanoNode->attachObject(plane);
+  PlanoNode->setPosition(0, 0, 0);
 
   PlanoNode1 = mSM->getRootSceneNode()->createChildSceneNode();
-  Plano1_ = new Plano(PlanoNode1, "Plano1");	//Molino
+  Plano1_ = new Plano(PlanoNode1, "Plano1");	//Plano del Molino
+  Ogre::Entity* plane1 = mSM->createEntity("Plano1");
+  PlanoNode1->attachObject(plane1);
   PlanoNode1->setScale(0.25, 0.25, 0.25);
-  PlanoNode1->setPosition(0, 5, 0);
+  PlanoNode1->setPosition(400, 15, -300);
   
 
   PlanoNode2 = mSM->getRootSceneNode()->createChildSceneNode();
-  Plano2_ = new Plano(PlanoNode2, "Plano2");	//Simbad
-  //PlanoNode2->setScale(0.25, 0.25, 0.25);
-  PlanoNode2->setPosition(0, 50, 0);
+  Plano2_ = new Plano(PlanoNode2, "Plano2");	//Plano de Simbad
+  Ogre::Entity* plane2 = mSM->createEntity("Plano2");
+  PlanoNode2->attachObject(plane2);
+  PlanoNode2->setScale(0.25, 0.25, 0.25);
+  PlanoNode2->setPosition(-400, 15, 300);
 
   //ESCENA AVION
   AvionNode = mSM->getRootSceneNode()->createChildSceneNode();
