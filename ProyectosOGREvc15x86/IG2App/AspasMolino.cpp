@@ -47,10 +47,10 @@ AspasMolino::AspasMolino(Ogre::SceneNode* node, const int numAspa) : EntidadIG(n
 	}
 };
 
-void AspasMolino::giro() {
+void AspasMolino::giro(Ogre::Real time) {
 	for (int i = 0; i < numAspas; i++)
 	{
-		arrayAspas[i]->giro();
+		arrayAspas[i]->giro(time);
 	}
 }
 void AspasMolino::retraEje() {

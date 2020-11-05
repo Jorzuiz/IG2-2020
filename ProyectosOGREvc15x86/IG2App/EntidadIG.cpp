@@ -14,3 +14,9 @@ void EntidadIG::sendEvent(EntidadIG* entidad) {
 	for (EntidadIG* e : appListeners)
 		e->receiveEvent(this);
 }
+
+void EntidadIG::frameRendered(const Ogre::FrameEvent& evt)
+{
+
+}
+

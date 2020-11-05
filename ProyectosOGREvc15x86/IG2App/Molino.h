@@ -16,8 +16,13 @@ class Molino: public EntidadIG //: public OgreBites::InputListener
 public:
 	Molino(Ogre::SceneNode* node, const int numAspas);
 	~Molino();
-
-	void giro();
+	virtual void frameRendered(const Ogre::FrameEvent& evt)
+	{
+		Ogre::Real time = evt.timeSinceLastFrame;
+		giro(time);
+	}
+	void receiveEvent(EntidadIG* entidad){}
+	void giro(Ogre::Real time);
 	void retraEje();
 	void giroTop();
 

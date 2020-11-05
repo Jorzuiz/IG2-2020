@@ -11,6 +11,7 @@ class Avion : public EntidadIG
 {
 public:
 	Avion(Ogre::SceneNode* node, const int numAspas) :EntidadIG(node) {
+		addListener(this);
 		AvionNode = node;
 		numAspas_ = numAspas;
 
@@ -56,20 +57,48 @@ public:
 		aspasMolino2 = new AspasMolino(aspas2, numAspas_);
 		aspas2->setPosition(250, 0, 55);
 		aspas2->setScale(0.3, 0.3, 0.3);
+
+		Light* foco_ = mSM->createLight("LuzAvion");
+		foco_->setType(Ogre::Light::LT_SPOTLIGHT);
+		foco_->setSpotlightRange(Ogre::Degree(20), Ogre::Degree(20), 1.0);
+		foco_->setDiffuseColour(0.75, 0.75, 0.75);
+		foco = AvionNode->createChildSceneNode(/*"nLuz"*/);//nombre opcional
+		foco->attachObject(foco_);
+		foco->setDirection(Ogre::Vector3(0, -1, 0));  //vec3.normalise();
+		foco->setPosition(0, -30, 0);
+
+		AvionNode->translate(200, 0, 0, Ogre::Node::TS_LOCAL);
+
 	}
 	~Avion() {}
-
-	void giro() {
-			aspasMolino1->giro();
-			aspasMolino2->giro();
+	virtual void frameRendered(const Ogre::FrameEvent& evt)
+	{
+		Ogre::Real time = evt.timeSinceLastFrame;
+		giro(10*time);
+		movimiento(time);
 	}
+	
+	void receiveEvent(EntidadIG* entidad) {}
+	
+	void giro(Ogre::Real time) {
+			aspasMolino1->giro(time);
+			aspasMolino2->giro(-time);
+	}
+
+	//Movimiento basado en el de la tierra
+	void movimiento(Ogre::Real time) {	
+		AvionNode->translate(-200, 0, 0, Ogre::Node::TS_LOCAL);
+		AvionNode->yaw(Degree(-50)*time); 
+		AvionNode->translate(200, 0, 0, Ogre::Node::TS_LOCAL);
+	}
+	
 	void retraEje() {
 		aspasMolino1->retraEje();
 		aspasMolino2->retraEje();
 	}
 protected:
 	Ogre::SceneNode* AvionNode, *cuerpoNode, *alaINode, *alaDNode, 
-	*frenteNode, *pilotoNode, *aspas1, *aspas2;
+	*frenteNode, *pilotoNode, *aspas1, *aspas2, *foco;
 	AspasMolino* aspasMolino1;
 	AspasMolino* aspasMolino2;
 	int numAspas_;

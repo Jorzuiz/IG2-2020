@@ -15,7 +15,7 @@ public:
 	Aspa(Ogre::SceneNode* node);
 	~Aspa() {};
 
-	void giro();
+	void giro(Ogre::Real time);
 
 	Ogre::SceneNode* getAdorno() { return cilindroNode; };
 	Ogre::SceneNode* getTablero() { return tableroNode; };

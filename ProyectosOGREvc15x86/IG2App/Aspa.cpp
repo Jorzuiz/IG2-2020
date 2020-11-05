@@ -23,7 +23,7 @@ Aspa::Aspa(Ogre::SceneNode* node) : EntidadIG(node) {
 };
 
 
-void Aspa::giro() {
-	mNode->roll(Degree(-1));
-	cilindroNode->roll(Degree(1));
+void Aspa::giro(Ogre::Real time) {
+	mNode->roll(Degree(-100)*time);
+	cilindroNode->roll(Degree(100)*time);
 }

@@ -30,8 +30,8 @@ Molino::~Molino() {
 	aspasMolino_ = nullptr;
 };
 
-void Molino::giro() {
-	aspasMolino_->giro();
+void Molino::giro(Ogre::Real time) {
+	aspasMolino_->giro(time);
 }
 
 void Molino::retraEje() {

@@ -14,7 +14,7 @@ public:
 	AspasMolino(Ogre::SceneNode* node, const int numAspa);
 	~AspasMolino() {}
 
-	void giro();
+	void giro(Ogre::Real time);
 	void retraEje();
 
 protected:

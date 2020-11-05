@@ -15,8 +15,8 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
   }
   //else if (evt.keysym.sym == SDLK_???)
   if (evt.keysym.sym == SDLK_g) {
-	  Avion_->giro();
-	  Molino_->giro();
+	  //Avion_->giro();
+	  //Molino_->giro();//falta parametro time
 	  //AspasMolino_->giro();
 	  /*mSM->getSceneNode("AspasMolino")->roll(Ogre::Degree(1));
 	  for (int i = 0; i < num; i++) {
@@ -91,7 +91,8 @@ void IG2App::setup(void)
   mShaderGenerator->addSceneManager(mSM);
 
   mSM->addRenderQueueListener(mOverlaySystem);
-
+  //añade sombras desde cualquier luz
+  mSM->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
   mTrayMgr = new OgreBites::TrayManager("TrayGUISystem", mWindow.render);  
   mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
   addInputListener(mTrayMgr);
@@ -141,11 +142,6 @@ void IG2App::setupScene(void)
 
   // finally something to render
   //ESCENA COMBINADA
-
- //MeshManager::getSingleton().createPlane("mPlane1080x800.mesh",
-//  ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-//  Plane(Vector3::UNIT_Y, 0),
-//  1080, 800, 100, 80, true, 1, 1.0, 1.0, Vector3::UNIT_Z);
 
   PlanoNode = mSM->getRootSceneNode()->createChildSceneNode();
   Plano_ = new Plano(PlanoNode, "Plano");
@@ -336,7 +332,8 @@ void IG2App::setupScene(void)
   suelo->attachObject(ent3);
   suelo->setScale(1.5, 1.5, 1.5);*/
 
-  
+  for (int i = 0; i < EntidadIG::appListeners.size(); i++)
+	  addInputListener(EntidadIG::appListeners.at(i));
   //------------------------------------------------------------------------
 
   mCamMgr = new OgreBites::CameraMan(mCamNode);
