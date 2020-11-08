@@ -6,8 +6,8 @@
 #include <OgreSceneNode.h>
 #include <OgreTrays.h>
 #include <OgreCameraMan.h>
-#include "Aspa.h"
-#include "AspasMolino.h"
+//#include "Aspa.h"
+//#include "AspasMolino.h"
 #include "Molino.h"
 #include "Avion.h"
 #include "Plano.h"
@@ -72,6 +72,7 @@ protected:
   Ogre::SceneNode* PlanoNode2;
   Simbad* Simbad_ = nullptr;
   Ogre::SceneNode* SimbadNode;
+  Ogre::SceneNode* caraCreepy = nullptr;
 };
 
 #endif

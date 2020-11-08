@@ -9,18 +9,21 @@ Molino::Molino(Ogre::SceneNode* node, const int numAspas) : EntidadIG(node)
 
 	techoNode = molinoNode->createChildSceneNode();
 	Ogre::Entity* techo = mSM->createEntity("sphere.mesh");
+	techo->setMaterialName("IG2App/amarillo");
 	techoNode->attachObject(techo);
 	techoNode->setScale(1.25, 1.25, 1.25);
 	techoNode->setPosition(0, 170, 0);
 
 	paredNode = molinoNode->createChildSceneNode();
 	Ogre::Entity* pared = mSM->createEntity("Barrel.mesh");
+	pared->setMaterialName("IG2App/muro");
 	paredNode->attachObject(pared);
 	paredNode->setScale(50, 60, 50);
 	paredNode->setPosition(0, 0, 0);
 
 	aspasMolino = molinoNode->createChildSceneNode();		// Esto es nodo
 	aspasMolino_ = new AspasMolino(aspasMolino, numAspas_);	// Esto es creadora de clase
+	aspasMolino->setScale(0.8, 0.8, 0.8);
 	aspasMolino->setPosition(0, 170, 140);
 
 };

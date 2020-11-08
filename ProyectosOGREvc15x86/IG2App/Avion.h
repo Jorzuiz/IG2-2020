@@ -19,23 +19,27 @@ public:
 		// Esfera del cuerpo del avion
 		cuerpoNode = AvionNode->createChildSceneNode();
 		Ogre::Entity* cuerpo= AvionNode->getCreator()->createEntity("sphere.mesh");
+		cuerpo->setMaterialName("IG2App/rojo");
 		cuerpoNode->attachObject(cuerpo);
 		cuerpoNode->setScale(1, 1, 1);
 		// Ala izquierda
 		alaINode = AvionNode->createChildSceneNode();
 		Ogre::Entity* alaI = AvionNode->getCreator()->createEntity("cube.mesh");
+		alaI->setMaterialName("IG2App/alas");
 		alaINode->attachObject(alaI);
 		alaINode->setScale(3, 0.2, 1);
 		alaINode->translate(-150, 0, 0, Ogre::Node::TS_LOCAL);
 		// Ala derecha
 		alaDNode = AvionNode->createChildSceneNode();
 		Ogre::Entity* alaD = AvionNode->getCreator()->createEntity("cube.mesh");
+		alaD->setMaterialName("IG2App/alas");
 		alaDNode->attachObject(alaD);
 		alaDNode->setScale(3, 0.2, 1);
 		alaDNode->translate(150, 0, 0, Ogre::Node::TS_LOCAL);
 		// Morro
 		frenteNode = AvionNode->createChildSceneNode();
 		Ogre::Entity* frente = AvionNode->getCreator()->createEntity("Barrel.mesh");
+		frente->setMaterialName("IG2App/naranja");
 		frenteNode->attachObject(frente);
 		frenteNode->setScale(10, 10, 10);
 		frenteNode->pitch(Degree(90), Ogre::Node::TS_LOCAL);
@@ -43,6 +47,7 @@ public:
 		// Piloto NINJA
 		pilotoNode = AvionNode->createChildSceneNode();
 		Ogre::Entity* piloto= AvionNode->getCreator()->createEntity("ninja.mesh");
+		piloto->setMaterialName("IG2App/amarillo");
 		pilotoNode->attachObject(piloto);
 		pilotoNode->setScale(1, 1, 1);
 		pilotoNode->translate(0, -50, 0, Ogre::Node::TS_LOCAL);

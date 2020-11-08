@@ -12,6 +12,7 @@ AspasMolino::AspasMolino(Ogre::SceneNode* node, const int numAspa) : EntidadIG(n
 
 	ejeNode = aspasNode->createChildSceneNode();
 	Ogre::Entity* eje_ = mSM->createEntity("Barrel.mesh");
+	eje_->setMaterialName("IG2App/eje");
 	ejeNode->attachObject(eje_);
 	ejeNode->setScale(15, 30, 15);
 	ejeNode->pitch(Degree(90));

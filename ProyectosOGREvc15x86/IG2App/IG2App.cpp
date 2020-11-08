@@ -165,13 +165,22 @@ void IG2App::setupScene(void)
   PlanoNode2 = mSM->getRootSceneNode()->createChildSceneNode();
   Plano2_ = new Plano(PlanoNode2, "Plano2");	//Plano de Simbad
   Ogre::Entity* plane2 = mSM->createEntity("Plano2");
-  plane2->setMaterialName("IG2App/azul");
+  plane2->setMaterialName("IG2App/rojo");
   PlanoNode2->attachObject(plane2);
   PlanoNode2->setScale(0.25, 0.25, 0.25);
   PlanoNode2->setPosition(-400, 5, 300);
 
+  caraCreepy = mSM->getRootSceneNode()->createChildSceneNode();
+  Ogre::Entity* cara = mSM->createEntity("sphere.mesh");
+  cara->setMaterialName("IG2App/cabeza");
+  caraCreepy->attachObject(cara);
+  caraCreepy->setScale(0.3, 0.3, 0.3);
+  caraCreepy->setPosition(500, 30, -250);
+
+
   //ESCENA AVION
-  AvionNode = mSM->getRootSceneNode()->createChildSceneNode();
+  AvionNode = mSM->getRootSceneNode()->createChildSceneNode("avion");
+  //mSM->getSceneNode()->
   Avion_ = new Avion(AvionNode, num);
   AvionNode->setScale(0.25, 0.25, 0.25);
   AvionNode->setPosition(0, 300, 0);
@@ -205,8 +214,8 @@ void IG2App::setupScene(void)
   //ESCENA MOLINO
   MolinoNode = mSM->getRootSceneNode()->createChildSceneNode();
   Molino_ = new Molino(MolinoNode,num);
-  MolinoNode->setScale(0.3, 0.3, 0.3);
-  MolinoNode->setPosition(400, 50, -300);
+  MolinoNode->setScale(0.6, 0.6, 0.6);
+  MolinoNode->setPosition(400, 100, -300);
   //addInputListener(Molino_);
 
   /*mSM->getRootSceneNode()->createChildSceneNode("AspasMolino");

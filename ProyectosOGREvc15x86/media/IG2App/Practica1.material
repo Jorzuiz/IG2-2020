@@ -30,24 +30,24 @@ material IG2App/nowater {
         }
     }
 }
-material Practica1/cabeza {
+material IG2App/cabeza {
     technique {
         pass {
             diffuse 0.5 0.5 0.5
             texture_unit {
                 texture spotlight_image.png
-                colour_op add
+                colour_op modulate
                 env_map spherical
             }
         }
     }
 }
-material Practica1/cabeza2 {
+material IG2App/cabeza2 {
     technique {
         pass {
             diffuse 1.0 0.0 0.0
             texture_unit {
-                texture spotlight_image.png
+                texture spheremap.png
                 colour_op modulate
                 env_map spherical
             }
@@ -95,6 +95,43 @@ material IG2App/amarillo {
             diffuse 1.0 1.0 0.0
            
             
+        }
+    }
+}
+
+material IG2App/alas {
+    technique {
+        pass {
+            diffuse 0.5 0.5 0.5
+            texture_unit {
+                texture checker.png
+                colour_op modulate
+
+            }
+        }
+    }
+}
+material IG2App/muro {
+    technique {
+        pass {
+            diffuse 0.5 0.5 0.5
+            texture_unit {
+                texture BeachStones.jpg
+                colour_op modulate
+
+            }
+        }
+    }
+}
+material IG2App/eje {
+    technique {
+        pass {
+            diffuse 0.5 0.5 0.5
+            texture_unit {
+                texture BumpyMetal.jpg
+                colour_op modulate
+
+            }
         }
     }
 }
