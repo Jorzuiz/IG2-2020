@@ -1,0 +1,100 @@
+material IG2App/water {
+    technique {
+        pass {
+            diffuse 0.5 0.5 0.5
+            texture_unit {
+                texture BeachStones.jpg
+                colour_op add
+            }
+            texture_unit {
+                scroll_anim -0.1 0.0
+                texture Water02.jpg
+                colour_op modulate
+            }
+        }
+    }
+}
+material IG2App/nowater {
+    technique {
+        pass {
+            diffuse 0.5 0.5 0.5
+            texture_unit {
+                texture BeachStones.jpg
+                colour_op add
+            }
+            texture_unit {
+                scroll_anim 0.0 0.0
+                texture Water02.jpg
+                colour_op modulate
+            }
+        }
+    }
+}
+material Practica1/cabeza {
+    technique {
+        pass {
+            diffuse 0.5 0.5 0.5
+            texture_unit {
+                texture spotlight_image.png
+                colour_op add
+                env_map spherical
+            }
+        }
+    }
+}
+material Practica1/cabeza2 {
+    technique {
+        pass {
+            diffuse 1.0 0.0 0.0
+            texture_unit {
+                texture spotlight_image.png
+                colour_op modulate
+                env_map spherical
+            }
+        }
+    }
+}
+material IG2App/rojo {
+    technique {
+        pass {
+            diffuse 1.0 0.0 0.0
+            
+            
+        }
+    }
+}
+material IG2App/naranja {
+    technique {
+        pass {
+            diffuse 1.0 0.5 0.0
+            
+            
+        }
+    }
+}
+material IG2App/marron {
+    technique {
+        pass {
+            diffuse 0.52 0.32 0.05
+           
+            
+        }
+    }
+}
+material IG2App/azul {
+    technique {
+        pass {
+            diffuse 0.0 1.0 1.0           
+            
+        }
+    }
+}
+material IG2App/amarillo {
+    technique {
+        pass {
+            diffuse 1.0 1.0 0.0
+           
+            
+        }
+    }
+}

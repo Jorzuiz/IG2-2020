@@ -11,6 +11,7 @@
 #include "Molino.h"
 #include "Avion.h"
 #include "Plano.h"
+#include "Simbad.h"
 
 class IG2App : public  OgreBites::IG2ApplicationContext, OgreBites::InputListener 
 {
@@ -37,7 +38,7 @@ protected:
   //Ogre::SceneNode* AspaNode_ = nullptr;
   //ESCENA ROMANO SINBAD
 
-  Ogre::SceneNode* mSinbadNode = nullptr;
+  //Ogre::SceneNode* mSinbadNode = nullptr;
   /*Ogre::SceneNode* suelo = nullptr;
   Ogre::SceneNode* paredes = nullptr;
   Ogre::SceneNode* columnas = nullptr;*/
@@ -69,6 +70,8 @@ protected:
   Ogre::SceneNode* PlanoNode1;
   Plano* Plano2_ = nullptr;
   Ogre::SceneNode* PlanoNode2;
+  Simbad* Simbad_ = nullptr;
+  Ogre::SceneNode* SimbadNode;
 };
 
 #endif

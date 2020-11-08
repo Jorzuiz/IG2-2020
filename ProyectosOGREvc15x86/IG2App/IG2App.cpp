@@ -76,6 +76,7 @@ void IG2App::shutdown()
   delete Plano_; Plano_ = nullptr;
   delete Plano1_; Plano1_ = nullptr;
   delete Plano2_; Plano2_ = nullptr;
+  delete Simbad_; Simbad_ = nullptr;
   // do not forget to call the base 
   IG2ApplicationContext::shutdown();
 }
@@ -135,34 +136,39 @@ void IG2App::setupScene(void)
   //mLightNode = mCamNode->createChildSceneNode("nLuz");
   mLightNode->attachObject(luz);
 
-  mLightNode->setDirection(Ogre::Vector3(0, 0, -1));  //vec3.normalise();
+  mLightNode->setDirection(Ogre::Vector3(0, -1, -1));  //vec3.normalise();
   //lightNode->setPosition(0, 0, 1000);
  
   //------------------------------------------------------------------------
 
   // finally something to render
   //ESCENA COMBINADA
+  SimbadNode = mSM->getRootSceneNode()->createChildSceneNode();
+  Simbad_ = new Simbad(SimbadNode);
 
   PlanoNode = mSM->getRootSceneNode()->createChildSceneNode();
   Plano_ = new Plano(PlanoNode, "Plano");
   Ogre::Entity* plane = mSM->createEntity("Plano");
+  plane->setMaterialName("IG2App/water");
   PlanoNode->attachObject(plane);
   PlanoNode->setPosition(0, 0, 0);
 
   PlanoNode1 = mSM->getRootSceneNode()->createChildSceneNode();
   Plano1_ = new Plano(PlanoNode1, "Plano1");	//Plano del Molino
   Ogre::Entity* plane1 = mSM->createEntity("Plano1");
+  plane1->setMaterialName("IG2App/naranja");
   PlanoNode1->attachObject(plane1);
   PlanoNode1->setScale(0.25, 0.25, 0.25);
-  PlanoNode1->setPosition(400, 15, -300);
+  PlanoNode1->setPosition(400, 5, -300);
   
 
   PlanoNode2 = mSM->getRootSceneNode()->createChildSceneNode();
   Plano2_ = new Plano(PlanoNode2, "Plano2");	//Plano de Simbad
   Ogre::Entity* plane2 = mSM->createEntity("Plano2");
+  plane2->setMaterialName("IG2App/azul");
   PlanoNode2->attachObject(plane2);
   PlanoNode2->setScale(0.25, 0.25, 0.25);
-  PlanoNode2->setPosition(-400, 15, 300);
+  PlanoNode2->setPosition(-400, 5, 300);
 
   //ESCENA AVION
   AvionNode = mSM->getRootSceneNode()->createChildSceneNode();
@@ -307,7 +313,7 @@ void IG2App::setupScene(void)
   
   //ESCENA ROMA CON SINBAD 
   
-  Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
+  /*Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
 
   mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
   mSinbadNode->attachObject(ent);
@@ -316,7 +322,7 @@ void IG2App::setupScene(void)
   mSinbadNode->setScale(20, 20, 20);
   //mSinbadNode->yaw(Ogre::Degree(-45));
   //mSinbadNode->showBoundingBox(true);
-  //mSinbadNode->setVisible(false);
+  //mSinbadNode->setVisible(false);*/
 
 
   /*Ogre::Entity* ent1 = mSM->createEntity("RomanBathLower.mesh");
