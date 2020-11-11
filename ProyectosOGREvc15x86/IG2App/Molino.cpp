@@ -31,7 +31,13 @@ Molino::Molino(Ogre::SceneNode* node, const int numAspas) : EntidadIG(node)
 Molino::~Molino() {
 	delete aspasMolino_;
 	aspasMolino_ = nullptr;
-};
+}
+inline void Molino::frameRendered(const Ogre::FrameEvent& evt)
+{
+	Ogre::Real time = evt.timeSinceLastFrame;
+	giro(time);
+}
+;
 
 bool Molino::keyPressed(const OgreBites::KeyboardEvent& evt) { 
 		if (evt.keysym.sym == SDLK_r)
