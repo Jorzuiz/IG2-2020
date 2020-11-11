@@ -4,7 +4,10 @@
 #include <OgreSceneManager.h>
 #include <OgreTrays.h>
 #include <OgreCameraMan.h>
+#include <SDL_keycode.h>
+#include <string>
 
+using namespace std;
 class EntidadIG : public OgreBites::InputListener {
 public:
 	EntidadIG(Ogre::SceneNode* node);
@@ -20,7 +23,7 @@ protected:
 	virtual void frameRendered(const Ogre::FrameEvent& evt);
 	virtual bool keyPressed(const OgreBites::KeyboardEvent& evt) { return false; };
 
-	void sendEvent(EntidadIG* entidad);
-	virtual void receiveEvent(EntidadIG* entidad) {};
+	void sendEvent(EntidadIG* entidad, string mensaje);
+	virtual void receiveEvent(EntidadIG* entidad, string mensaje) {};
 	 
 };

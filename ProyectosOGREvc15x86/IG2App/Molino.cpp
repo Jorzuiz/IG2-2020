@@ -8,7 +8,7 @@ Molino::Molino(Ogre::SceneNode* node, const int numAspas) : EntidadIG(node)
 	Ogre::SceneManager* mSM = molinoNode->getCreator();
 
 	techoNode = molinoNode->createChildSceneNode();
-	Ogre::Entity* techo = mSM->createEntity("sphere.mesh");
+	techo = mSM->createEntity("sphere.mesh");
 	techo->setMaterialName("IG2App/amarillo");
 	techoNode->attachObject(techo);
 	techoNode->setScale(1.25, 1.25, 1.25);
@@ -33,8 +33,26 @@ Molino::~Molino() {
 	aspasMolino_ = nullptr;
 };
 
+bool Molino::keyPressed(const OgreBites::KeyboardEvent& evt) { 
+		if (evt.keysym.sym == SDLK_r)
+			EntidadIG::sendEvent(this, "paraMolino");
+		return true;
+};
+
+void Molino::receiveEvent(EntidadIG* entidad,string mensaje)
+{
+	if (mensaje == "paraMolino") {
+		parado = !parado;	//Variable de control del metodo giro
+		if(parado)
+			techo->setMaterialName("IG2App/rojo");
+		else
+			techo->setMaterialName("IG2App/amarillo");
+	}
+	aspasMolino_->adornosGone();
+}
+
 void Molino::giro(Ogre::Real time) {
-	aspasMolino_->giro(time);
+	if (!parado) aspasMolino_->giro(time);
 }
 
 void Molino::retraEje() {

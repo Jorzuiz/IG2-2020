@@ -16,7 +16,7 @@ public:
 	~Aspa() {};
 
 	void giro(Ogre::Real time);
-
+	void adornoGone();
 	Ogre::SceneNode* getAdorno() { return cilindroNode; };
 	Ogre::SceneNode* getTablero() { return tableroNode; };
 	Ogre::SceneNode* getAspa() { return mNode; };
@@ -24,4 +24,5 @@ public:
 protected:
 	Ogre::SceneNode* mNode, *tableroNode, *cilindroNode;
 	Ogre::SceneManager* mSM;
+	bool adornoV = true;
 };

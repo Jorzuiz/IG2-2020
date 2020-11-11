@@ -16,7 +16,7 @@ public:
 
 	void giro(Ogre::Real time);
 	void retraEje();
-
+	void adornosGone();
 protected:
 	Ogre::SceneNode* aspasNode, *ejeNode, *aspa;
 	Aspa **arrayAspas;

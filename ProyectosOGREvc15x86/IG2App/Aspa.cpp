@@ -29,3 +29,12 @@ void Aspa::giro(Ogre::Real time) {
 	mNode->roll(Degree(-100)*time);
 	cilindroNode->roll(Degree(100)*time);
 }
+
+void Aspa::adornoGone()
+{
+	adornoV = !adornoV;
+	if(adornoV)
+		cilindroNode->setVisible(true);
+	else
+		cilindroNode->setVisible(false);
+}

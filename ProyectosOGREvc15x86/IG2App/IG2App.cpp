@@ -57,6 +57,12 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
   /*if (evt.keysym.sym == SDLK_h) {
 	  ClockNode_->getChild("Arrows")->roll(Ogre::Degree(-1));
   }*/
+  if (evt.keysym.sym == SDLK_r) {
+	  //this es tipo IG2App
+	  //Molino_->keyPressed();
+	  
+	  //Avion_->receiveEvent
+  }
   return true;
 }
 
@@ -347,8 +353,9 @@ void IG2App::setupScene(void)
   suelo->attachObject(ent3);
   suelo->setScale(1.5, 1.5, 1.5);*/
 
-  for (int i = 0; i < EntidadIG::appListeners.size(); i++)
+  for (int i = 0; i < EntidadIG::appListeners.size(); i++) {
 	  addInputListener(EntidadIG::appListeners.at(i));
+  }
   //------------------------------------------------------------------------
 
   mCamMgr = new OgreBites::CameraMan(mCamNode);

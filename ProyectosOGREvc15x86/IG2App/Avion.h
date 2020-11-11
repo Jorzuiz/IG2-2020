@@ -6,6 +6,7 @@
 #include <OgreInput.h>
 #include "AspasMolino.h"
 #include "EntidadIG.h"
+
 using namespace Ogre;
 class Avion : public EntidadIG
 {
@@ -63,7 +64,7 @@ public:
 		aspas2->setPosition(250, 0, 55);
 		aspas2->setScale(0.3, 0.3, 0.3);
 
-		Light* foco_ = mSM->createLight("LuzAvion");
+		foco_ = mSM->createLight("LuzAvion");
 		foco_->setType(Ogre::Light::LT_SPOTLIGHT);
 		foco_->setSpotlightRange(Ogre::Degree(20), Ogre::Degree(20), 1.0);
 		foco_->setDiffuseColour(0.75, 0.75, 0.75);
@@ -83,7 +84,19 @@ public:
 		movimiento(time);
 	}
 	
-	void receiveEvent(EntidadIG* entidad) {}
+	
+	bool keyPressed(const OgreBites::KeyboardEvent& evt) { 
+		if (evt.keysym.sym == SDLK_r)
+			EntidadIG::sendEvent(this, "para");
+		return true;
+	};
+
+	void receiveEvent(EntidadIG* entidad, string mensaje) {
+		if(mensaje == "para"){
+			parado = !parado;	//Variable de control del metodo giro
+			foco_->setVisible(false);
+		}
+	}
 	
 	void giro(Ogre::Real time) {
 			aspasMolino1->giro(time);
@@ -92,9 +105,11 @@ public:
 
 	//Movimiento basado en el de la tierra
 	void movimiento(Ogre::Real time) {	
-		AvionNode->translate(-200, 0, 0, Ogre::Node::TS_LOCAL);
-		AvionNode->yaw(Degree(-50)*time); 
-		AvionNode->translate(200, 0, 0, Ogre::Node::TS_LOCAL);
+		if (!parado) {
+			AvionNode->translate(-200, 0, 0, Ogre::Node::TS_LOCAL);
+			AvionNode->yaw(Degree(-50) * time);
+			AvionNode->translate(200, 0, 0, Ogre::Node::TS_LOCAL);
+		}
 	}
 	
 	void retraEje() {
@@ -107,5 +122,7 @@ protected:
 	AspasMolino* aspasMolino1;
 	AspasMolino* aspasMolino2;
 	int numAspas_;
+	bool parado = false;
+	Light* foco_;
 };
 

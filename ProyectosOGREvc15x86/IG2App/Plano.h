@@ -16,6 +16,8 @@ class Plano : public EntidadIG
 public:
 	Plano(SceneNode* node, std::string plano);
 	~Plano() {};
+	bool keyPressed(const OgreBites::KeyboardEvent& evt);
+	void receiveEvent(EntidadIG* entidad, string mensaje);
 protected:
 	SceneNode* PlanoNode_;
 

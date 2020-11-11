@@ -21,7 +21,8 @@ public:
 		Ogre::Real time = evt.timeSinceLastFrame;
 		giro(time);
 	}
-	void receiveEvent(EntidadIG* entidad){}
+	bool keyPressed(const OgreBites::KeyboardEvent& evt);
+	void receiveEvent(EntidadIG* entidad, string mensaje);
 	void giro(Ogre::Real time);
 	void retraEje();
 	void giroTop();
@@ -31,5 +32,7 @@ protected:
 	Ogre::Vector3 const posicionGiro = {0, 170, 140};
 	AspasMolino* aspasMolino_;
 	int numAspas_;
+	bool parado = false;
+	Ogre::Entity* techo = nullptr;
 };
 

@@ -10,9 +10,10 @@ EntidadIG::~EntidadIG() {
 
 }
 
-void EntidadIG::sendEvent(EntidadIG* entidad) {
+void EntidadIG::sendEvent(EntidadIG* entidad, string mensaje) {
 	for (EntidadIG* e : appListeners)
-		e->receiveEvent(this);
+		e->receiveEvent(entidad, mensaje);
+
 }
 
 void EntidadIG::frameRendered(const Ogre::FrameEvent& evt)

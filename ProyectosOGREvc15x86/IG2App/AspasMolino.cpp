@@ -57,4 +57,10 @@ void AspasMolino::giro(Ogre::Real time) {
 void AspasMolino::retraEje() {
 	ejeNode->translate(0, -1, 0, Ogre::Node::TS_LOCAL);
 }
+void AspasMolino::adornosGone() {
+	for (int i = 0; i < numAspas; i++)
+	{
+		arrayAspas[i]->adornoGone();
+	}
+}
 
