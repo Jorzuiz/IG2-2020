@@ -59,9 +59,12 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
   }*/
   if (evt.keysym.sym == SDLK_r) {
 	  //this es tipo IG2App
-	  //Molino_->keyPressed();
-	  
+	  //Molino_->keyPressed();	  
 	  //Avion_->receiveEvent
+	  /*PlanoNode->detachAllObjects();
+	  Ogre::Entity* plane = mSM->createEntity("Plano");
+	  plane->setMaterialName("IG2App/nowater");
+	  PlanoNode1->attachObject(plane);*/
   }
   return true;
 }
@@ -152,29 +155,29 @@ void IG2App::setupScene(void)
   SimbadNode = mSM->getRootSceneNode()->createChildSceneNode();
   Simbad_ = new Simbad(SimbadNode);
 
-  PlanoNode = mSM->getRootSceneNode()->createChildSceneNode();
+  PlanoNode = mSM->getRootSceneNode()->createChildSceneNode("Plano");
   Plano_ = new Plano(PlanoNode, "Plano");
-  Ogre::Entity* plane = mSM->createEntity("Plano");
-  plane->setMaterialName("IG2App/water");
-  PlanoNode->attachObject(plane);
+  //Ogre::Entity* plane = mSM->createEntity("Plano");
+  //plane->setMaterialName("IG2App/water");
+  //PlanoNode->attachObject(plane);
   PlanoNode->setPosition(0, 0, 0);
 
-  PlanoNode1 = mSM->getRootSceneNode()->createChildSceneNode();
+  PlanoNode1 = mSM->getRootSceneNode()->createChildSceneNode("Plano1");
   Plano1_ = new Plano(PlanoNode1, "Plano1");	//Plano del Molino
-  Ogre::Entity* plane1 = mSM->createEntity("Plano1");
-  plane1->setMaterialName("IG2App/naranja");
-  PlanoNode1->attachObject(plane1);
+  //Ogre::Entity* plane1 = mSM->createEntity("Plano1");
+  //plane1->setMaterialName("IG2App/naranja");
+  //PlanoNode1->attachObject(plane1);
   PlanoNode1->setScale(0.25, 0.25, 0.25);
-  PlanoNode1->setPosition(400, 5, -300);
+  PlanoNode1->setPosition(400, 15, -300);
   
 
-  PlanoNode2 = mSM->getRootSceneNode()->createChildSceneNode();
+  PlanoNode2 = mSM->getRootSceneNode()->createChildSceneNode("Plano2");
   Plano2_ = new Plano(PlanoNode2, "Plano2");	//Plano de Simbad
-  Ogre::Entity* plane2 = mSM->createEntity("Plano2");
-  plane2->setMaterialName("IG2App/rojo");
-  PlanoNode2->attachObject(plane2);
+  //Ogre::Entity* plane2 = mSM->createEntity("Plano2");
+  //plane2->setMaterialName("IG2App/rojo");
+  //PlanoNode2->attachObject(plane2);
   PlanoNode2->setScale(0.25, 0.25, 0.25);
-  PlanoNode2->setPosition(-400, 5, 300);
+  PlanoNode2->setPosition(-400, 15, 300);
 
   caraCreepy = mSM->getRootSceneNode()->createChildSceneNode();
   Ogre::Entity* cara = mSM->createEntity("sphere.mesh");

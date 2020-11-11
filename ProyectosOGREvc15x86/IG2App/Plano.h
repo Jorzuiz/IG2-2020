@@ -10,6 +10,7 @@
 
 #include "EntidadIG.h"
 using namespace Ogre;
+using namespace std;
 
 class Plano : public EntidadIG
 {
@@ -18,8 +19,10 @@ public:
 	~Plano() {};
 	bool keyPressed(const OgreBites::KeyboardEvent& evt);
 	void receiveEvent(EntidadIG* entidad, string mensaje);
+	
 protected:
 	SceneNode* PlanoNode_;
-
+	Ogre::Entity* plane = nullptr;
+	string plano;
 };
 

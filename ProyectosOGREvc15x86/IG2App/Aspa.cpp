@@ -32,9 +32,9 @@ void Aspa::giro(Ogre::Real time) {
 
 void Aspa::adornoGone()
 {
-	adornoV = !adornoV;
+	/*adornoV = !adornoV;
 	if(adornoV)
 		cilindroNode->setVisible(true);
-	else
+	else*/
 		cilindroNode->setVisible(false);
 }

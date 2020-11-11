@@ -3,7 +3,7 @@
 
 //Movimiento basado en el de la tierra
 
-inline Avion::Avion(Ogre::SceneNode* node, const int numAspas) :EntidadIG(node) {
+Avion::Avion(Ogre::SceneNode* node, const int numAspas) :EntidadIG(node) {
 	addListener(this);
 	AvionNode = node;
 	numAspas_ = numAspas;
@@ -69,32 +69,32 @@ inline Avion::Avion(Ogre::SceneNode* node, const int numAspas) :EntidadIG(node) 
 
 }
 
-inline void Avion::frameRendered(const Ogre::FrameEvent& evt)
+void Avion::frameRendered(const Ogre::FrameEvent& evt)
 {
 	Ogre::Real time = evt.timeSinceLastFrame;
 	giro(10 * time);
 	movimiento(time);
 }
 
-inline bool Avion::keyPressed(const OgreBites::KeyboardEvent& evt) {
+bool Avion::keyPressed(const OgreBites::KeyboardEvent& evt) {
 	if (evt.keysym.sym == SDLK_r)
 		EntidadIG::sendEvent(this, "para");
 	return true;
 }
 
-inline void Avion::receiveEvent(EntidadIG* entidad, string mensaje) {
+void Avion::receiveEvent(EntidadIG* entidad, string mensaje) {
 	if (mensaje == "para") {
 		parado = !parado;	//Variable de control del metodo giro
 		foco_->setVisible(false);
 	}
 }
 
-inline void Avion::giro(Ogre::Real time) {
+void Avion::giro(Ogre::Real time) {
 	aspasMolino1->giro(time);
 	aspasMolino2->giro(-time);
 }
 
-inline void Avion::movimiento(Ogre::Real time) {
+void Avion::movimiento(Ogre::Real time) {
 	if (!parado) {
 		AvionNode->translate(-200, 0, 0, Ogre::Node::TS_LOCAL);
 		AvionNode->yaw(Degree(-50) * time);
@@ -102,7 +102,7 @@ inline void Avion::movimiento(Ogre::Real time) {
 	}
 }
 
-inline void Avion::retraEje() {
+void Avion::retraEje() {
 	aspasMolino1->retraEje();
 	aspasMolino2->retraEje();
 }

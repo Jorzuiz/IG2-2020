@@ -112,7 +112,7 @@ material IG2App/muro {
         pass {
             diffuse 0.5 0.5 0.5
             texture_unit {
-                texture BeachStones.jpg
+                texture marble2.jpg
                 colour_op modulate
 
             }
