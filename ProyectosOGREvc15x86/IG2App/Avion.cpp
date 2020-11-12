@@ -58,7 +58,7 @@ Avion::Avion(Ogre::SceneNode* node, const int numAspas) :EntidadIG(node) {
 
 	foco_ = mSM->createLight("LuzAvion");
 	foco_->setType(Ogre::Light::LT_SPOTLIGHT);
-	foco_->setSpotlightRange(Ogre::Degree(20), Ogre::Degree(20), 1.0);
+	foco_->setSpotlightRange(Ogre::Degree(70), Ogre::Degree(70), 1.0);
 	foco_->setDiffuseColour(0.75, 0.75, 0.75);
 	foco = AvionNode->createChildSceneNode(/*"nLuz"*/);//nombre opcional
 	foco->attachObject(foco_);
