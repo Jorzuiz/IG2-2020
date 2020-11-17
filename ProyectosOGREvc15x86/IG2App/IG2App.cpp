@@ -86,6 +86,7 @@ void IG2App::shutdown()
   delete Plano1_; Plano1_ = nullptr;
   delete Plano2_; Plano2_ = nullptr;
   delete Simbad_; Simbad_ = nullptr;
+  delete Boya_; Boya_ = nullptr;
   // do not forget to call the base 
   IG2ApplicationContext::shutdown();
 }
@@ -152,6 +153,9 @@ void IG2App::setupScene(void)
 
   // finally something to render
   //ESCENA COMBINADA
+  BoyaNode = mSM->getRootSceneNode()->createChildSceneNode();
+  Boya_ = new Boya(BoyaNode);
+
   SimbadNode = mSM->getRootSceneNode()->createChildSceneNode();
   Simbad_ = new Simbad(SimbadNode);
 

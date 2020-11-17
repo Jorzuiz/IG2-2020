@@ -48,19 +48,23 @@ bool Simbad::keyPressed(const OgreBites::KeyboardEvent& evento)
         animationsSinbad_.at(5)->setEnabled(true);
         animationsSinbad_.at(5)->setLoop(true);
     }
-    
+    if (evento.keysym.sym == SDLK_p) {
+        StopAnim();
+        walking->setEnabled(true);
+        walking->setLoop(true);
+    }
+
     return false;
 }
 
 void Simbad::frameRendered(const Ogre::FrameEvent& evento)
 {
     // Permite a la animacion detectar el paso del tiempo
-    
     for (int i = 0; i < animationsSinbad_.size(); ++i)
     {
         animationsSinbad_.at(i)->addTime(evento.timeSinceLastFrame);
-        
     }
+    walking->addTime(evento.timeSinceLastFrame);    // Animacion de caminado
 }
 
 void Simbad::receiveEvent(EntidadIG* entidad, string mensaje)
@@ -73,4 +77,6 @@ void Simbad::StopAnim() {   // Resetea todas las animaciones
         animationsSinbad_.at(i)->setEnabled(false);
         animationsSinbad_.at(i)->setLoop(false);
     }
+    walking->setEnabled(false);
+    walking->setLoop(false);
 }

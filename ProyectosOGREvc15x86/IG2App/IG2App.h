@@ -12,6 +12,7 @@
 #include "Avion.h"
 #include "Plano.h"
 #include "Simbad.h"
+#include "Boya.h"
 #include "EntidadIG.h"
 
 class IG2App : public  OgreBites::IG2ApplicationContext, OgreBites::InputListener 
@@ -74,6 +75,10 @@ protected:
   Simbad* Simbad_ = nullptr;
   Ogre::SceneNode* SimbadNode;
   Ogre::SceneNode* caraCreepy = nullptr;
+  //Boya
+  Boya* Boya_ = nullptr;
+  Ogre::SceneNode* BoyaNode;
+
 
   EntidadIG* entidad;
 };
