@@ -4,6 +4,8 @@
 #include <OgreEntity.h>
 #include <OgreTrays.h>
 #include <OgreInput.h>
+#include <OgreBillboardSet.h>
+#include <OgreParticleSystem.h>
 #include "AspasMolino.h"
 #include "EntidadIG.h"
 
@@ -29,7 +31,13 @@ protected:
 	AspasMolino* aspasMolino1;
 	AspasMolino* aspasMolino2;
 	int numAspas_;
-	bool parado = false;
+
 	Light* foco_;
+
+	bool parado = false;
+	BillboardSet* bbSet;
+	Billboard* bb;
+	int MaxEls = 20;
+	ParticleSystem* pSys;
 };
 

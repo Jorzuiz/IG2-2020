@@ -67,6 +67,16 @@ Avion::Avion(Ogre::SceneNode* node, const int numAspas) :EntidadIG(node) {
 
 	AvionNode->translate(200, 0, 0, Ogre::Node::TS_LOCAL);
 
+	// Particulas
+	bbSet = mSM->createBillboardSet("bill", MaxEls);
+	bbSet->setDefaultDimensions(100, 100);
+	bbSet->setMaterialName("IG2App/Panel");
+	AvionNode->attachObject(bbSet);
+	bb = bbSet->createBillboard(Vector3(0, 0, -200));
+
+	pSys = mSM->createParticleSystem("psSmoke", "IG2App/Explosion");
+	pSys->setEmitting(true);
+	AvionNode->attachObject(pSys);
 }
 
 void Avion::frameRendered(const Ogre::FrameEvent& evt)
