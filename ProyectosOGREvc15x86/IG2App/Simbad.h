@@ -70,14 +70,14 @@ public:
 		ent->attachObjectToBone("Sheath.R", sword2_);
 
 		// ANIMATION PASEO
-		animation = mSM->createAnimation("paseo", duration);
-		track = animation->createNodeTrack(0);
+		SimbadAnim= mSM->createAnimation("paseo", duration);
+		track = SimbadAnim->createNodeTrack(0);
 		track->setAssociatedNode(Simbad_);
 		// POSICIONES INICIALES ANIM
 		keyframePos = Simbad_->getPosition();
-		desplazamiento = { 1.0, 0.0, 0.0 };
 		// iniciales de Simbad
-		orientation = { Simbad_->getOrientation().x, Simbad_->getOrientation().y, Simbad_->getOrientation().z };
+		orientation = { 0.0, 0.0, 1.0 };
+		desplazamiento = { 1.0, 0.0, 0.0 };
 
 		// FRAMES
 		Ogre::Real durPaso = duration / 10.0;
@@ -92,41 +92,43 @@ public:
 		kf = track->createNodeKeyFrame(durPaso * 1);
 		desplazamiento = { 0.0, 0.0, 0.0 };
 		kf->setTranslate(keyframePos + desplazamiento);
-		kf->setRotation(orientation.getRotationTo(Ogre::Vector3(-1, 0, -1)));
+		kf->setRotation(orientation.getRotationTo(Ogre::Vector3(1, 0, -1)));
 		keyframePos += desplazamiento;
 		kf->setScale({ scale, scale, scale });
 
+		
 		// Keyframe 2: avanza hacia boya
 		kf = track->createNodeKeyFrame(durPaso * 3);
-		desplazamiento = { 0.0, 0.0, 0.0 };
+		desplazamiento = { 0.0, 100.0, 0.0 };
 		kf->setTranslate(desplazamiento);
-		kf->setRotation(orientation.getRotationTo(Ogre::Vector3(-1, 0, -1)));
 		keyframePos = desplazamiento;
+		kf->setRotation(orientation.getRotationTo(Ogre::Vector3(1, 0, -1)));
 		kf->setScale({ scale, scale, scale });
 
 		// Keyframe 3: giro derecha
 		kf = track->createNodeKeyFrame(durPaso * 5);
 		desplazamiento = { 0.0, 0.0, 0.0 };
 		kf->setTranslate(keyframePos + desplazamiento);
-		kf->setRotation(orientation.getRotationTo(Ogre::Vector3(1, 0, 1)));
+		kf->setRotation(orientation.getRotationTo(Ogre::Vector3(-1, 0, 1)));
 		keyframePos += desplazamiento;
 		kf->setScale({ scale, scale, scale });
 
 		// Keyframe 4: avanza hacia su plano
 		kf = track->createNodeKeyFrame(durPaso * 8);
-		desplazamiento = { -400, 0.0, 300 };
-		kf->setTranslate(keyframePos + desplazamiento);
-		kf->setRotation(orientation.getRotationTo(Ogre::Vector3(1, 0, 1)));
-		keyframePos += desplazamiento;
+		desplazamiento = { -400, 100.0, 300 };
+		kf->setTranslate(desplazamiento);
+		kf->setRotation(orientation.getRotationTo(Ogre::Vector3(-1, 0, 1)));
+		keyframePos = desplazamiento;
 		kf->setScale({ scale, scale, scale });
 
 		// Keyframe 5: vuelve a la pos ini
 		kf = track->createNodeKeyFrame(durPaso * 10);
 		desplazamiento = { 0.0, 0.0, 0.0 };
 		kf->setTranslate(keyframePos + desplazamiento);
-		kf->setRotation(orientation.getRotationTo(Ogre::Vector3(0, 0, 0)));
+		kf->setRotation(orientation.getRotationTo(Ogre::Vector3(0, 0, 1)));
 		keyframePos += desplazamiento;
 		kf->setScale({ scale, scale, scale });
+		
 
 		// ANIMATION STATE
 		walking = mSM->createAnimationState("paseo");
@@ -152,7 +154,7 @@ protected:
 	Ogre::AnimationState* walking;
 
 	Ogre::NodeAnimationTrack* track;
-	Ogre::Animation* animation;
+	Ogre::Animation* SimbadAnim;
 	Ogre::Vector3 keyframePos;
 	Ogre::Vector3 desplazamiento;
 	Ogre::Vector3 orientation;

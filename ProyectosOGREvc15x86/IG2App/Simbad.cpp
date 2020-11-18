@@ -52,6 +52,12 @@ bool Simbad::keyPressed(const OgreBites::KeyboardEvent& evento)
         StopAnim();
         walking->setEnabled(true);
         walking->setLoop(true);
+
+        animationsSinbad_.at(9)->setEnabled(true);
+        animationsSinbad_.at(9)->setLoop(true);
+        // Equilibrio manos-torso
+        animationsSinbad_.at(10)->setEnabled(true);
+        animationsSinbad_.at(10)->setLoop(true);
     }
 
     return false;
