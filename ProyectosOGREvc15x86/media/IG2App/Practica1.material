@@ -153,6 +153,7 @@ material IG2App/Panel1	{
 		}
 	}
 }
+
 material IG2App/Smoke {
 	technique {
 		pass {
