@@ -74,28 +74,70 @@ Avion::Avion(Ogre::SceneNode* node, const int numAspas) :EntidadIG(node) {
 	AvionNode->attachObject(bbSet);
 	bb = bbSet->createBillboard(Vector3(0, 0, -200));
 
-	pSys = mSM->createParticleSystem("psSmoke", "IG2App/SmokeTrail");
-	pSys->setEmitting(true);
-	AvionNode->attachObject(pSys);
+	// Estela del avion
+	pSysTrail = mSM->createParticleSystem("psSmoke", "IG2App/SmokeTrail");
+	pSysTrail->setEmitting(true);
+	pSysTrail->setSortingEnabled(true);
+	AvionNode->attachObject(pSysTrail);
+
+	// Explosion del avion
+	pSysExplosion = mSM->createParticleSystem("psExplosion", "IG2App/Explosion");
+	pSysExplosion->setEmitting(false);
+	AvionNode->attachObject(pSysExplosion);
 }
 
 void Avion::frameRendered(const Ogre::FrameEvent& evt)
 {
 	Ogre::Real time = evt.timeSinceLastFrame;
+	timeAvion = time;
 	giro(10 * time);
 	movimiento(time);
+
+	if (explo)	timeExplosion += time;
+	if(timeExplosion > 3)	pSysExplosion->setEmitting(false);	// Explosion
 }
 
 bool Avion::keyPressed(const OgreBites::KeyboardEvent& evt) {
 	if (evt.keysym.sym == SDLK_r)
 		EntidadIG::sendEvent(this, "para");
+	if (evt.keysym.sym == SDLK_u) {
+		EntidadIG::sendEvent(this, "explota");	// Expplosion del avion
+		EntidadIG::sendEvent(this, "muere");	// Cambiar Simbad a morirse
+		explo = true;
+	}
+
 	return true;
 }
 
 void Avion::receiveEvent(EntidadIG* entidad, string mensaje) {
+
 	if (mensaje == "para") {
 		parado = !parado;	//Variable de control del metodo giro
 		foco_->setVisible(false);
+	}
+
+	if (mensaje == "explota") {
+		parado = !parado;
+		explo= true;
+
+		bbSet->setVisible(false);
+		pSysTrail->setVisible(false);		// Rastro del avión
+		pSysExplosion->setEmitting(true);	// Explosion
+		cuerpoNode->setVisible(false);
+		alaINode->setVisible(false);
+		alaDNode->setVisible(false);
+		frenteNode->setVisible(false);
+		pilotoNode->setVisible(false);
+		aspas1->setVisible(false);
+		aspas2->setVisible(false);
+		foco->setVisible(false);
+
+
+		
+		/**cuerpoNode, *alaINode, *alaDNode, 
+	*frenteNode, *pilotoNode, *aspas1, *aspas2, *foco;
+	AspasMolino* aspasMolino1;
+	AspasMolino* aspasMolino2;*/
 	}
 }
 

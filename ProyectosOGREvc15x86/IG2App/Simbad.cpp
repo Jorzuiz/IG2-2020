@@ -112,6 +112,30 @@ Simbad::Simbad(Ogre::SceneNode* node) : EntidadIG(node)
 	// ANIMATION STATE
 	walking = mSM->createAnimationState("paseo");
 
+	//ANIMACION MUERTE
+
+	SimbadAnimM = mSM->createAnimation("muerte", 2);
+	trackM = SimbadAnimM->createNodeTrack(0);
+	trackM->setAssociatedNode(Simbad_);
+	// POSICIONES INICIALES ANIM
+	//keyframePos = Simbad_->getPosition();
+	//aaa = Simbad_->getOrientation();
+	Ogre::TransformKeyFrame* kfm;
+
+	// Keyframe 0: origen
+	kfm = trackM->createNodeKeyFrame(0);
+	kfm->setTranslate(keyframePos);
+	kfm->setRotation(aaa);
+	kfm->setScale({ scale, scale, scale });
+
+	// Keyframe 1: muerte
+	kfm = trackM->createNodeKeyFrame(2);
+	kfm->setTranslate({ keyframePos.x, 20, keyframePos.z });
+	//keyframePos = { keyframePos.x, 20, keyframePos.z };
+	kfm->setRotation(orientation.getRotationTo({aaa.x, 1, aaa.z }));
+	kfm->setScale({ scale, scale, scale });
+
+	dead = mSM->createAnimationState("muerte");
 }
 
 bool Simbad::keyPressed(const OgreBites::KeyboardEvent& evento)
@@ -184,10 +208,17 @@ void Simbad::frameRendered(const Ogre::FrameEvent& evento)
         animationsSinbad_.at(i)->addTime(evento.timeSinceLastFrame);
     }
     walking->addTime(evento.timeSinceLastFrame);    // Animacion de caminado
+	dead->addTime(evento.timeSinceLastFrame);		// Animacion de caminado
 }
 
 void Simbad::receiveEvent(EntidadIG* entidad, string mensaje)
 {
+	if (mensaje == "muere") {
+		 StopAnim();
+		 keyframePos = Simbad_->getPosition();
+		 aaa = Simbad_->getOrientation();
+		 dead->setEnabled(true);
+	}
 }
 
 void Simbad::StopAnim() {   // Resetea todas las animaciones
@@ -198,4 +229,6 @@ void Simbad::StopAnim() {   // Resetea todas las animaciones
     }
     walking->setEnabled(false);
     walking->setLoop(false);
+	dead->setEnabled(false);
+    dead->setLoop(false);
 }

@@ -40,13 +40,16 @@ protected:
 
 	// Animation 1
 	Ogre::AnimationState* walking;
-
+	Ogre::AnimationState* dead;
 	Ogre::NodeAnimationTrack* track;
+	Ogre::NodeAnimationTrack* trackM;
 	Ogre::Animation* SimbadAnim;
+	Ogre::Animation* SimbadAnimM;
 	Ogre::Vector3 keyframePos;
 	Ogre::Vector3 desplazamiento;
 	Ogre::Vector3 orientation;
 	Ogre::Vector3 destino;
+	Ogre::Quaternion aaa;
 	//AnimationState* animationState;
 	const Ogre::Real duration = 20;
 };

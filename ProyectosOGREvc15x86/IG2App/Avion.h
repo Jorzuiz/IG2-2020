@@ -31,13 +31,14 @@ protected:
 	AspasMolino* aspasMolino1;
 	AspasMolino* aspasMolino2;
 	int numAspas_;
+	Ogre::Real timeAvion, timeExplosion;
 
 	Light* foco_;
 
-	bool parado = false;
+	bool parado = false, explo = false;
 	BillboardSet* bbSet;
 	Billboard* bb;
 	int MaxEls = 20;
-	ParticleSystem* pSys;
+	ParticleSystem* pSysTrail, *pSysExplosion;
 };
 
