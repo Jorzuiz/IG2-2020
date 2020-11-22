@@ -74,7 +74,7 @@ Avion::Avion(Ogre::SceneNode* node, const int numAspas) :EntidadIG(node) {
 	AvionNode->attachObject(bbSet);
 	bb = bbSet->createBillboard(Vector3(0, 0, -200));
 
-	pSys = mSM->createParticleSystem("psSmoke", "IG2App/Explosion");
+	pSys = mSM->createParticleSystem("psSmoke", "IG2App/SmokeTrail");
 	pSys->setEmitting(true);
 	AvionNode->attachObject(pSys);
 }
