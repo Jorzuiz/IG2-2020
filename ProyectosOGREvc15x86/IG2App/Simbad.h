@@ -30,6 +30,10 @@ protected:
 	void StopAnim();
 	Ogre::SceneNode* Simbad_;
 	bool anim = true;
+	bool paseo = false;
+	bool muerte = false;
+	Ogre::Real scale = 20;
+	
 	std::vector<AnimationState*> animationsSinbad_;
 	Ogre::Entity* ent;
 	Ogre::Entity* sword1_ = nullptr;
@@ -40,18 +44,20 @@ protected:
 
 	// Animation 1
 	Ogre::AnimationState* walking;
-	Ogre::AnimationState* dead;
 	Ogre::NodeAnimationTrack* track;
-	Ogre::NodeAnimationTrack* trackM;
 	Ogre::Animation* SimbadAnim;
+
+	Ogre::AnimationState* dead;
+	Ogre::NodeAnimationTrack* trackMuerte;
 	Ogre::Animation* SimbadAnimM;
+	Ogre::Quaternion aaa;
+
 	Ogre::Vector3 keyframePos;
 	Ogre::Vector3 desplazamiento;
 	Ogre::Vector3 orientation;
 	Ogre::Vector3 destino;
-	Ogre::Quaternion aaa;
 	//AnimationState* animationState;
-	const Ogre::Real duration = 20;
+	const Ogre::Real duration = 21;
 };
 
 	/*Dance			0
