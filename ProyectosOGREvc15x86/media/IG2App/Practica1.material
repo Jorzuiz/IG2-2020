@@ -168,3 +168,19 @@ material IG2App/Smoke {
 		}	
 	}
 }
+material IG2App/space {
+	technique {
+        	pass {
+            		diffuse 0.5 0.5 0.5
+            		texture_unit {
+				rotate_anim 0.25
+                		texture numbers.jpg
+                		colour_op add
+            		}
+            		texture_unit {                
+                		texture lightMap.jpg
+                		colour_op modulate
+            		}
+        	}
+    	}
+}

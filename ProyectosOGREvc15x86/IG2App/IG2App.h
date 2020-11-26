@@ -70,8 +70,8 @@ protected:
   Ogre::SceneNode* PlanoNode;
   Plano* Plano1_ = nullptr;
   Ogre::SceneNode* PlanoNode1;
-  Plano* Plano2_ = nullptr;
-  Ogre::SceneNode* PlanoNode2;
+  //Plano* Plano2_ = nullptr;
+  //Ogre::SceneNode* PlanoNode2;
   Simbad* Simbad_ = nullptr;
   Ogre::SceneNode* SimbadNode;
   Ogre::SceneNode* caraCreepy = nullptr;

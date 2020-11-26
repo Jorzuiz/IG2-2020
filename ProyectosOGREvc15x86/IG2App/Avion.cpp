@@ -56,14 +56,14 @@ Avion::Avion(Ogre::SceneNode* node, const int numAspas) :EntidadIG(node) {
 	aspas2->setPosition(250, 0, 55);
 	aspas2->setScale(0.3, 0.3, 0.3);
 
-	foco_ = mSM->createLight("LuzAvion");
+	/*foco_ = mSM->createLight("LuzAvion");
 	foco_->setType(Ogre::Light::LT_SPOTLIGHT);
 	foco_->setSpotlightRange(Ogre::Degree(70), Ogre::Degree(70), 1.0);
 	foco_->setDiffuseColour(0.75, 0.75, 0.75);
-	foco = AvionNode->createChildSceneNode(/*"nLuz"*/);//nombre opcional
+	foco = AvionNode->createChildSceneNode(/*"nLuz");//nombre opcional
 	foco->attachObject(foco_);
 	foco->setDirection(Ogre::Vector3(0, -1, 0));  //vec3.normalise();
-	foco->setPosition(0, -30, 0);
+	foco->setPosition(0, -30, 0);*/
 
 	AvionNode->translate(200, 0, 0, Ogre::Node::TS_LOCAL);
 
@@ -113,7 +113,7 @@ void Avion::receiveEvent(EntidadIG* entidad, string mensaje) {
 
 	if (mensaje == "para") {
 		parado = !parado;	//Variable de control del metodo giro
-		foco_->setVisible(false);
+		//foco_->setVisible(false);
 	}
 
 	if (mensaje == "explota") {

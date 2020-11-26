@@ -84,7 +84,7 @@ void IG2App::shutdown()
   delete Avion_; Avion_ = nullptr;
   delete Plano_; Plano_ = nullptr;
   delete Plano1_; Plano1_ = nullptr;
-  delete Plano2_; Plano2_ = nullptr;
+  //delete Plano2_; Plano2_ = nullptr;
   delete Simbad_; Simbad_ = nullptr;
   delete Boya_; Boya_ = nullptr;
   // do not forget to call the base 
@@ -103,7 +103,7 @@ void IG2App::setup(void)
 
   mSM->addRenderQueueListener(mOverlaySystem);
   //añade sombras desde cualquier luz
-  mSM->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+  //mSM->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
   mTrayMgr = new OgreBites::TrayManager("TrayGUISystem", mWindow.render);  
   mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
   addInputListener(mTrayMgr);
@@ -140,7 +140,7 @@ void IG2App::setupScene(void)
 
   Light* luz = mSM->createLight("Luz");
   luz->setType(Ogre::Light::LT_DIRECTIONAL);
-  luz->setDiffuseColour(0.75, 0.75, 0.75);
+  luz->setDiffuseColour(1, 1, 1);
 
   mLightNode = mSM->getRootSceneNode()->createChildSceneNode("nLuz");
   //mLightNode = mCamNode->createChildSceneNode("nLuz");
@@ -153,6 +153,10 @@ void IG2App::setupScene(void)
 
   // finally something to render
   //ESCENA COMBINADA
+
+  mSM -> setSkyPlane(true, Plane(Vector3::UNIT_Z, -200), 
+                      "IG2App/space", 1, 1, true, 5, 10, 10);
+
   BoyaNode = mSM->getRootSceneNode()->createChildSceneNode();
   Boya_ = new Boya(BoyaNode);
 
@@ -175,13 +179,13 @@ void IG2App::setupScene(void)
   PlanoNode1->setPosition(400, 15, -300);
   
 
-  PlanoNode2 = mSM->getRootSceneNode()->createChildSceneNode("Plano2");
+  /*PlanoNode2 = mSM->getRootSceneNode()->createChildSceneNode("Plano2");
   Plano2_ = new Plano(PlanoNode2, "Plano2");	//Plano de Simbad
   //Ogre::Entity* plane2 = mSM->createEntity("Plano2");
   //plane2->setMaterialName("IG2App/rojo");
   //PlanoNode2->attachObject(plane2);
   PlanoNode2->setScale(0.25, 0.25, 0.25);
-  PlanoNode2->setPosition(-400, 15, 300);
+  PlanoNode2->setPosition(-400, 15, 300);*/
 
   caraCreepy = mSM->getRootSceneNode()->createChildSceneNode();
   Ogre::Entity* cara = mSM->createEntity("sphere.mesh");

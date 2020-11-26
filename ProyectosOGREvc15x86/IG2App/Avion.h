@@ -33,7 +33,7 @@ protected:
 	int numAspas_;
 	Ogre::Real timeAvion, timeExplosion;
 
-	Light* foco_;
+	//Light* foco_;
 
 	bool parado = false, explo = false;
 	BillboardSet* bbSet;
