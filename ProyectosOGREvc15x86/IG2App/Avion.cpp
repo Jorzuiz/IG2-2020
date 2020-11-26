@@ -130,7 +130,7 @@ void Avion::receiveEvent(EntidadIG* entidad, string mensaje) {
 		pilotoNode->setVisible(false);
 		aspas1->setVisible(false);
 		aspas2->setVisible(false);
-		foco->setVisible(false);
+		//foco->setVisible(false);
 
 
 		

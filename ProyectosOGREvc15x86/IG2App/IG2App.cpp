@@ -9,7 +9,7 @@ using namespace Ogre;
 
 bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
 {
-  if (evt.keysym.sym == SDLK_ESCAPE)
+  if (evt.keysym.sym == 27)
   {
     getRoot()->queueEndRendering();
   }
@@ -82,12 +82,13 @@ void IG2App::shutdown()
   //delete AspasMolino_; AspasMolino_ = nullptr;
   delete Molino_; Molino_ = nullptr;
   delete Avion_; Avion_ = nullptr;
-  delete Plano_; Plano_ = nullptr;
+  //delete Plano_; Plano_ = nullptr;
   delete Plano1_; Plano1_ = nullptr;
   //delete Plano2_; Plano2_ = nullptr;
   delete Simbad_; Simbad_ = nullptr;
   delete Boya_; Boya_ = nullptr;
   // do not forget to call the base 
+  delete PlanoR_; PlanoR_ = nullptr;
   IG2ApplicationContext::shutdown();
 }
 
@@ -132,7 +133,7 @@ void IG2App::setupScene(void)
   Viewport* vp = getRenderWindow()->addViewport(cam);
 
   //COLOR DE FONDO
-  vp->setBackgroundColour(Ogre::ColourValue(0.1, 0.7, 0.6));//(rojo,verde,azul)
+  vp->setBackgroundColour(Ogre::ColourValue(0, 0, 0));//(rojo,verde,azul)
 
   //------------------------------------------------------------------------
 
@@ -154,21 +155,24 @@ void IG2App::setupScene(void)
   // finally something to render
   //ESCENA COMBINADA
 
-  mSM -> setSkyPlane(true, Plane(Vector3::UNIT_Z, -200), 
-                      "IG2App/space", 1, 1, true, 5, 10, 10);
+  mSM -> setSkyPlane(true, Plane(Vector3::UNIT_Z, -100),"IG2App/space", 1, 1, true, 1, 10, 10);
 
   BoyaNode = mSM->getRootSceneNode()->createChildSceneNode();
   Boya_ = new Boya(BoyaNode);
 
   SimbadNode = mSM->getRootSceneNode()->createChildSceneNode();
   Simbad_ = new Simbad(SimbadNode);
+  //Rio
+  PlanoNodeR = mSM->getRootSceneNode()->createChildSceneNode("PlanoR");
+  PlanoR_ = new Plano(PlanoNodeR, cam, mWindow.render);
+  PlanoNodeR->setPosition(0, 0, 0);
 
-  PlanoNode = mSM->getRootSceneNode()->createChildSceneNode("Plano");
+  /*PlanoNode = mSM->getRootSceneNode()->createChildSceneNode("Plano");
   Plano_ = new Plano(PlanoNode, "Plano");
   //Ogre::Entity* plane = mSM->createEntity("Plano");
   //plane->setMaterialName("IG2App/water");
   //PlanoNode->attachObject(plane);
-  PlanoNode->setPosition(0, 0, 0);
+  PlanoNode->setPosition(0, 0, 0);*/
 
   PlanoNode1 = mSM->getRootSceneNode()->createChildSceneNode("Plano1");
   Plano1_ = new Plano(PlanoNode1, "Plano1");	//Plano del Molino

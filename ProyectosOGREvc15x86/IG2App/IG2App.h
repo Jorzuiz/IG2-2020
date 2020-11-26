@@ -66,8 +66,8 @@ protected:
   Ogre::SceneNode* AvionNode;
 
   //ESCENA PLANO
-  Plano* Plano_ = nullptr;
-  Ogre::SceneNode* PlanoNode;
+  //Plano* Plano_ = nullptr;
+  //Ogre::SceneNode* PlanoNode;
   Plano* Plano1_ = nullptr;
   Ogre::SceneNode* PlanoNode1;
   //Plano* Plano2_ = nullptr;
@@ -78,8 +78,9 @@ protected:
   //Boya
   Boya* Boya_ = nullptr;
   Ogre::SceneNode* BoyaNode;
-
-
+  //Rio
+  Plano* PlanoR_ = nullptr;
+  Ogre::SceneNode* PlanoNodeR;
   EntidadIG* entidad;
 };
 
