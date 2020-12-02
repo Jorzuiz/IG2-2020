@@ -155,7 +155,7 @@ void IG2App::setupScene(void)
   // finally something to render
   //ESCENA COMBINADA
 
-  mSM -> setSkyPlane(true, Plane(Vector3::UNIT_Z, -100),"IG2App/space", 1, 1, true, 1, 10, 10);
+  mSM -> setSkyPlane(true, Plane(Vector3::UNIT_Z, -100),"IG2App/SpaceGLSL", 1, 1, true, 1, 10, 10);
 
   BoyaNode = mSM->getRootSceneNode()->createChildSceneNode();
   Boya_ = new Boya(BoyaNode);
