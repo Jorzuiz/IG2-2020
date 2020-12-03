@@ -50,7 +50,9 @@ vertex_program SpaceVS glsl
 	source SpaceVS.glsl
 	default_params 			// Valores para las variables uniform
 	{
-		param_named_auto modelViewProjMat worldviewproj_matrix
+		param_named_auto modelViewProjMat worldviewproj_matrix	
+		param_named ZF float 0.5
+		param_named_auto SinTiempo sintime_0_2pi 32
 	}
 }
 
@@ -63,7 +65,9 @@ fragment_program SpaceFS glsl
 		param_named texturaL int 0 // 1º unidad de textura -> *
 		param_named texturaM int 1 // 2º unidad de textura -> *
 		param_named BF float 0.5
+		
 		//param_named intLuzAmb float 1.0
+		
 	}
 }
 
