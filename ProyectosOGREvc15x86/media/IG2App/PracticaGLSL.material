@@ -87,9 +87,63 @@ material IG2App/SpaceGLSL {
 				filtering bilinear 			// de acceso al texel
 			}
 				texture_unit { 				// * ‐> int 1
-				texture numbers.jpg 2d 		// archivo
+				texture spaceSky.jpg 2d 		// archivo
 				tex_address_mode wrap 		// sólo configuración
 			} 								// de acceso al texel
+		} 
+	} 
+}
+
+////////////////////////////////////////////////////////////////////
+
+vertex_program CorrosionVS glsl
+{
+	source CorrosionVS.glsl
+	default_params 			
+	{
+		param_named_auto modelViewProjMat worldviewproj_matrix	
+		param_named_auto vMatrix inverse_transpose_world_matrix
+	}
+}
+
+fragment_program CorrosionFS glsl
+{
+	source CorrosionFS.glsl 
+	default_params 			
+	{
+		param_named_auto Flipping render_target_flipping // -1 o 1
+
+		param_named texturaCorrosion int 0
+		param_named texturaBumpy int 1
+		param_named  InColor float4 0.5 0.5 0.5 1	// Color del interior
+		param_named OutColor float4 0.0 0.5 0.0 1 	// Color del exterior
+	}
+}
+
+material IG2App/CorrosionGLSL {
+	technique {
+		pass {
+			// Activa o desactiva la vision por el anverso
+			cull_hardware none
+			cull_software none
+			
+			vertex_program_ref CorrosionVS
+			{ // params -> default_params
+			}
+			fragment_program_ref CorrosionFS
+			{ // params -> default_params
+			}
+
+			texture_unit { 					// * -> int 0
+				texture corrosion.jpg 2d 	
+				tex_address_mode clamp 		// sólo configuración
+				filtering bilinear 			// de acceso al texel
+			}
+			texture_unit { 					// * -> int 1
+				texture BumpyMetal.jpg 2d 	
+				tex_address_mode wrap 		// sólo configuración
+			}
+
 		} 
 	} 
 }

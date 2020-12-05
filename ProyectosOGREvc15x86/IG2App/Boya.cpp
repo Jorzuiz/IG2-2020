@@ -4,11 +4,11 @@ Boya::Boya(Ogre::SceneNode* node) : EntidadIG(node)
 {
     addListener(this);
 	BoyaNode_ = node;
-	Ogre::Real scale = 10;
+	Ogre::Real scale = 1;
 	Ogre::SceneManager* mSM = BoyaNode_->getCreator();
 	// Creacion de la boya y su textura
-	ent = BoyaNode_->getCreator()->createEntity("Barrel.mesh");
-	ent->setMaterialName("IG2App/alas");
+	ent = BoyaNode_->getCreator()->createEntity("uv_sphere.mesh");
+	ent->setMaterialName("IG2App/CorrosionGLSL");
 	BoyaNode_->attachObject(ent);
 	BoyaNode_->setScale(scale, scale, scale);
 	BoyaNode_->setPosition(0, 20, 0);
