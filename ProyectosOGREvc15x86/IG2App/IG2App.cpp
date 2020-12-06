@@ -153,7 +153,10 @@ void IG2App::setupScene(void)
   //------------------------------------------------------------------------
 
   // finally something to render
-  //ESCENA COMBINADA
+
+  //////////////////////
+  ///ESCENA COMBINADA///
+  //////////////////////
 
   mSM -> setSkyPlane(true, Plane(Vector3::UNIT_Z, -100),"IG2App/SpaceGLSL", 1, 1, true, 1, 10, 10);
 
@@ -162,6 +165,7 @@ void IG2App::setupScene(void)
 
   SimbadNode = mSM->getRootSceneNode()->createChildSceneNode();
   Simbad_ = new Simbad(SimbadNode);
+
   //Rio
   PlanoNodeR = mSM->getRootSceneNode()->createChildSceneNode("PlanoR");
   PlanoR_ = new Plano(PlanoNodeR, cam, mWindow.render);
@@ -176,12 +180,8 @@ void IG2App::setupScene(void)
 
   PlanoNode1 = mSM->getRootSceneNode()->createChildSceneNode("Plano1");
   Plano1_ = new Plano(PlanoNode1, "Plano1");	//Plano del Molino
-  //Ogre::Entity* plane1 = mSM->createEntity("Plano1");
-  //plane1->setMaterialName("IG2App/naranja");
-  //PlanoNode1->attachObject(plane1);
   PlanoNode1->setScale(0.25, 0.25, 0.25);
   PlanoNode1->setPosition(400, 15, -300);
-  
 
   /*PlanoNode2 = mSM->getRootSceneNode()->createChildSceneNode("Plano2");
   Plano2_ = new Plano(PlanoNode2, "Plano2");	//Plano de Simbad
@@ -198,17 +198,19 @@ void IG2App::setupScene(void)
   caraCreepy->setScale(0.3, 0.3, 0.3);
   caraCreepy->setPosition(500, 30, -250);
 
+  //////////////////
+  ///ESCENA AVION///
+  //////////////////
 
-  //ESCENA AVION
   AvionNode = mSM->getRootSceneNode()->createChildSceneNode("avion");
-  //mSM->getSceneNode()->
   Avion_ = new Avion(AvionNode, num);
   AvionNode->setScale(0.25, 0.25, 0.25);
   AvionNode->setPosition(0, 300, 0);
-  //addInputListener(Avion_);
 
+  /////////////////////
+  ///ESCENA PLANETAS///
+  /////////////////////
 
-  //ESCENA PLANETAS  
   /*mSM->getRootSceneNode()->createChildSceneNode("Sol");
   SunNode_ = mSM->getSceneNode("Sol");
   Ogre::Entity* EsferaS = mSM->createEntity("sphere.mesh");
@@ -232,20 +234,24 @@ void IG2App::setupScene(void)
   mSM->getSceneNode("Luna")->showBoundingBox(true);
   mSM->getSceneNode("Luna")->translate(200, 0, 0, Ogre::Node::TS_LOCAL);//hereda la escala de la tierra ojo*/
 
-  //ESCENA MOLINO
+  ///////////////////
+  ///ESCENA MOLINO///
+  ///////////////////
+
   MolinoNode = mSM->getRootSceneNode()->createChildSceneNode();
   Molino_ = new Molino(MolinoNode,num);
   MolinoNode->setScale(0.6, 0.6, 0.6);
   MolinoNode->setPosition(400, 100, -300);
-  //addInputListener(Molino_);
 
   /*mSM->getRootSceneNode()->createChildSceneNode("AspasMolino");
   AspasMolino_ = new AspasMolino(mSM->getSceneNode("AspasMolino"), num);
   addInputListener(AspasMolino_);
   mSM->getSceneNode("AspasMolino")->setPosition(0, 170, 140);*/
 
+  //////////////////
+  ///ESCENA ASPAS///
+  //////////////////
 
-  //ESCENA ASPAS
   /*mSM->getRootSceneNode()->createChildSceneNode("AspasMolino");
   AspasMolino_ = new AspasMolino(mSM->getSceneNode("AspasMolino"),num);
   addInputListener(AspasMolino_);
@@ -293,8 +299,10 @@ void IG2App::setupScene(void)
   mSM->getSceneNode("adorno")->showBoundingBox(true);
   */
 
-  
-  //ESCENA RELOJ
+  //////////////////
+  ///ESCENA RELOJ///
+  //////////////////
+
   /*ClockNode_ = mSM->getRootSceneNode()->createChildSceneNode("Clock");		// crea un nodo general
   Ogre::SceneNode* CircleNode_ = ClockNode_->createChildSceneNode("Balls");
   Ogre::SceneNode* ArrowNode_ = ClockNode_->createChildSceneNode("Arrows");
@@ -340,9 +348,11 @@ void IG2App::setupScene(void)
   mSM->getSceneNode("AgS")->translate(0, -25, 0);
   //AgS_->roll(Ogre::Degree(-45));
   */
-  
-  //ESCENA ROMA CON SINBAD 
-  
+
+  ////////////////////////////
+  ///ESCENA ROMA CON SINBAD///
+  ////////////////////////////
+
   /*Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
 
   mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
@@ -353,7 +363,6 @@ void IG2App::setupScene(void)
   //mSinbadNode->yaw(Ogre::Degree(-45));
   //mSinbadNode->showBoundingBox(true);
   //mSinbadNode->setVisible(false);*/
-
 
   /*Ogre::Entity* ent1 = mSM->createEntity("RomanBathLower.mesh");
   suelo = mSM->getRootSceneNode()->createChildSceneNode("suelo");
@@ -371,6 +380,7 @@ void IG2App::setupScene(void)
   for (int i = 0; i < EntidadIG::appListeners.size(); i++) {
 	  addInputListener(EntidadIG::appListeners.at(i));
   }
+
   //------------------------------------------------------------------------
 
   mCamMgr = new OgreBites::CameraMan(mCamNode);

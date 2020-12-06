@@ -12,6 +12,7 @@
 #include <OgreSubEntity.h>
 
 Plano::Plano(SceneNode* node, std::string nombre) : EntidadIG(node),plano(nombre) {
+
 	addListener(this);
     PlanoNode_ = node;
 	//plano = nombre;
@@ -24,7 +25,7 @@ Plano::Plano(SceneNode* node, std::string nombre) : EntidadIG(node),plano(nombre
 
 	//PlanoNode_ = mSM->getRootSceneNode()->createChildSceneNode(plano);	//Sacamos el nodo
 	plane = mSM->createEntity(plano);
-	if (plano == "Plano") {
+	if (plano == "Plano") {s
 		plane->setMaterialName("IG2App/water");
 	}
 	else if (plano == "Plano1") {

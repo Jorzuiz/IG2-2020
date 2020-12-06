@@ -18,13 +18,15 @@ out vec4 fFragColor; 	// out del fragment shader
 
 void main() {
 
-	vec4 color;
+	vec4 color;	// Color final a representar
 	
-	vec3 corrosion = texture(texturaCorrosion, vUv0).rgb;	// Transforma a vec3
-	vec3 metal = texture(texturaBumpy, vUv0).rgb;	// Transforma a vec3
+	//Colores de las texturas, una es la transparencia, la otra se representa	
+	vec3 corrosion = texture(texturaCorrosion, vUv0).rgb; // Transforma a vec3
+	vec3 metal = texture(texturaBumpy, vUv0).rgb;		  // Transforma a vec3
 
 	bool frontFacing = (Flipping > -1)? gl_FrontFacing : ! gl_FrontFacing;
 	// Color que queremos esliminar para hacerlo transparente
+	// En este caso es cualquier rojo sobre 0.6
 	if (corrosion.r > 0.6) { discard; }
 
 	// Usa un color u otro en base a la parte que estemos mirando
