@@ -11,8 +11,8 @@ uniform vec4 InColor;	// Colores de la parte interior
 uniform vec4 OutColor; 	// Colores de la parte exterior
 uniform float Flipping;
 
-in vec3 vWvertex;
-in vec3 vWnormal;
+//in vec3 vXxxNormal;
+//in vec3 vXxxVertex;
 in vec2 vUv0; 			// out del vertex shader
 out vec4 fFragColor; 	// out del fragment shader
 
@@ -32,11 +32,11 @@ void main() {
 	// Usa un color u otro en base a la parte que estemos mirando
 	if (frontFacing) {
 		color = OutColor * vec4(metal, 1.0); 
-		normal = normalize(vWnormal);
+		//normal = normalize(vWnormal);
 	}
 	else {
 		color = InColor * vec4(1.0, 1.0, 0.0 , 1.0);
-		normal = -normalize(vWnormal);
+		//normal = -normalize(vWnormal);
 	}
 	
 	fFragColor = color; // out
