@@ -17,7 +17,7 @@ uniform vec3 luzUnicaDifusa;
 //in vec3 vBackColor; // color de la iluminación interpolado
 
 in vec3 vXxxNormal;
-in vec3 vXxxVertex;
+in vec4 vXxxVertex;
 in vec2 vUv0; 			// out del vertex shader
 out vec4 fFragColor; 	// out del fragment shader
 
@@ -39,12 +39,14 @@ void main() {
 	// Usa un color u otro en base a la parte que estemos mirando
 	if (frontFacing) {
 		color = OutColor * vec4(metal, 1.0); 
-		normal = normalize(vXxxNormal); 
+		normal = vXxxNormal; 
 	}
+	
 	else {
 		color = InColor * vec4(1.0, 1.0, 0.0 , 1.0);
-		normal = -normalize(vXxxNormal);
+		normal = -vXxxNormal;
 	}
+
 	float diff = max(dot(normal, luzUnicaPosition), 0.0);
     vec3 diffuse = diff * luzUnicaDifusa;
      

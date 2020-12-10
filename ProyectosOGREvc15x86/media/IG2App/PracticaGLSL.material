@@ -60,6 +60,7 @@ vertex_program CorrosionVS glsl
 	{
 		param_named_auto modelViewProjMat worldviewproj_matrix	
 		param_named_auto ITWMatrix inverse_transpose_world_matrix // matriz de modelado para vectores
+		param_named_auto WVMatrix worldview_matrix // matriz de modelado
 	}
 }
 
@@ -80,7 +81,6 @@ fragment_program CorrosionFS glsl
 		//param_named materialDiffuse float3 0.5 0.5 0.5 
 		//param_named_auto materialDiffuse surface_diffuse_color 
 		//Datos de matrices
-		param_named_auto WMatrix world_matrix // matriz de modelado
 		//param_named_auto WVMatrix worldview_matrix // matriz de modelado y vista
 		//param_named_auto ITWVMatrix inverse_transpose_worldview_matrix // matriz de modelado y vista para vectores
 		//
