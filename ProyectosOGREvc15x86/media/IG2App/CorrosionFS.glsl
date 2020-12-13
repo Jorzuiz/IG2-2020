@@ -39,19 +39,19 @@ void main() {
 	// Usa un color u otro en base a la parte que estemos mirando
 	if (frontFacing) {
 		color = OutColor * vec4(metal, 1.0); 
-		normal = vXxxNormal; 
+		//normal = vXxxNormal; 
 	}
 	
 	else {
 		color = InColor * vec4(1.0, 1.0, 0.0 , 1.0);
-		normal = -vXxxNormal;
+		//normal = -vXxxNormal;
 	}
 
-	float diff = max(dot(normal, luzUnicaPosition), 0.0);
-    vec3 diffuse = diff * luzUnicaDifusa;
+	//float diff = max(dot(normal, luzUnicaPosition), 0.0);
+    //vec3 diffuse = diff * luzUnicaDifusa;
      
-    vec4 result = vec4(diffuse, 1.0);    
+    //vec4 result = vec4(diffuse, 1.0);    
 
     // salida
-    fFragColor = vec4(result * color);
+    fFragColor = vec4(color);//result * 
 }
