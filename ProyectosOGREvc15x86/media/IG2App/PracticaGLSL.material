@@ -87,7 +87,7 @@ fragment_program CorrosionFS glsl
 		param_named texturaCorrosion int 0
 		param_named texturaBumpy int 1
 		param_named InColor float4 0.5 0.5 0.5 1	// Color del interior
-		param_named OutColor float4 0.0 0.5 0.0 1 	// Color del exterior
+		param_named OutColor float4 0.0 0.5 0.5 1 	// Color del exterior
 	}
 }
 

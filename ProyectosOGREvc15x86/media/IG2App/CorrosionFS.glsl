@@ -11,13 +11,13 @@ uniform vec4 InColor;	// Colores de la parte interior
 uniform vec4 OutColor; 	// Colores de la parte exterior
 uniform float Flipping;
 // Luces
-uniform vec3 luzUnicaPosition;
+uniform vec3 luzUnicaPosition; //u_lightpos
 uniform vec3 luzUnicaDifusa;
 //in vec3 vFrontColor; // color de la iluminación interpolado
 //in vec3 vBackColor; // color de la iluminación interpolado
 
 in vec3 vXxxNormal;
-in vec4 vXxxVertex;
+in vec3 vXxxVertex; //v_position
 in vec2 vUv0; 			// out del vertex shader
 out vec4 fFragColor; 	// out del fragment shader
 
@@ -38,20 +38,21 @@ void main() {
 
 	// Usa un color u otro en base a la parte que estemos mirando
 	if (frontFacing) {
-		color = OutColor * vec4(metal, 1.0); 
-		//normal = vXxxNormal; 
+		color = vec4(metal, 1.0);//OutColor *  
+		normal = vXxxNormal; 
 	}
 	
 	else {
 		color = InColor * vec4(1.0, 1.0, 0.0 , 1.0);
-		//normal = -vXxxNormal;
+		normal = -vXxxNormal;
 	}
-
-	//float diff = max(dot(normal, luzUnicaPosition), 0.0);
+	
     //vec3 diffuse = diff * luzUnicaDifusa;
      
     //vec4 result = vec4(diffuse, 1.0);    
+	vec3 vectorlight = normalize(luzUnicaPosition - vXxxVertex);
+	float diff = max(dot(normal, vectorlight), 0.1);
 
     // salida
-    fFragColor = vec4(color);//result * 
+    fFragColor = color* diff;//vec4(result * color);
 }
