@@ -58,9 +58,16 @@ vertex_program CorrosionVS glsl
 	source CorrosionVS.glsl
 	default_params 			
 	{
+		param_named lightAmbient float3 0.5 0.5 0.5 
+		param_named lightDiffuse float3 0.5 0.5 0.5 
+		param_named materialDiffuse float3 0.5 0.5 0.5 
+
+		param_named_auto lightPosition light_position 0
+        param_named_auto diffuseLight light_diffuse_colour 0
+		// Para las transformaciones en espacio de coordenadas
+		param_named_auto modelViewMat worldview_matrix
 		param_named_auto modelViewProjMat worldviewproj_matrix	
-		param_named_auto ITWMatrix inverse_transpose_world_matrix 
-		// matriz de modelado para vectores
+		param_named_auto normalMat	inverse_transpose_worldview_matrix
 	}
 }
 
@@ -69,25 +76,13 @@ fragment_program CorrosionFS glsl
 	source CorrosionFS.glsl 
 	default_params 			
 	{
-		param_named_auto Flipping render_target_flipping // -1 o 1
-		//Luz Datos
-
-		param_named_auto luzUnicaPosition light_position 0
-		//param_named_auto light_position_view_space 0
-		param_named_auto luzUnicaDifusa light_diffuse_colour 0
-		//param_named_auto materialDiffuse surface_diffuse_color
-		//param_named_auto camera_position
-		//
-		//param_named materialDiffuse float3 0.5 0.5 0.5 
-		//param_named_auto materialDiffuse surface_diffuse_color 
-		//Datos de matrices
-		//param_named_auto WVMatrix worldview_matrix // matriz de modelado y vista
-		//param_named_auto ITWVMatrix inverse_transpose_worldview_matrix // matriz de modelado y vista para vectores
-		//
+		// -1 o 1
+		param_named_auto Flipping render_target_flipping 
 		param_named texturaCorrosion int 0
 		param_named texturaBumpy int 1
-		param_named InColor float4 0.5 0.5 0.5 1	// Color del interior
-		param_named OutColor float4 0.0 0.5 0.5 1 	// Color del exterior
+		// Colores de las caras
+		param_named vBackColor float4 0.5 0.5 0.5 1
+		param_named vFrontColor float4 0.0 0.5 0.5 1
 	}
 }
 
@@ -105,14 +100,16 @@ material IG2App/CorrosionGLSL {
 			{ // params -> default_params
 			}
 
-			texture_unit { 					// * -> int 0
+			texture_unit { 					
+				// * -> int 0
 				texture corrosion.jpg 2d 	
-				tex_address_mode clamp 		// sólo configuración
-				filtering bilinear 			// de acceso al texel
+				tex_address_mode clamp 		
+				filtering bilinear 			
 			}
-			texture_unit { 					// * -> int 1
+			texture_unit { 					
+				// * -> int 1
 				texture BumpyMetal.jpg 2d 	
-				tex_address_mode wrap 		// sólo configuración
+				tex_address_mode wrap 
 			}
 
 		} 
