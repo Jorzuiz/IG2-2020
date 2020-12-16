@@ -29,11 +29,8 @@ out vec3 viewVertex; 	// coordenadas de el vértice en Xxx space
 
 float diff(vec3 cVertex, vec3 cNormal)
 {
-	// directional light
-	vec3 lightDir = lightPosition.xyz; 
-	// positional light
-	if (lightPosition.w == 1) { lightDir = (lightPosition.xyz ‐ cVertex);	}
-	
+	vec3 lightDir=lightPosition.xyz;
+	if(lightPosition.w==1){lightDir=(lightPosition.xyz-cVertex);}
 	return max(dot(cNormal, normalize(lightDir)), 0.0);
 	// dot: coseno ángulo
 }
@@ -50,8 +47,7 @@ void main() {
 	// Calculos de iluminacion
 	vec3 diffuse = diff(viewVertex, viewNormal) * lightDiffuse * materialDiffuse;
 	vFrontColor = ambient + diffuse; // + specular
-	
-	diffuse = diff(viewVertex, ‐viewNormal) * lightDiffuse * materialDiffuse;
+	diffuse=diff(viewVertex,-viewNormal)*lightDiffuse*materialDiffuse;
 	vBackColor = ambient + diffuse; // + specular
 
 	vUv0 = uv0; 										// se pasan las coordenadas de textura
