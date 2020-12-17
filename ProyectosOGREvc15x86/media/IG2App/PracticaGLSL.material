@@ -79,7 +79,7 @@ fragment_program CorrosionFS glsl
 		param_named texturaBumpy int 1
 
 		
-		param_named materialDiffuse float3 0.5 0.5 0.5 
+		param_named materialDiffuse float3 1.0 1.0 1.0 
 
 		param_named_auto lightPosition light_position_view_space 0
         param_named_auto lightDiffuse light_diffuse_colour 0

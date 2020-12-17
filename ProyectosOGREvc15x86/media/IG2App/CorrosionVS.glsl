@@ -24,8 +24,8 @@ void main() {
 	
 	
 	// valores en espacio de vista para el FS
-	vec3 viewVertex = vec3(modelViewMat * vertex);					// Coordenadas para el FS
-	vec3 viewNormal = normalize(vec3(normalMat * vec4(normal, 0.0)));	// Valores para el FS
+	viewVertex = vec3(modelViewMat * vertex);					// Coordenadas para el FS
+	viewNormal = normalize(vec3(normalMat * vec4(normal, 0.0)));	// Valores para el FS
 
 	// Luz difusa		
 	// Calculos de iluminacion
