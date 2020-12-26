@@ -4,6 +4,7 @@
 #include <OgreInput.h>
 #include <SDL_keycode.h>
 #include <OgreMeshManager.h>
+#include <OgreCompositorManager.h>
 
 using namespace Ogre;
 
@@ -65,6 +66,14 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
 	  Ogre::Entity* plane = mSM->createEntity("Plano");
 	  plane->setMaterialName("IG2App/nowater");
 	  PlanoNode1->attachObject(plane);*/
+  }
+  if (evt.keysym.sym == SDLK_l) {
+	  BN = !BN;
+	  CompositorManager::getSingleton().setCompositorEnabled(vp, "Luminance", BN);
+  }
+  if (evt.keysym.sym == SDLK_k) {
+	  Edge = !Edge;
+	  CompositorManager::getSingleton().setCompositorEnabled(vp, "EdgeEmboss", Edge);	  
   }
   return true;
 }
@@ -130,10 +139,13 @@ void IG2App::setupScene(void)
   //mCamNode->setDirection(Ogre::Vector3(0, 0, -1));  
   
   // and tell it to render into the main window
-  Viewport* vp = getRenderWindow()->addViewport(cam);
+  vp = getRenderWindow()->addViewport(cam);
 
   //COLOR DE FONDO
   vp->setBackgroundColour(Ogre::ColourValue(0, 0, 0));//(rojo,verde,azul)
+  // Compositors y demas
+  CompositorManager::getSingleton().addCompositor(vp, "Luminance");
+  CompositorManager::getSingleton().addCompositor(vp, "EdgeEmboss");
 
   //------------------------------------------------------------------------
 

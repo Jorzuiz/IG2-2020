@@ -119,3 +119,7 @@ material IG2App/CorrosionGLSL {
 		} 
 	} 
 }
+
+material IG2App/Compo{
+	
+}

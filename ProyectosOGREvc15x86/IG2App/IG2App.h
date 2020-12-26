@@ -33,7 +33,8 @@ protected:
   Ogre::SceneNode* mLightNode = nullptr;
   Ogre::SceneNode* mCamNode = nullptr;
   OgreBites::CameraMan* mCamMgr = nullptr;
-
+  Viewport* vp;
+  bool BN = false,Edge = false;
   //ESCENA ASPAS
   const int num = 5;
   //Ogre::SceneNode* AspasNode_ = nullptr;

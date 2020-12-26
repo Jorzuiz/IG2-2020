@@ -1,0 +1,36 @@
+vertex_program RenderQuadVS glsl
+{
+   source Ejemplo2VS.glsl
+   default_params 
+    {
+        param_named_auto modelViewProjMat worldviewproj_matrix
+    }
+}
+fragment_program Kernel3x3PS glsl 
+//este es el fragment
+{
+    source Kernel3x3PS.glsl
+    default_params {
+        param_named RTT0 int 0 
+        param_named kernel float9 0 0 0 0 1 0 0 0 0
+        // textura con la escena
+    }
+}
+material EdgeEmbossPS {
+    technique {
+        pass {
+            depth_check off // desactivar el depth‐buffer
+            depth_write off
+            vertex_program_ref RenderQuadVS {
+            }
+            fragment_program_ref Kernel3x3PS {
+            }
+            texture_unit RTT0
+            {
+                // sin imagen de archivo ‐> previous render target
+                filtering none 
+                // tiene la resolución del viewport
+            }
+        }
+    } 
+}
