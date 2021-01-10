@@ -8,7 +8,7 @@ Boya::Boya(Ogre::SceneNode* node) : EntidadIG(node)
 	Ogre::SceneManager* mSM = BoyaNode_->getCreator();
 	// Creacion de la boya y su textura
 	ent = BoyaNode_->getCreator()->createEntity("uv_sphere.mesh");
-	ent->setMaterialName("IG2App/CorrosionGLSL");
+	ent->setMaterialName("IG2App/ExplotaGS");
 	BoyaNode_->attachObject(ent);
 	BoyaNode_->setScale(scale, scale, scale);
 	BoyaNode_->setPosition(0, 20, 0);

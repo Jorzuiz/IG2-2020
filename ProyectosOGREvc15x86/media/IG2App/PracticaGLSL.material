@@ -120,3 +120,130 @@ material IG2App/CorrosionGLSL {
 	} 
 }
 
+////////////////////////////////////////////////////////////////////
+///Material de Blanco/Negro
+
+vertex_program RenderQuadVS glsl
+{
+   source Ejemplo2VS.glsl
+   default_params 
+    {
+        param_named_auto modelViewProjMat worldviewproj_matrix
+    }
+}
+fragment_program LuminancePS glsl 
+//este es el fragment
+{
+    source LuminancePS.glsl
+    default_params {
+        param_named RTT0 int 0 
+        // textura con la escena
+    }
+}
+
+material LuminancePS {
+    technique {
+        pass {
+            depth_check off // desactivar el depth‐buffer
+            depth_write off
+            vertex_program_ref RenderQuadVS {
+            }
+            fragment_program_ref LuminancePS {
+            }
+            texture_unit RTT0
+            {
+                // sin imagen de archivo ‐> previous render target
+                filtering none 
+                // tiene la resolución del viewport
+            }
+        }
+    } 
+}
+
+////////////////////////////////////////////////////////////////////
+///Material de Blur
+
+fragment_program Kernel3x3PS glsl 
+//este es el fragment
+{
+    source Kernel3x3PS.glsl
+    default_params {
+        param_named RTT0 int 0 
+        param_named kernel float9 0 0 0 0 1 0 0 0 0
+        // textura con la escena
+    }
+}
+material EdgeEmbossPS {
+    technique {
+        pass {
+            depth_check off 
+            // desactivar el depth‐buffer
+            depth_write off
+            vertex_program_ref RenderQuadVS {
+            }
+            fragment_program_ref Kernel3x3PS {
+                param_named kernel float9 -4 -2 0 -2 1 2 0 2 4
+            }
+            texture_unit //RTT0
+            {
+                // sin imagen de archivo ‐> previous render target
+                filtering none 
+                // tiene la resolución del viewport
+                tex_address_mode clamp
+            }
+        }
+    } 
+}
+
+
+////////////////////////////////////////////////////////////////////
+///Material Geometry Shader
+
+vertex_program ExplotaVS glsl
+{
+   source ExplotaVS.glsl
+   default_params 
+    {
+        //param_named_auto modelViewProjMat worldviewproj_matrix
+    }
+}
+
+fragment_program ExplotaFS glsl 
+//este es el fragment
+{
+    source ExplotaFS.glsl
+    default_params {
+    }
+}
+
+geometry_program ExplotaGS glsl  // también para el GS
+{	
+	// archivo del Geometry Shader
+	source ExplotaGS.glsl 
+	// tiene que coincidir con
+	input_operation_type triangles 
+	// las declaraciones
+	output_operation_type triangle_strip 
+	// del Geometry shader
+	max_output_vertices 3 
+
+// para las uniform del shader
+default_params { 
+	param_named_auto modelViewProjMat worldviewproj_matrix
+	} 
+} 
+
+// Orden de variables VS -> GS -> FS
+material IG2App/ExplotaGS {
+    technique {
+        pass {
+            cull_hardware none
+			cull_software none
+            vertex_program_ref ExplotaVS {
+            }
+            fragment_program_ref ExplotaFS {
+            }
+            geometry_program_ref ExplotaGS { } // también para el GS
+        }
+    } 
+}
