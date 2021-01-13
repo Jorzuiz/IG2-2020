@@ -40,6 +40,7 @@ float diff(vec3 cVertex, vec3 cNormal)
 	return max(dot(cNormal, normalize(lightDir)), 0.0);
 	// dot: coseno ángulo
 }
+
 void main() {
 
 	vec4 color;	// Color final a representar

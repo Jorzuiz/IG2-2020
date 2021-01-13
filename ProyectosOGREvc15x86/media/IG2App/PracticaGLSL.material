@@ -213,6 +213,11 @@ fragment_program ExplotaFS glsl
 {
     source ExplotaFS.glsl
     default_params {
+
+		param_named_auto Flipping render_target_flipping 
+		
+    	param_named texturaCorrosion int 0
+		param_named texturaBumpy int 1
     }
 }
 
@@ -243,7 +248,20 @@ material IG2App/ExplotaGS {
             }
             fragment_program_ref ExplotaFS {
             }
-            geometry_program_ref ExplotaGS { } // también para el GS
+            geometry_program_ref ExplotaGS { 
+            } // también para el GS
+
+            texture_unit { 					
+				// * -> int 0
+				texture corrosion.jpg 2d 	
+				tex_address_mode clamp 		
+				filtering bilinear 			
+			}
+			texture_unit { 					
+				// * -> int 1
+				texture BumpyMetal.jpg 2d 	
+				tex_address_mode wrap 
+			}
         }
     } 
 }
