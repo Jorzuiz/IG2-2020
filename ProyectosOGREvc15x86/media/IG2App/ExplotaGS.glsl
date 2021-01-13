@@ -50,4 +50,5 @@ void main() {
 
 	// Hace un Out de los vertices agrupados en la primitiva indicada
 	EndPrimitive();	// Finaliza la emision de la primitiva
+
 }
