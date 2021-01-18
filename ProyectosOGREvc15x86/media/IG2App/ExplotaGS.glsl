@@ -8,19 +8,19 @@ layout (triangle_strip, max_vertices = 3) out; // Primitiva de salida en forma d
 // los vértices no traen asociados atributos, solo las coordenadas
 
 uniform mat4 modelViewProjMat; // para pasar a Clip-Space
-const float VD = 1; // longitud del desplazamiento
+const float VD = 0.2; // longitud del desplazamiento
 
 in VS_OUT
 {
 	vec2 GS_vUv0; 
-	vec3 GS_viewNormal; 	// coordenadas de la normal en  Xxx space
+	vec3 GS_viewNormal;
 	vec3 GS_viewVertex; 
 } gs_in[];
 
 out GS_OUT
 {
 	vec2 FS_vUv0; 
-	vec3 FS_viewNormal; 	// coordenadas de la normal en  Xxx space
+	vec3 FS_viewNormal;
 	vec3 FS_viewVertex;
 } gs_out;
 
@@ -41,9 +41,9 @@ vec3 normalVec(vec3 vertex[3]) {
 
 void main() {
 	// La primitiva es tirangulos asique tiene dimension 3
-	vec3 vertices[3] = vec3[](gl_in[0].gl_Position.xyz,
-		gl_in[1].gl_Position.xyz,
-		gl_in[2].gl_Position.xyz);
+	vec3 vertices[3] = vec3[](	gl_in[0].gl_Position.xyz,
+								gl_in[1].gl_Position.xyz,
+								gl_in[2].gl_Position.xyz);
 
 	// NormalVec coge 3 vertices y saca su normal
 	vec3 dir = normalVec (vertices); // para los 3 vértices
@@ -61,7 +61,7 @@ void main() {
 		gs_out.FS_vUv0 = gs_in[i].GS_vUv0; 
 		gs_out.FS_viewNormal = gs_in[i].GS_viewNormal;
 		gs_out.FS_viewVertex = gs_in[i].GS_viewVertex;
-		
+
 		// Emitimos los vertices al resto de la tubería
 		EmitVertex(); 
 

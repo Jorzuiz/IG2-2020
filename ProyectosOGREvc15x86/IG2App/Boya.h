@@ -19,6 +19,16 @@ public:
 	Boya(Ogre::SceneNode* node);
 	~Boya() {};
 	void frameRendered(const Ogre::FrameEvent& evt);
+	void changeMaterial(bool geo) {
+		if (geo) {
+			ent->setMaterialName("IG2App/ExplotaGS");		
+			}
+		else{
+			ent->setMaterialName("IG2App/CorrosionGLSL");
+			}
+		animationState->setLoop(!geo);
+		animationState->setEnabled(!geo);
+	};
 protected:
 	Ogre::SceneNode* BoyaNode_;
 	Ogre::Entity* ent;

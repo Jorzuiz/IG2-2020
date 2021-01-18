@@ -66,6 +66,9 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
 	  Ogre::Entity* plane = mSM->createEntity("Plano");
 	  plane->setMaterialName("IG2App/nowater");
 	  PlanoNode1->attachObject(plane);*/
+	  geo = !geo;
+	  if(geo == true)
+	  Boya_->changeMaterial(geo);
   }
   if (evt.keysym.sym == SDLK_l) {
 	  BN = !BN;

@@ -8,7 +8,8 @@ in vec3 normal;
 in vec4 vertex;
 in vec2 uv0;
 
-// Outs directos para el FS
+// No podemos pasarlo directamente al FS
+// Y el GS no lo admite a menos que no esté agrupado en un array 
 out VS_OUT{
 	vec2 GS_vUv0; 
 	vec3 GS_viewNormal; 	// coordenadas de la normal en  Xxx space
