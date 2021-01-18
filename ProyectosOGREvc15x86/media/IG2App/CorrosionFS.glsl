@@ -8,11 +8,11 @@ uniform sampler2D texturaBumpy;
 
 uniform float Flipping;
 
-in vec2 vUv0; 			// out del vertex shader
+in vec2 FS_vUv0; 			// out del vertex shader
 // luz ambiente uniform vec3 luzDiff; uniform vec3 luzDir;
 
-in vec3 viewNormal;
-in vec3 viewVertex; 	//v_position
+in vec3 FS_viewNormal;
+in vec3 FS_viewVertex; 	//v_position
 uniform vec3 vFrontColor; 	// color rgb de la iluminación de la cara Front (normal)
 uniform vec3 vBackColor; 	// color rgb de la iluminación de la cara Back (-normal)
 // Luces
@@ -46,14 +46,14 @@ void main() {
 	vec4 color;	// Color final a representar
 	//vec3 normal; // normales finales direccion de refraccion de la luz
 	//Colores de las texturas, una es la transparencia, la otra se representa	
-	vec3 corrosion = texture(texturaCorrosion, vUv0).rgb; // Transforma a vec3
-	vec3 metal = texture(texturaBumpy, vUv0).rgb;		  // Transforma a vec3
+	vec3 corrosion = texture(texturaCorrosion, FS_vUv0).rgb; // Transforma a vec3
+	vec3 metal = texture(texturaBumpy, FS_vUv0).rgb;		  // Transforma a vec3
 
 	//vec3 ambient = lightAmbient * materialDiffuse;
-	vec3 diffuse = diff(viewVertex, viewNormal) * lightDiffuse * materialDiffuse;
+	vec3 diffuse = diff(FS_viewVertex, FS_viewNormal) * lightDiffuse * materialDiffuse;
 	vec3 colorF = diffuse; // + specular + ambient
 
-	diffuse =  diff(viewVertex, -viewNormal) * lightDiffuse * materialDiffuse;//
+	diffuse =  diff(FS_viewVertex, -FS_viewNormal) * lightDiffuse * materialDiffuse;//
 	vec3 colorB =  diffuse; // + specular ambient +
     //vec3 diffuse = diff * luzUnicaDifusa;
 	bool frontFacing = (Flipping > -1)? gl_FrontFacing : ! gl_FrontFacing;

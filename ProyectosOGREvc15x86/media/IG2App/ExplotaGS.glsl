@@ -10,6 +10,20 @@ layout (triangle_strip, max_vertices = 3) out; // Primitiva de salida en forma d
 uniform mat4 modelViewProjMat; // para pasar a Clip-Space
 const float VD = 1; // longitud del desplazamiento
 
+in VS_OUT
+{
+	vec2 GS_vUv0; 
+	vec3 GS_viewNormal; 	// coordenadas de la normal en  Xxx space
+	vec3 GS_viewVertex; 
+} gs_in[];
+
+out GS_OUT
+{
+	vec2 FS_vUv0; 
+	vec3 FS_viewNormal; 	// coordenadas de la normal en  Xxx space
+	vec3 FS_viewVertex;
+} gs_out;
+
 vec3 normalVec(vec3 vertex[3]) {
 	// Formula del libro
 	vec3 U = vertex[1] - vertex[0];
@@ -34,12 +48,19 @@ void main() {
 	// NormalVec coge 3 vertices y saca su normal
 	vec3 dir = normalVec (vertices); // para los 3 vértices
 
+
+
+
 	for (int i=0; i<3; ++i) { 		// para emitir 3 vértices
 		vec3 posDes = vertices[i] + dir * VD;
 		// vértice desplazado (los 3 en la misma dirección)
 		
 		// Transformamos los vertices a Clip-Space (modelViewProjMat)
 		gl_Position = modelViewProjMat * vec4(posDes, 1.0);
+		
+		gs_out.FS_vUv0 = gs_in[i].GS_vUv0; 
+		gs_out.FS_viewNormal = gs_in[i].GS_viewNormal;
+		gs_out.FS_viewVertex = gs_in[i].GS_viewVertex;
 		
 		// Emitimos los vertices al resto de la tubería
 		EmitVertex(); 

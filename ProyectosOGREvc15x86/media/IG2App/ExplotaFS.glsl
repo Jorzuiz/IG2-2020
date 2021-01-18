@@ -9,9 +9,12 @@ uniform vec3 lightDiffuse;
 uniform vec3 materialDiffuse;
 uniform vec4 lightPosition;
 
-in vec2 vUv0;
-in vec3 viewNormal;
-in vec3 viewVertex;
+in GS_OUT
+{
+	vec2 FS_vUv0;
+	vec3 FS_viewNormal;
+	vec3 FS_viewVertex;
+} fs_in;
 
 out vec4 fFragColor;
 
@@ -26,15 +29,15 @@ void main() {
 
 	vec4 color;
 
-	vec3 corrosion = texture(texturaCorrosion, vUv0).rgb;
-	vec3 metal = texture(texturaBumpy, vUv0).rgb;
+	vec3 corrosion = texture(texturaCorrosion, fs_in.FS_vUv0).rgb;
+	vec3 metal = texture(texturaBumpy, fs_in.FS_vUv0).rgb;
 
 	// Diffuse Front
-	vec3 diffuse = diff(viewVertex, viewNormal) * lightDiffuse * materialDiffuse;
+	vec3 diffuse = diff(fs_in.FS_viewVertex, fs_in.FS_viewNormal) * lightDiffuse * materialDiffuse;
 	vec3 colorF = diffuse; // + specular + ambient
 
 	// Diffuse Back
-	diffuse =  diff(viewVertex, -viewNormal) * lightDiffuse * materialDiffuse;
+	diffuse =  diff(fs_in.FS_viewVertex, -fs_in.FS_viewNormal) * lightDiffuse * materialDiffuse;
 	vec3 colorB =  diffuse;
 
 	bool frontFacing = (Flipping > -1)? gl_FrontFacing : ! gl_FrontFacing;

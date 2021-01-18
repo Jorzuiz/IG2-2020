@@ -9,16 +9,17 @@ in vec4 vertex;
 in vec2 uv0;
 
 // Outs directos para el FS
-out vec2 vUv0; 
-out vec3 viewNormal; 	// coordenadas de la normal en  Xxx space
-out vec3 viewVertex; 	// coordenadas de el vértice en Xxx space
+out VS_OUT{
+	vec2 GS_vUv0; 
+	vec3 GS_viewNormal; 	// coordenadas de la normal en  Xxx space
+	vec3 GS_viewVertex; 	// coordenadas de el vértice en Xxx space
+} vs_out;
 
 void main() {
 
-	viewVertex = vec3(modelViewMat * vertex);
-	viewNormal = normalize(vec3(normalMat * vec4(normal, 0.0)));
-
-	vUv0 = uv0;		// Directo al Fragment Shader
+	vs_out.GS_viewVertex = vec3(modelViewMat * vertex);
+	vs_out.GS_viewNormal = normalize(vec3(normalMat * vec4(normal, 0.0)));
+	vs_out.GS_vUv0 = uv0;		// Directo al Fragment Shader
 
 	gl_Position = vertex;	
 	// El GS tiene que transformar las coordenadas
