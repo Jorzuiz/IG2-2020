@@ -241,7 +241,10 @@ geometry_program ExplotaGS glsl  // también para el GS
 
 // para las uniform del shader
 default_params { 
+
 	param_named_auto modelViewProjMat worldviewproj_matrix
+	param_named_auto SinTiempo sintime_0_2pi 32
+
 	} 
 } 
 
@@ -270,6 +273,61 @@ material IG2App/ExplotaGS {
 				texture BumpyMetal.jpg 2d 	
 				tex_address_mode wrap 
 			}
+        }
+    } 
+}
+
+////////////////////////////////////////////////////////////////////
+///Material Normal Shader
+
+vertex_program NormalesVS glsl
+{
+   source NormalesVS.glsl
+   default_params 
+    {
+    	
+    }
+}
+
+fragment_program NormalesFS glsl 
+//este es el fragment
+{
+    source NormalesFS.glsl
+    default_params {
+
+    }
+}
+
+geometry_program NormalesGS glsl  // también para el GS
+{	
+	// archivo del Geometry Shader
+	source NormalesGS.glsl 
+	// tiene que coincidir con
+	input_operation_type triangles 
+	// las declaraciones
+	output_operation_type line_strip 
+	// del Geometry shader
+	max_output_vertices 6 
+
+	// para las uniform del shader
+	default_params { 
+
+		param_named_auto modelViewProjMat worldviewproj_matrix
+
+	} 
+} 
+
+// Orden de variables VS -> GS -> FS
+material IG2App/NormalesGS {
+    technique {
+        pass {
+            vertex_program_ref NormalesVS {
+            }
+            geometry_program_ref NormalesGS { 
+            } // también para el GS
+            fragment_program_ref NormalesFS {
+            }
+
         }
     } 
 }

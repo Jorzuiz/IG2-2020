@@ -50,7 +50,7 @@ void Molino::receiveEvent(EntidadIG* entidad,string mensaje)
 	if (mensaje == "paraMolino") {
 		parado = !parado;	//Variable de control del metodo giro
 		if(parado)
-			techo->setMaterialName("IG2App/rojo");
+			techo->setMaterialName("IG2App/NormalesGS");
 		else
 			techo->setMaterialName("IG2App/amarillo");
 	}

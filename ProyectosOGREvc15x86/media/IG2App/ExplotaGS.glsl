@@ -8,7 +8,9 @@ layout (triangle_strip, max_vertices = 3) out; // Primitiva de salida en forma d
 // los vértices no traen asociados atributos, solo las coordenadas
 
 uniform mat4 modelViewProjMat; // para pasar a Clip-Space
-const float VD = 0.2; // longitud del desplazamiento
+uniform float SinTiempo;
+
+const float VD = 50; // longitud del desplazamiento
 
 in VS_OUT
 {
@@ -17,25 +19,13 @@ in VS_OUT
 	vec3 GS_viewVertex; 
 } gs_in[];
 
+
 out GS_OUT
 {
 	vec2 FS_vUv0; 
 	vec3 FS_viewNormal;
 	vec3 FS_viewVertex;
 } gs_out;
-
-vec3 normalVec(vec3 vertex[3]) {
-	// Formula del libro
-	vec3 U = vertex[1] - vertex[0];
-	vec3 V = vertex[2] - vertex[0];
-
-	float NormalX = (U.y * V.z) - (U.z * V.y);
-	float NormalY = (U.z * V.x) - (U.x * V.z);
-	float NormalZ = (U.x * V.y) - (U.y * V.x);
-
-	return vec3(NormalX, NormalY, NormalZ);
-
-} // vector normal al triángulo
 
 // Cuando existe un GS, el VS agrupa los vertices en grupos basandose en la primitiva
 
@@ -46,10 +36,10 @@ void main() {
 								gl_in[2].gl_Position.xyz);
 
 	// NormalVec coge 3 vertices y saca su normal
-	vec3 dir = normalVec (vertices); // para los 3 vértices
+	vec3 cross_vec = cross((vertices[2]-vertices[1]), (vertices[0]-vertices[1]));
+	vec3 normalize_vec = normalize(cross_vec);
 
-
-
+	vec3 dir = normalize_vec * SinTiempo;
 
 	for (int i=0; i<3; ++i) { 		// para emitir 3 vértices
 		vec3 posDes = vertices[i] + dir * VD;
