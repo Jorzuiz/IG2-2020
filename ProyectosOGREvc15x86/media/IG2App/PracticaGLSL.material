@@ -331,3 +331,84 @@ material IG2App/NormalesGS {
         }
     } 
 }
+
+////////////////////////////////////////////////////////////////////
+///Material Geometry Shader
+
+vertex_program Explota2VS glsl
+{
+   source Explota2VS.glsl
+   default_params 
+    {
+        //param_named_auto modelViewProjMat worldviewproj_matrix
+		param_named_auto modelViewMat worldview_matrix
+		param_named_auto normalMat inverse_transpose_worldview_matrix
+    }
+}
+
+fragment_program Explota2FS glsl 
+//este es el fragment
+{
+    source Explota2FS.glsl
+    default_params {
+
+		param_named_auto Flipping render_target_flipping 
+
+    	param_named texturaCorrosion int 0
+		param_named texturaBumpy int 1
+
+		param_named materialDiffuse float3 1.0 1.0 1.0 
+
+		param_named_auto lightPosition light_position_view_space 0
+        param_named_auto lightDiffuse light_diffuse_colour 0
+    }
+}
+
+geometry_program Explota2GS glsl  // también para el GS
+{	
+	// archivo del Geometry Shader
+	source Explota2GS.glsl 
+	// tiene que coincidir con
+	input_operation_type triangles 
+	// las declaraciones
+	output_operation_type triangle_strip 
+	// del Geometry shader
+	max_output_vertices 3 
+
+// para las uniform del shader
+default_params { 
+
+	param_named_auto modelViewProjMat worldviewproj_matrix
+	param_named_auto SinTiempo sintime_0_2pi 32
+
+	} 
+} 
+
+// Orden de variables VS -> GS -> FS
+material IG2App/Explota2GS {
+    technique {
+        pass {
+            cull_hardware none
+			cull_software none
+            vertex_program_ref Explota2VS {
+            }
+            geometry_program_ref Explota2GS { 
+            } // también para el GS
+            fragment_program_ref Explota2FS {
+            }
+
+
+            texture_unit { 					
+				// * -> int 0
+				texture corrosion.jpg 2d 	
+				tex_address_mode clamp 		
+				filtering bilinear 			
+			}
+			texture_unit { 					
+				// * -> int 1
+				texture BumpyMetal.jpg 2d 	
+				tex_address_mode wrap 
+			}
+        }
+    } 
+}

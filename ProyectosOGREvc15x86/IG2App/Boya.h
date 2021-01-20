@@ -21,7 +21,7 @@ public:
 	void frameRendered(const Ogre::FrameEvent& evt);
 	void changeMaterial(bool geo) {
 		if (geo) {
-			ent->setMaterialName("IG2App/ExplotaGS");		
+			ent->setMaterialName("IG2App/Explota2GS");		
 			}
 		else{
 			ent->setMaterialName("IG2App/CorrosionGLSL");
