@@ -21,7 +21,7 @@ void main() {
 	vs_out.GS_viewVertex = vec3(modelViewMat * vertex);
 	vs_out.GS_viewNormal = normalize(vec3(normalMat * vec4(normal, 0.0)));
 	vs_out.GS_vUv0 = uv0;		// Directo al Fragment Shader
-
+	
 	gl_Position = vertex;	
 	// El GS tiene que transformar las coordenadas
 	// de gl_Position al espacio de corte (modelViewProjMat)

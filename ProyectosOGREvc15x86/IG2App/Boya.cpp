@@ -47,6 +47,7 @@ Boya::Boya(Ogre::SceneNode* node) : EntidadIG(node)
 	animationState = mSM->createAnimationState("animVV");
 	animationState->setLoop(true);
 	animationState->setEnabled(true);
+	//BoyaNode_->getCreator()->showBoundingBoxes(true);
 }
 
 void Boya::frameRendered(const Ogre::FrameEvent& evt)

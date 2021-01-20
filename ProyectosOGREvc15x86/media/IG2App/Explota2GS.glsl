@@ -8,7 +8,7 @@ layout (triangle_strip, max_vertices = 3) out; // Primitiva de salida en forma d
 // los vértices no traen asociados atributos, solo las coordenadas
 
 uniform mat4 modelViewProjMat; // para pasar a Clip-Space
-uniform float SinTiempo;
+uniform float tiempo2pi;
 
 const float VD = 50; // longitud del desplazamiento
 
@@ -30,19 +30,23 @@ out GS_OUT
 // Cuando existe un GS, el VS agrupa los vertices en grupos basandose en la primitiva
 
 void main() {
+	
 	// La primitiva es tirangulos asique tiene dimension 3
 	vec3 vertices[3] = vec3[](	gl_in[0].gl_Position.xyz,
 								gl_in[1].gl_Position.xyz,
 								gl_in[2].gl_Position.xyz);
 
-	// NormalVec coge 3 vertices y saca su normal
-	vec3 cross_vec = cross((vertices[2]-vertices[1]), (vertices[0]-vertices[1]));
-	vec3 normalize_vec = normalize(cross_vec);
+	
 
-	vec3 dir = normalize_vec * SinTiempo;
+	vec3 bari = vec3(vertices[0] + vertices[1] + vertices[2])/3;
+	// NormalVec coge 3 vertices y saca su normal
+	//vec3 cross_vec = cross((vertices[2]-vertices[1]), (vertices[0]-vertices[1]));
+	//vec3 normalize_vec = normalize(cross_vec);
+	vec3 normalize_vec = normalize(bari);
+	//vec3 dir = normalize_vec * SinTiempo;
 
 	for (int i=0; i<3; ++i) { 		// para emitir 3 vértices
-		vec3 posDes = vertices[i] + dir * VD;
+		vec3 posDes = vertices[i] + normalize_vec * VD *tiempo2pi;
 		// vértice desplazado (los 3 en la misma dirección)
 		
 		// Transformamos los vertices a Clip-Space (modelViewProjMat)

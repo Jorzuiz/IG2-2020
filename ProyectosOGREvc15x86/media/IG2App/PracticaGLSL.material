@@ -379,8 +379,7 @@ geometry_program Explota2GS glsl  // también para el GS
 default_params { 
 
 	param_named_auto modelViewProjMat worldviewproj_matrix
-	param_named_auto SinTiempo sintime_0_2pi 32
-
+	param_named_auto tiempo2pi time_0_2pi 32
 	} 
 } 
 
@@ -393,6 +392,7 @@ material IG2App/Explota2GS {
             vertex_program_ref Explota2VS {
             }
             geometry_program_ref Explota2GS { 
+
             } // también para el GS
             fragment_program_ref Explota2FS {
             }
