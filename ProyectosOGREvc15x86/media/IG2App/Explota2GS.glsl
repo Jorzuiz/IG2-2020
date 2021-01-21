@@ -48,14 +48,21 @@ void main() {
 	for (int i=0; i<3; ++i) { 		// para emitir 3 vértices
 		vec3 posDes = vertices[i] + normalize_vec * VD *tiempo2pi;
 		// vértice desplazado (los 3 en la misma dirección)
-		
+		//***************YAW********
+		//mat3 yaw = (vec3(cos(tiempo2pi), -sin(tiempo2pi), 0),
+		//vec3( sin(tiempo2pi), cos(tiempo2pi), 0), vec3(0,0,1));
+		//vec3 posDes = posDes * yaw;
+		vec3 yaw;
+        yaw.x = posDes.x * (cos(tiempo2pi)) + posDes.z * (-sin(tiempo2pi));
+        yaw.y = posDes.y;
+        yaw.z = posDes.x * (sin(tiempo2pi)) + posDes.z * (cos(tiempo2pi));
 		// Transformamos los vertices a Clip-Space (modelViewProjMat)
-		gl_Position = modelViewProjMat * vec4(posDes, 1.0);
+		gl_Position = modelViewProjMat * vec4(yaw, 1.0);
 		
 		gs_out.FS_vUv0 = gs_in[i].GS_vUv0; 
-		gs_out.FS_viewNormal = gs_in[i].GS_viewNormal;
+		gs_out.FS_viewNormal = normalize(yaw);//gs_in[i].GS_viewNormal;
 		gs_out.FS_viewVertex = gs_in[i].GS_viewVertex;
-
+		
 		// Emitimos los vertices al resto de la tubería
 		EmitVertex(); 
 
