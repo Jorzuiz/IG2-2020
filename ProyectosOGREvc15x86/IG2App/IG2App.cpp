@@ -164,7 +164,7 @@ void IG2App::setupScene(void)
 
   mLightNode->setDirection(Ogre::Vector3(0, -1, -1));  //vec3.normalise();
   //lightNode->setPosition(0, 0, 1000);
- 
+  mSM->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2, 1.0));
   //------------------------------------------------------------------------
 
   // finally something to render

@@ -8,7 +8,7 @@ uniform sampler2D texturaBumpy;
 uniform vec3 lightDiffuse;
 uniform vec3 materialDiffuse;
 uniform vec4 lightPosition;
-
+uniform vec4 lightAmbient;
 in GS_OUT
 {
 	vec2 FS_vUv0;
@@ -28,17 +28,17 @@ float diff(vec3 cVertex, vec3 cNormal)
 void main() {
 
 	vec4 color;
-
+	vec3 lightAmb = lightAmbient.xyz;
 	vec3 corrosion = texture(texturaCorrosion, fs_in.FS_vUv0).rgb;
 	vec3 metal = texture(texturaBumpy, fs_in.FS_vUv0).rgb;
 
 	// Diffuse Front
 	vec3 diffuse = diff(fs_in.FS_viewVertex, fs_in.FS_viewNormal) * lightDiffuse * materialDiffuse;
-	vec3 colorF = diffuse; // + specular + ambient
+	vec3 colorF = diffuse+lightAmb; // + specular + ambient
 
 	// Diffuse Back
 	diffuse =  diff(fs_in.FS_viewVertex, -fs_in.FS_viewNormal) * lightDiffuse * materialDiffuse;
-	vec3 colorB =  diffuse;
+	vec3 colorB =  diffuse-lightAmb;
 
 	bool frontFacing = (Flipping > -1)? gl_FrontFacing : ! gl_FrontFacing;
 

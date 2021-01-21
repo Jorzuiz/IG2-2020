@@ -361,6 +361,7 @@ fragment_program Explota2FS glsl
 
 		param_named_auto lightPosition light_position_view_space 0
         param_named_auto lightDiffuse light_diffuse_colour 0
+		param_named_auto lightAmbient ambient_light_colour 0
     }
 }
 
