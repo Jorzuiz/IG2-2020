@@ -1,9 +1,6 @@
 #version 330 core // archivo ExplotaVS.glsl
 // VERTEX SHADER -> Geometry Shader -> Fragment Shader
 
-uniform mat4 modelViewMat; 		// View*Model matrix
-uniform mat4 normalMat; 		// = transpose(inverse(modelView))
-
 in vec3 normal;
 in vec4 vertex;
 in vec2 uv0;
@@ -18,8 +15,8 @@ out VS_OUT{
 
 void main() {
 
-	vs_out.GS_viewVertex = vec3(modelViewMat * vertex);
-	vs_out.GS_viewNormal = normalize(vec3(normalMat * vec4(normal, 0.0)));
+	vs_out.GS_viewVertex = vec3(vertex); //vec3(modelViewMat * vertex);
+	vs_out.GS_viewNormal = normal; //normalize(vec3(normalMat * vec4(normal, 0.0)));
 	vs_out.GS_vUv0 = uv0;		// Directo al Fragment Shader
 	
 	gl_Position = vertex;	

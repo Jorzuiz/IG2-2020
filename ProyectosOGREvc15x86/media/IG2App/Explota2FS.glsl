@@ -9,6 +9,7 @@ uniform vec3 lightDiffuse;
 uniform vec3 materialDiffuse;
 uniform vec4 lightPosition;
 uniform vec4 lightAmbient;
+
 in GS_OUT
 {
 	vec2 FS_vUv0;

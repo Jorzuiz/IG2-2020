@@ -8,9 +8,13 @@ layout (triangle_strip, max_vertices = 3) out; // Primitiva de salida en forma d
 // los vértices no traen asociados atributos, solo las coordenadas
 
 uniform mat4 modelViewProjMat; // para pasar a Clip-Space
+uniform mat4 modelViewMat; 		// View*Model matrix
+uniform mat4 normalMat; 		// = transpose(inverse(modelView))
 uniform float tiempo2pi;
+uniform float tiempo;
 
-const float VD = 50; // longitud del desplazamiento
+const float Escala = 3;
+const float VD = 5; // longitud del desplazamiento
 
 in VS_OUT
 {
@@ -34,20 +38,20 @@ void main() {
 	// La primitiva es tirangulos asique tiene dimension 3
 	vec3 vertices[3] = vec3[](	gl_in[0].gl_Position.xyz,
 								gl_in[1].gl_Position.xyz,
-								gl_in[2].gl_Position.xyz);
+								gl_in[2].gl_Position.xyz);	
 
-	
-
+	// Punto de Baricentro del triangulo
 	vec3 bari = vec3(vertices[0] + vertices[1] + vertices[2])/3;
-	// NormalVec coge 3 vertices y saca su normal
-	//vec3 cross_vec = cross((vertices[2]-vertices[1]), (vertices[0]-vertices[1]));
-	//vec3 normalize_vec = normalize(cross_vec);
-	vec3 normalize_vec = normalize(bari);
-	//vec3 dir = normalize_vec * SinTiempo;
+	// Normalizamos para hallar el vector
+	bari = normalize(bari);
 
-	for (int i=0; i<3; ++i) { 		// para emitir 3 vértices
-		vec3 posDes = vertices[i] + normalize_vec * VD *tiempo2pi;
-		// vértice desplazado (los 3 en la misma dirección)
+	for (int i=0; i<3; ++i) {
+
+		vec3 normalize_vec = normalize(vec3(normalMat * vec4(gs_in[i].GS_viewNormal, 0.0)));
+		
+		// Nos desplazamos usando el baricentro, no la normal como antes
+		vec3 posDes = vertices[i] * Escala + bari * VD * tiempo;
+
 		//***************YAW********
 		//mat3 yaw = (vec3(cos(tiempo2pi), -sin(tiempo2pi), 0),
 		//vec3( sin(tiempo2pi), cos(tiempo2pi), 0), vec3(0,0,1));
@@ -58,9 +62,11 @@ void main() {
         yaw.z = posDes.x * (sin(tiempo2pi)) + posDes.z * (cos(tiempo2pi));
 		// Transformamos los vertices a Clip-Space (modelViewProjMat)
 		gl_Position = modelViewProjMat * vec4(yaw, 1.0);
-		
+
+
+
 		gs_out.FS_vUv0 = gs_in[i].GS_vUv0; 
-		gs_out.FS_viewNormal = normalize(yaw);//gs_in[i].GS_viewNormal;
+		gs_out.FS_viewNormal = normalize_vec; //normalize(yaw); //gs_in[i].GS_viewNormal;
 		gs_out.FS_viewVertex = gs_in[i].GS_viewVertex;
 		
 		// Emitimos los vertices al resto de la tubería
