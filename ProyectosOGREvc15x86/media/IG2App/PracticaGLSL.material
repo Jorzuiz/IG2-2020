@@ -350,7 +350,7 @@ fragment_program Explota2FS glsl
 {
     source Explota2FS.glsl
     default_params {
-
+		//param_named_auto modelViewProjMat worldviewproj_matrix
 		param_named_auto Flipping render_target_flipping 
 
     	param_named texturaCorrosion int 0

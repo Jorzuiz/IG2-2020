@@ -248,7 +248,15 @@ void IG2App::setupScene(void)
   mSM->getSceneNode("Luna")->setScale(0.5, 0.5, 0.5);//hereda la escala de la tierra ojo
   mSM->getSceneNode("Luna")->showBoundingBox(true);
   mSM->getSceneNode("Luna")->translate(200, 0, 0, Ogre::Node::TS_LOCAL);//hereda la escala de la tierra ojo*/
-
+  
+  ///////cubo de confirmacion de luz //////
+  mSM->getRootSceneNode()->createChildSceneNode("cubazo");
+  Ogre::Entity* cubazo_ = mSM->createEntity("cube.mesh");
+  mSM->getSceneNode("cubazo")->attachObject(cubazo_);
+  mSM->getSceneNode("cubazo")->setPosition(0, -300, 0);
+  mSM->getSceneNode("cubazo")->roll(Degree(-100));
+  cubazo_->setMaterialName("IG2App/Explota2GS");
+  
   ///////////////////
   ///ESCENA MOLINO///
   ///////////////////

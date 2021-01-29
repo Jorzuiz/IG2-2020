@@ -13,8 +13,8 @@ uniform mat4 normalMat; 		// = transpose(inverse(modelView))
 uniform float tiempo2pi;
 uniform float tiempo;
 
-const float Escala = 3;
-const float VD = 5; // longitud del desplazamiento
+const float Escala = 2;
+const float VD = 10; // longitud del desplazamiento
 
 in VS_OUT
 {
@@ -23,7 +23,7 @@ in VS_OUT
 	vec3 GS_viewVertex; 
 } gs_in[];
 
-
+out vec3 yawfinal;
 out GS_OUT
 {
 	vec2 FS_vUv0; 
@@ -34,7 +34,7 @@ out GS_OUT
 // Cuando existe un GS, el VS agrupa los vertices en grupos basandose en la primitiva
 
 void main() {
-	
+
 	// La primitiva es tirangulos asique tiene dimension 3
 	vec3 vertices[3] = vec3[](	gl_in[0].gl_Position.xyz,
 								gl_in[1].gl_Position.xyz,
@@ -62,11 +62,11 @@ void main() {
         yaw.z = posDes.x * (sin(tiempo2pi)) + posDes.z * (cos(tiempo2pi));
 		// Transformamos los vertices a Clip-Space (modelViewProjMat)
 		gl_Position = modelViewProjMat * vec4(yaw, 1.0);
-
-
+		
+		yawfinal=yaw;
 
 		gs_out.FS_vUv0 = gs_in[i].GS_vUv0; 
-		gs_out.FS_viewNormal = normalize_vec; //normalize(yaw); //gs_in[i].GS_viewNormal;
+		gs_out.FS_viewNormal = gs_in[i].GS_viewNormal;//normalize_vec; //normalize(yaw); //
 		gs_out.FS_viewVertex = gs_in[i].GS_viewVertex;
 		
 		// Emitimos los vertices al resto de la tubería
